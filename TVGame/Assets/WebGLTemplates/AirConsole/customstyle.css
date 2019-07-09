@@ -1,0 +1,304 @@
+.nowrapcontainer{
+        white-space: nowrap;
+
+
+      }
+    .canvas {
+        padding: none;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: auto;
+        display: inline-block;
+        position: static;
+
+        
+        
+        }
+    .watchtvtext{
+        width: 250px;
+        height: 40px;
+        font-size:25px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        top: 35%;
+        text-align: center;
+        vertical-align: middle;
+        
+      }
+    .menubuttons{
+        font-size: 25px;
+        top: 5%;
+        height: 50px;
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        position: relative;
+        padding-left: auto;
+        padding-right: auto;
+        margin-bottom: 10px;
+        vertical-align: top;
+        display: block;
+        background: #F3F3F3;
+        box-shadow: none;
+        border: solid #808080 1px;
+        outline: none;
+		
+
+      }
+	  
+	  
+    .menubuttons2{
+        font-size: 25px;
+        top: 5%;
+        height: 50px;
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        position: relative;
+        padding-left: auto;
+        padding-right: auto;
+        margin-bottom: 10px;
+        vertical-align: top;
+        display: block;
+        background: #F3F3F3;
+        box-shadow: none;
+        border: solid #808080 1px;
+        outline: none;
+		
+
+      }
+	  
+	  .menubuttons3{
+        font-size: 20px;
+        top: 5%;
+        height: 40px;
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        position: relative;
+        padding-left: auto;
+        padding-right: auto;
+        margin-bottom: 10px;
+        vertical-align: top;
+        display: block;
+        background: #F3F3F3;
+        box-shadow: none;
+        border: solid #808080 1px;
+        outline: none;
+		
+
+      }
+	  
+     .checkbox{
+        font-size: 25px;
+        height: 25px;
+        width: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 40px;
+        margin-bottom: none;
+        padding-left: auto;
+        padding-right: auto;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        vertical-align: middle;
+
+      }
+
+
+    .initialPhraseText{
+		display: inline-block;
+		position: relative;
+		padding: none;
+        font-size: 20px;
+        margin-right: auto;
+        margin-left: auto;
+		margin-top: 0;
+		margin-bottom: auto;
+      }
+
+
+
+
+      .chooseTopicCanvas {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        margin: auto;
+        height: 100%;
+        width: 100%;
+        background: #ffffff;
+        }
+
+      .initialPhraseInput{
+        margin: auto;
+        font-size: 20px;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+
+      }
+      .testbuttons{
+        height: 40px;
+        width: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        padding-left: auto;
+        padding-right: auto;
+        vertical-align: top;
+        display: inline-block;
+        
+
+      }
+      .ColorButton{
+        width:37px;
+        border: none;
+        outline: 0;
+        box-shadow: none;
+        position: static;
+        display: inline-block;
+        padding-left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top : 2px;
+        vertical-align: top;
+        text-align: left;
+        padding-right: 0;
+        white-space: normal;
+
+        }
+      .functionbuttons{
+        width:37px;
+        border: none;
+        outline: 0;
+        box-shadow: none;
+        position: static;
+        display: inline-block;
+        padding-left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top : 2px;
+        vertical-align: top;
+        text-align: right;
+        padding-right: 0;
+        white-space: normal;
+
+        }
+      .view{
+        text-align: center;
+        background: #D4D4D4;
+        height: 100%;
+        width: 100%;
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+		background-size: cover;
+
+       
+      }
+      .guessmodetext{
+        font-size:25px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        margin-top: 0;
+        margin-bottom: 3;
+        padding: 0;
+        vertical-align: top;
+      }
+      .guessmodeinput{
+        font-size:20px;
+        height: 20px;
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        padding-left: auto;
+        padding-right: auto;
+        vertical-align: top;
+        margin-top: 0;
+        border: none;
+        outline: 0;
+        box-shadow: none;
+        background: #D6D6D6;
+        text-align: center;
+        text-transform: uppercase;
+
+      }
+      .guessmodesubmit{
+        font-size:10px;
+        height: 20px;
+        width: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        padding-left: auto;
+        padding-right: auto;
+        vertical-align: top;
+        margin-top: 0;
+        border: none;
+        outline: 0;
+        box-shadow: none;
+        background: #D6D6D6;
+        text-align: center;
+
+      }
+      .drawmodetext{
+		width: 300px;
+        font-size:20px;
+        position: relative;
+        display: inline-block;
+        margin: auto;
+        padding-left: 5px;
+        padding-right: 5px;
+        vertical-align: middle;
+        background: #D1FFA4;
+        border: solid #6DD706 2px;
+		word-wrap: break-word;
+		white-space: normal;
+      }
+    .pseudo_button {
+        display: inline-block;
+        background-color: grey;
+        border: 1px solid black;
+        position: fixed;
+        padding: 0px;
+        cursor: hand;
+        cursor: pointer;
+        vertical-align: top;
+        margin-top: 0;
+      }
+    .textfield {
+		font-size: 16px;
+		display: inline-block;
+        position: relative;
+        border: 1px solid #888888;
+        width: 400px;
+        padding-top: 5px;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: auto:;
+        margin-right: auto;
+        margin-top: 5px;
+        vertical-align: top;
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+	.centerall {
+		position: relative;
+		top: 50%; left: 50%;
+		transform: translate(-50%,-50%);
+		margin-top: auto;
+		margin-bottom: auto;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+        vertical-align: middle;
+		background: inherit;
+
+	}

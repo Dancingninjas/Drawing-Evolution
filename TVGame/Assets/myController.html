@@ -1,0 +1,1072 @@
+
+<html>
+<head>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="touch-area.js"></script>
+  <script type="text/javascript" src="airconsole-keyboard.js"></script>
+  <script type="text/javascript" src="airconsole-view-manager.js"></script>
+  <link rel="stylesheet" href="airconsole-keyboard.css">
+  <link rel="stylesheet" href="customstyle.css">
+  <style type=text/css>
+  /* the style sheet dictates what our elements (buttons, backgrounds etc.) will look like. */
+
+    
+
+  </style>
+  <script type="text/javascript">
+   
+      //var currentColor = black;
+      var canvas;
+      var ctx;
+      var me;
+      var onPaint;
+      var my_toucharea;
+      var followingPlayer;
+      var keyboard;
+      var cPushArray;
+      var cStep;
+      var gameMode;
+      var phaseLength;
+      var numberofPhases;
+      var watchIntroduction;
+      var actualPhaseNumber = -1;
+      var requiredPlayers = 2;
+      var paintbucketcolor = "#ffffff";
+      var vm = null;
+      var phrasekeyboard;
+      var airconsole;
+      //var canvas = document.getElementById("myCanvas");
+      //var ctx = canvas.getContext("2d");
+      //var initializeCanvas = function(){
+      /*function initializeStarterCanvas() {
+          console.log("IT DOES IT DOES");
+          document.getElementById("TopicCanvas").getContext("2d").fillStyle = "#FFFFFF";
+          document.getElementById("TopicCanvas").getContext("2d").fillRect(0, 0, 450, 300);
+
+          //#ffffff
+      }*/
+      function initializeCanvas() {
+          document.getElementById("readybutton").style.backgroundColor = "#e7e7e7";
+          //console.log("YES IT CALLS THE FUNCTIONS");
+          canvas = document.getElementById("myCanvas");
+          //canvas.style.height = (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6));
+          //canvas.style.width = ((parseFloat(canvas.style.height) * 3) / 2);
+          //canvas.setAttribute('width', ((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2);
+          console.log("CHECK if " + ((parseFloat(window.innerHeight) * 16) / 9) + " > " + parseFloat(window.innerWidth))
+          var heightofScreen;
+          var widthofScreen;
+          if (parseFloat(window.innerHeight) > parseFloat(window.innerWidth)) {
+              heightofScreen = parseFloat(window.innerWidth);
+              widthofScreen = parseFloat(window.innerHeight);
+          }
+          else {
+              heightofScreen = parseFloat(window.innerHeight);
+              widthofScreen = parseFloat(window.innerWidth);
+          }
+
+          for (var i = 1; i < 12; i++) {
+              var funcid = ("func" + i.toString());
+              document.getElementById(funcid).style.border = "solid #8F8F8F 1px";
+          }
+
+          for (var i = 13; i < 16; i++) {
+              var funcid = ("func" + i.toString());
+              document.getElementById(funcid).style.border = "solid #8F8F8F 1px";
+          }
+
+          //if the width of the screen is smaller than the space needed to fit everything (then scale down based on width)
+          if (((heightofScreen * 3) / 2) > widthofScreen) {
+              for (i = 1; i < 16; i++) {
+                  document.getElementById(("func") + i.toString()).style.height = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
+                  document.getElementById(("func") + i.toString()).style.width = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
+              }
+              document.getElementById("func1").style.border = "solid #8AB483 " + ((heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)) / 9) + "px";
+              document.getElementById("func13").style.border = "solid #8AB483 " + ((heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)) / 9) + "px";
+
+              canvas.setAttribute('width', (((heightofScreen - (heightofScreen / 6)) * 3) / 2) * (widthofScreen / ((heightofScreen * 3) / 2)));
+              canvas.setAttribute('height', (heightofScreen - (heightofScreen / 6)) * (widthofScreen / ((heightofScreen * 3) / 2)));
+
+              document.getElementById("paintBucketId").setAttribute("width", (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)));// then multiply this by (screenwidth / ideal width)
+              document.getElementById("paintBucketId").setAttribute("height", (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)));
+
+              document.getElementById("ColorButton").style.width = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
+              document.getElementById("functionbuttons").style.width = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
+
+              document.getElementById("drawmodetextid").style.fontSize = (heightofScreen / 22) * (widthofScreen / ((heightofScreen * 3) / 2));
+              document.getElementById("drawmodetextid").style.width = (heightofScreen / 1.2) * (widthofScreen / ((heightofScreen * 3) / 2));
+              document.getElementById("readybutton").style.height = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
+              document.getElementById("readybutton").style.width = (heightofScreen / 3.6) * (widthofScreen / ((heightofScreen * 3) / 2));
+              document.getElementById("readybutton").style.fontSize = (heightofScreen / 22) * (widthofScreen / ((heightofScreen * 3) / 2));
+
+              document.getElementById("guessCanvas").setAttribute("width", (((heightofScreen - (heightofScreen / 6)) * 3) / 2)) * (widthofScreen / ((heightofScreen * 3) / 2));
+              document.getElementById("guessCanvas").setAttribute("height", (heightofScreen - (heightofScreen / 6))) * (widthofScreen / ((heightofScreen * 3) / 2));
+              //document.getElementById("textfield2").setAttribute("width", ) //400
+              //document.getElementById("textfield2").setAttribute("height", )
+              //document.getElementById("textfield2").setAttribute("font-size", )
+              document.getElementById("textfield2").style.width = ((heightofScreen / 0.9) * (widthofScreen / ((heightofScreen * 3) / 2))); //400
+              document.getElementById("textfield2").style.height = ((heightofScreen / 14.4) * (widthofScreen / ((heightofScreen * 3) / 2)));
+              document.getElementById("textfield2").style.fontSize = ((heightofScreen / 22.5) * (widthofScreen / ((heightofScreen * 3) / 2)));
+              document.getElementById("textfield1").style.width = ((heightofScreen / 0.9) * (widthofScreen / ((heightofScreen * 3) / 2))); //400
+              document.getElementById("textfield1").style.height = ((heightofScreen / 14.4) * (widthofScreen / ((heightofScreen * 3) / 2)));
+              document.getElementById("textfield1").style.fontSize = ((heightofScreen / 22.5) * (widthofScreen / ((heightofScreen * 3) / 2)));
+
+
+          }
+          else {
+              for (i = 1; i < 16; i++) {
+                  document.getElementById(("func") + i.toString()).style.height = heightofScreen / 10;
+                  document.getElementById(("func") + i.toString()).style.width = heightofScreen / 10;
+              }
+              document.getElementById("func1").style.border = "solid #8AB483 " + ((heightofScreen / 10) / 9) + "px";
+              document.getElementById("func13").style.border = "solid #8AB483 " + ((heightofScreen / 10) / 9) + "px";
+
+              canvas.setAttribute('width', ((heightofScreen - (heightofScreen / 6)) * 3) / 2)
+              canvas.setAttribute('height', (heightofScreen - (heightofScreen / 6)))
+
+
+              document.getElementById("paintBucketId").style.width = heightofScreen / 10;
+              document.getElementById("paintBucketId").style.height = heightofScreen / 10;
+
+              document.getElementById("ColorButton").style.width = (heightofScreen / 10);
+              document.getElementById("functionbuttons").style.width = (heightofScreen / 10);
+
+              document.getElementById("drawmodetextid").style.fontSize = (heightofScreen / 22);
+              document.getElementById("drawmodetextid").style.width = (heightofScreen / 1.2);
+              document.getElementById("readybutton").style.height = (heightofScreen / 10);
+              document.getElementById("readybutton").style.width = (heightofScreen / 3.6);
+              document.getElementById("readybutton").style.fontSize = (heightofScreen / 22);
+
+
+              document.getElementById("guessCanvas").setAttribute("width", (((heightofScreen - (heightofScreen / 6)) * 3) / 2));
+              document.getElementById("guessCanvas").setAttribute("height", (heightofScreen - (heightofScreen / 6)));
+              document.getElementById("textfield2").style.width = (heightofScreen / 0.9); //400
+              document.getElementById("textfield2").style.height = (heightofScreen / 14.4);
+              document.getElementById("textfield2").style.fontSize = (heightofScreen / 22.5);
+              document.getElementById("textfield1").style.width = (heightofScreen / 0.9); //400
+              document.getElementById("textfield1").style.height = (heightofScreen / 14.4);
+              document.getElementById("textfield1").style.fontSize = (heightofScreen / 22.5);
+          }
+          //the following are always dependent on screen height because their width is smaller than a square
+          
+          //canvas.setAttribute('width', ((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2);
+          //canvas.setAttribute('height', (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
+
+
+          //console.log("canvas.style.width = " + ((parseFloat(canvas.style.height) * 3) / 2))
+          //console.log("NEW HEIGHT: " + canvas.style.height);
+          //console.log("NEW WIDTH: " + canvas.style.width);
+          //567 WIDTH
+          //360 HEIGHT
+          //canvas.style.height = 400;
+          //canvas.style.width = 800;
+          ctx = canvas.getContext("2d");
+          ctx.fillStyle = "#FFFFFF";
+          //console.log("HEIGHT: " + window.innerHeight);
+          //console.log("WIDTH: " + window.innerWidth);
+          //console.log("ctx.fillRect(0, 0, "+Math.ceil(canvas.style.width)+", "+Math.ceil(canvas.style.height)+")");
+          ctx.fillRect(0, 0, canvas.getAttribute("width"), canvas.getAttribute("height"));
+          //ctx.fillRect(0, 0, 450, 300);
+
+          ctx.lineJoin = 'round';
+          ctx.lineCap = 'round';
+          ctx.lineWidth = heightofScreen / 72;
+          ctx.strokeStyle = "#000000";
+          //ctx.imageSmoothingEnabled = false;
+          //ctx.translate(0.5, 0.5);
+          cPushArray = new Array();
+          cStep = -1;
+          //sets the keyboard to blank (in case they were still set but someone didnt finish typing)
+          keyboard.setValue('textfield2', '');
+          //phrasekeyboard.setValue('textfield1', '');
+          
+
+
+
+
+          /*window.addEventListener('mousemove', function (e) {
+              //console.log("E = " + e)
+              //console.log("E.pageX = "+ e.pageX);
+              //console.log("E.pageY = " + e.pageY);
+              //console.log("canvas.offsetLeft = " + canvas.offsetLeft);
+              //console.log("canvas.offsetTop = " + canvas.offsetTop);
+              console.log("---------------------------")
+              console.log("BEFORE MOUSE.X = " + mouse.x);
+              console.log("BEFORE MOUSE.Y = " + mouse.y);
+              mouse.x = e.pageX - canvas.offsetLeft;
+              mouse.y = e.pageY - canvas.offsetTop;
+              console.log("AFTER MOUSE.X = " + mouse.x);
+              console.log("AFTER MOUSE.Y = " + mouse.y);
+              console.log("---------------------------")
+              //console.log("MOVE");
+          }, false);
+
+          window.addEventListener('mousedown', function (e) {
+              ctx.beginPath();
+              ctx.moveTo(mouse.x, mouse.y);
+              //console.log("TOUCH START");
+
+              window.addEventListener('mousemove', onPaint, false);
+          }, false);
+
+          window.addEventListener('mouseup', function () {
+              window.removeEventListener('mousemove', onPaint, false);
+              //console.log("TOUCH END");
+          }, false);*/
+          
+      }
+      function App() {
+          gameMode = "RandomPrompt";
+          numberofPhases = 1;
+          phaseLength = 3;
+          me = this;
+          me.airconsole = new AirConsole({ "orientation": "landscape", "synchronize_time": "true", "margin": "auto", "setup_document": "false" });
+          //ViewManager.init();
+          vm = new AirConsoleViewManager(me.airconsole);
+          vm.show('WatchTV');
+
+          //ViewManager.show("WatchTV");
+          keyboard = new AirConsoleKeyboard("Guess");
+          keyboard.bind("textfield2", {
+              onShow: function (input_id) {
+                  //console.log("onShow#1", input_id);
+              },
+              onChange: function (input_id, text, html) {
+                  //console.log("onChange#1", input_id, text, html);
+              },
+              onDone: function (input_id, text, html) {
+                  //console.log("onDone#1", input_id, text, html);
+                  if (text != "") {
+                      me.airconsole.message(followingPlayer, "Guess:" + html);
+                      me.airconsole.message(AirConsole.SCREEN, "GameHander.SaveSubmission:" + text);
+                      me.airconsole.message(AirConsole.SCREEN, "submitandready");
+                      keyboard.setValue('textfield2', '');
+                      //document.getElementById("Guess").scrollTop()
+                      //window.ScrollTo(100, 100);
+                      document.getElementById("Guess").scrollTop = 0;
+                      vm.show("WatchTV");
+                      //document.getElementById("Guess").ScrollBy(0, 100);
+                      //document.getElementById("Guess").scrollTop = document.getElementById("Guess").scrollHeight;
+
+                      //text = "";
+
+                  }
+              },
+              onHide: function (input_id, text, html) {
+                  //console.log("onHide#1", input_id, text, html);
+              }
+
+
+
+
+          });
+          
+          var mouse = { x: 0, y: 0 };
+
+
+          onPaint = function () {
+
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.stroke();
+          };
+
+
+
+
+          my_toucharea = new TouchArea("myCanvas", {
+              "touchstart": function (position) {
+                  if (cStep == -1) {
+                      cStep++;
+                      cPushArray.push(document.getElementById('myCanvas').toDataURL());
+                  }
+
+                  ctx.beginPath();
+                  ctx.moveTo(position.x * canvas.width, position.y * canvas.height);
+              },
+
+              "touchmove": function (position) {
+                  mouse.x = position.x * canvas.width;
+                  mouse.y = position.y * canvas.height;
+                  onPaint();
+              },
+
+              "touchend": function (position) {
+                  cStep++;
+                  if (cStep < cPushArray.length) {
+                      cPushArray.length = cStep;
+                  }
+                  cPushArray.push(document.getElementById('myCanvas').toDataURL());
+              },
+          });
+
+          my_toucharea2 = new TouchArea("guessCanvas", {
+              "touchstart": function (position) {
+                  scrollitUp();
+              },
+
+              "touchmove": function (position) {
+              },
+
+              "touchend": function (position) {
+              },
+          });
+
+
+
+
+          phrasekeyboard = new AirConsoleKeyboard("centerallinitialphrase");
+          phrasekeyboard.bind("textfield1", {
+              onShow: function (input_id) {
+                  //console.log("onShow#1", input_id);
+              },
+              onChange: function (input_id, text, html) {
+                  //console.log("onChange#1", input_id, text, html);
+              },
+              onDone: function (input_id, text, html) {
+                  //console.log("onDone#1", input_id, text, html);
+                  if (text != "") {
+                      me.airconsole.message(followingPlayer, "Guess:" + (html));
+                      me.airconsole.message(AirConsole.SCREEN, "GameHander.SaveSubmission:" + text);
+                      me.airconsole.message(AirConsole.SCREEN, "submitandready");
+                      phrasekeyboard.setValue('textfield1', '');
+                      //document.getElementById("Guess").scrollTop = 0;
+                      vm.show("WatchTV");
+
+                  }
+              },
+              onHide: function (input_id, text, html) {
+                  //console.log("onHide#1", input_id, text, html);
+              }
+
+
+
+
+          });
+
+          /*if (((parseFloat(window.innerHeight) * 3) / 2) > parseFloat(window.innerWidth)) {
+              document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
+              document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6))) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
+          }
+          else {
+              document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2));
+              document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
+          }*/
+
+
+
+
+          //initializeStarterCanvas();
+          //ViewManager.show("Draw");
+          //ViewManager.show("Menu"["view"]);
+          console.log("TESTTTT " + parseFloat(window.innerWidth))
+
+
+          me.airconsole.onMessage = function (from, data) {
+              //console.log("MESSAGE FROM: " + from + ": " + data);
+              if (data.indexOf('data:image/png;base64') > -1) {
+                  var image = new Image();
+                  image.onload = function () {
+                      if (((parseFloat(window.innerHeight) * 3) / 2) > parseFloat(window.innerWidth)) {
+
+                          document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
+                          document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6))) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
+
+                      }
+                      else {
+                          document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2));
+                          document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
+                      }
+                      document.getElementById("guessCanvas").getContext("2d").drawImage(image, 0, 0, (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2), (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
+                          //document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2));
+                      //document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
+                  }
+                  image.src = data;
+                  //document.appendChild(image);
+                  //canvas = image;
+              }
+              else if (data.indexOf('Following:') > -1) {
+                  data = data.replace('Following:', '');
+                  data = data.toString();
+                  followingPlayer = parseInt(data);
+                  //console.log("Is Following: " + data);
+              }
+              else if (data.indexOf('Guess:') > -1) {
+
+                  data = data.toString();
+
+                  data = data.replace('Guess:', '');
+
+                  data = data.toUpperCase();
+
+                  data = data.replace(new RegExp('&NBSP;', 'g'), ' ');
+                  //console.log("TYPE: "+(typeof data));
+
+                  document.getElementById("drawmodetextid").textContent = ("Draw: " + data);
+              }
+              else if (data.indexOf('Game.ShowMain:') > -1) {
+                  vm.show("Start");
+              }
+              else if (data.indexOf('gamehandler.sendfinal') > -1) {
+                  me.airconsole.message(followingPlayer, convertCanvasToImage(canvas));
+                  me.airconsole.message(AirConsole.SCREEN, "GameHander.SaveSubmission:" + convertCanvasToImage(canvas));
+                  me.airconsole.message(AirConsole.SCREEN, "submitfinal");
+              }
+              else if (data.indexOf('gamehandler.updateplayercount') > -1) {
+                  updatePlayerCount();
+              }
+              else if (data.indexOf('GameHandler.UpdatePreferences.Mode:') > -1) {
+                  data = data.replace('GameHandler.UpdatePreferences.Mode:', '');
+                  if (data.indexOf('Random Prompt') > -1) {
+                      setMode('RandomPrompt');
+                  }
+                  else if (data.indexOf('Write Your Own') > -1) {
+                      setMode('WriteYourOwn');
+                  }
+              }
+              else if (data.indexOf('GameHandler.UpdatePreferences.Length:') > -1) {
+                  data = data.replace('GameHandler.UpdatePreferences.Length:', '');
+                  if (data.indexOf('1 Minute') > -1) {
+                      setPhaseLength(1);
+                  }
+                  else if (data.indexOf('2 Minutes') > -1) {
+                      setPhaseLength(2);
+                  }
+                  else if (data.indexOf('3 Minutes') > -1) {
+                      setPhaseLength(3);
+                  }
+                  else if (data.indexOf('5 Minutes') > -1) {
+                      setPhaseLength(5);
+                  }
+              }
+              else if (data.indexOf('GameHandler.UpdatePreferences.Phases:') > -1) {
+                  data = data.replace('GameHandler.UpdatePreferences.Phases:', '');
+                  setActualNumberofPhases((parseInt(data)));
+
+              }
+              else if (data.indexOf('GameHandler.UpdatePreferences.Introduction: NONE') > -1) {
+                  document.getElementById("checkmarkId").checked = false;
+              }
+              else if (data.indexOf('GameHandler.UpdatePreferences.Introduction: CHECKED') > -1) {
+                  document.getElementById("checkmarkId").checked = true;
+              }
+
+          }
+          me.airconsole.onCustomDeviceStateChange = function (device_id, device_data) {
+                if (device_id == AirConsole.SCREEN) {
+                    if (device_data["view"] != null && device_data["view"] != "" && device_data["view"] != "Menu" && device_data["view"] != "Introduction") {
+                        if (me.airconsole.convertDeviceIdToPlayerNumber(me.airconsole.getDeviceId()) == null) {
+                            vm.show("InProgress");
+                        }
+                        else {
+                            console.log("SETTING VIEW TO: " + device_data["view"]);
+                            vm.show(device_data["view"]);
+                            //console.log("333333");
+
+                            //console.log("chicken nuggets");
+                            if (device_data["view"] == "Draw") {
+                                initializeCanvas();
+                            }
+                            else if (device_data["view"] == "InitialPhrase") {
+                                //console.log("Test444");
+                                //vm.show("InitialPhrase");
+                                initializeCanvas();
+                            }
+
+                            else if (device_data["view"] == "Menu") {
+                                //console.log("Life is not real");
+                                //initializeStarterCanvas();
+                            }
+                            else if (device_data["view"] == "Guess") {
+                                //initializeCanvas();
+                                /*if (((parseFloat(window.innerHeight) * 3) / 2) > parseFloat(window.innerWidth)) {
+                                    document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
+                                    document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6))) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
+                                }
+                                else {
+                                    document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2));
+                                    document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
+                                }*/
+                            }
+                        }
+                        
+                    }
+                    else if (device_data["view"] == "Menu") {
+                        //console.log("77777");
+                        //if player is master controller, then set their view to start
+                        //ViewManager.init();
+                        //console.log("yeeee" + me.airconsole.getMasterControllerDeviceId() + " : " + me.airconsole.getDeviceId());
+                        //me.airconsole.message(AirConsole.SCREEN, ("if " + me.airconsole.getMasterControllerDeviceId() + " == " + me.airconsole.getDeviceId()));
+                        if (me.airconsole.getMasterControllerDeviceId() == me.airconsole.getDeviceId()) {
+                            vm.show("Start");
+                            prepareMenu();
+                        }
+                        else {
+                            vm.show("WatchTV");
+                        }
+                    }
+                    else if (device_data["view"] == "Introduction") {
+                        vm.show("WatchTVAfter");
+                    }
+                  }
+              }
+              //console.log("DATA: " + device_data);
+              
+          
+
+
+
+          //function getColor(colour){ctx.strokeStyle = colour;}
+
+
+          //inputNumber.type = "text";
+          //container.appendChild(inputNumber);
+
+          //function getSize(size){ctx.lineWidth = size;}
+
+
+
+
+          /* JavaScript / Functionality. Add functions and evens here */
+
+
+          /*
+           * Here we are adding support for mouse events manually.
+           * --> WE STRONGLY ENCOURAGE YOU TO USE THE AIRCONSOLE CONTROLS LIBRARY
+           * WHICH IS EVEN BETTER (BUT WE DONT WANT TO BLOAT THE CODE HERE).
+           * https://github.com/AirConsole/airconsole-controls/
+           * 
+           * DO NOT USE ONCLICK HANDLERS.
+           * THEY ADD A 200MS DELAY!
+           */
+          if (!("ontouchstart" in document.createElement("div"))) {
+              var elements = document.getElementsByTagName("*");
+              for (var i = 0; i < elements.length; ++i) {
+                  var element = elements[i];
+                  var ontouchstart = element.getAttribute("ontouchstart");
+                  if (ontouchstart) {
+                      element.setAttribute("onmousedown", ontouchstart);
+                  }
+                  var ontouchend = element.getAttribute("ontouchend");
+                  if (ontouchend) {
+                      element.setAttribute("onmouseup", ontouchend);
+                      //console.log("UPPPPP");
+                  }
+              }
+          }
+      }
+     
+
+      var getColor = function (color, funcname) {
+          //ctx.strokeStyle = "blue";
+          //canvas = document.getElementById("myCanvas");
+          //ctx = canvas.getContext("2d");
+          //ctx = document.getElementById("myCanvas").getContext("2d");
+          //airconsole.message(AirConsole.SCREEN, "button-pressed");
+          ctx.strokeStyle = color;
+          for (var i = 1; i < 12; i++) {
+              var funcid = ("func" + i.toString());
+              document.getElementById(funcid).style.border = "solid #8F8F8F 1px";
+          }
+          console.log("TESTTTT " + "solid #8AB483 " + (document.getElementById("func1").offsetWidth / 9) + "px");
+          document.getElementById(funcname).style.border = "solid #8AB483 " + (document.getElementById("func1").offsetWidth / 9).toString() + "px";
+          //ctx.strokeStyle = color;
+          //console.log("color: " + color)
+      }
+          function prepareMenu() {
+              var heightScreen = parseFloat(window.innerHeight);
+              if (heightScreen > parseFloat(window.innerWidth)) {
+                  heightScreen = parseFloat(window.innerWidth);
+              }
+
+
+              var x = document.getElementsByClassName("menubuttons");
+              var i;
+
+              for (i = 0; i < x.length; i++) {
+                  x[i].style.fontSize = (heightScreen / 14.4);
+                  x[i].style.height = (heightScreen / 7.2);
+                  x[i].style.width = (heightScreen / 1.2);
+                  x[i].style.marginTop = (heightScreen / 36);
+                  x[i].style.marginBottom = (heightScreen / 36);
+              }
+              document.getElementById("checkboxtextid").style.width = (heightScreen / 1.8);
+              document.getElementById("checkboxtextid").style.height = (heightScreen / 14.4);
+              document.getElementById("checkboxtextid").style.fontSize = (heightScreen / 14.4);
+              document.getElementById("checkmarkId").style.width = (heightScreen / 14.4);
+              document.getElementById("checkmarkId").style.height = (heightScreen / 14.4);
+              document.getElementById("checkmarkId").style.fontSize = (heightScreen / 14.4);
+              document.getElementById("checkmarkId").style.marginTop = (heightScreen / 9);
+              document.getElementById("checkboxtextid").style.marginTop = (heightScreen / 9);
+              document.getElementById("initialPhraseTextId").style.fontSize = (heightScreen / 18);
+
+              var y = document.getElementsByClassName("menubuttons2");
+              var i;
+
+              for (i = 0; i < y.length; i++) {
+                  y[i].style.fontSize = (heightScreen / 20);
+                  y[i].style.height = (heightScreen / 10);
+                  y[i].style.width = (heightScreen / 2);
+                  y[i].style.marginTop = (heightScreen / 36);
+                  y[i].style.marginBottom = (heightScreen / 36);
+              }
+
+              var g = document.getElementsByClassName("menubuttons3");
+              var m;
+
+              for (m = 0; m < m.length; m++) {
+                  g[m].style.fontSize = (heightScreen / 18);
+                  g[m].style.height = (heightScreen / 9);
+                  g[m].style.width = (heightScreen / 1.8);
+                  g[m].style.marginTop = (heightScreen / 36);
+                  g[m].style.marginBottom = (heightScreen / 36);
+              }
+          }
+          function setSize(size, funcname) {
+              ctx.lineWidth = parseFloat(window.innerHeight) / (360 / size);
+              for (var i = 13; i < 16; i++) {
+                  var funcid = ("func" + i.toString());
+                  document.getElementById(funcid).style.border = "solid #8F8F8F 1px";
+              }
+              document.getElementById(funcname).style.border = "solid #8AB483 " + (document.getElementById("func13").offsetWidth / 9).toString() + "px";
+          }
+          function sendCanvas() {
+              //if (targetScreen == "host") {
+              //    me.airconsole.message(AirConsole.SCREEN, convertCanvasToImage(canvas));
+              //}
+              //else {
+              //console.log("WOULD SEND TO: Player#" + me.airconsole.convertDeviceIdToPlayerNumber(followingNumber));
+              me.airconsole.message(followingPlayer, convertCanvasToImage(canvas));
+              me.airconsole.message(AirConsole.SCREEN, "GameHander.SaveSubmission:" + convertCanvasToImage(canvas));
+              me.airconsole.message(AirConsole.SCREEN, "submitandready");
+
+              //}
+          }
+          function convertCanvasToImage(thecanvas) {
+              var image = new Image();
+              image.src = thecanvas.toDataURL("image/png");
+              //console.log("IMAGE SOURCE: " + image.src);
+              return image.src.toString();
+          }
+          function startGame() {
+              if (requiredPlayers <= me.airconsole.getControllerDeviceIds().length) {
+                  me.airconsole.message(AirConsole.SCREEN, "startGame");
+                  if (document.getElementById("checkmarkId").checked == true) {
+                      document.getElementById("checkmarkId").checked = false;
+                  }
+              }
+          }
+
+          function scrollitdown() {
+              //document.getElementById("Guess").ScrollBy(0, -100);
+              document.getElementById("Guess").scrollTop = document.getElementById("Guess").scrollHeight;
+          }
+          function clickUndo() {
+
+              if (cStep > 0) {
+
+                  cStep--;
+                  var canvasPic = new Image();
+                  canvasPic.src = cPushArray[cStep];
+                  canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
+              }
+          }
+          function changePhaseNumber() {
+              if (gameMode == "WriteYourOwn") {
+                  vm.show('WriteYourOwnPhases');
+              }
+              else {
+                  vm.show('Random');
+              }
+          }
+          function setPhaseLength(minutes) {
+              document.getElementById("Length" + phaseLength).style.background = "#F3F3F3";
+              //if (minutes == 1) {
+              //    document.getElementById("Length")
+              //}
+              document.getElementById("Length" + minutes).style.background = "#C3C3C3";
+              phaseLength = minutes;
+              notifyScreenUpdate("gamelength");
+          }
+          function setMode(mode) {
+              //either write-your-own-prompt or random prompt
+              document.getElementById(gameMode).style.background = "#F3F3F3";
+              document.getElementById(mode).style.background = "#C3C3C3";
+              gameMode = mode;
+              notifyScreenUpdate("mode");
+              //if (actualPhaseNumber == 10) {
+              //    setActualNumberofPhases(8);
+              //}
+              if (mode == "WriteYourOwn") {
+                  if (actualPhaseNumber == 11 || actualPhaseNumber == 9) {
+                      setNumberofPhases(5);
+                      setActualNumberofPhases(9);
+                      requiredPlayerSetter(9);
+                  }
+                  else if (actualPhaseNumber == 7) {
+                      setNumberofPhases(4);
+                      setActualNumberofPhases(7);
+                      requiredPlayerSetter(7);
+                  }
+                  else if (actualPhaseNumber == 5) {
+                      setNumberofPhases(3);
+                      setActualNumberofPhases(5);
+                      requiredPlayerSetter(5);
+                  }
+                  else if (actualPhaseNumber == 3) {
+                      setNumberofPhases(2);
+                      setActualNumberofPhases(3);
+                      requiredPlayerSetter(3);
+                  }
+                  else if (actualPhaseNumber == "Automatic" || actualPhaseNumber == -1) {
+                      setNumberofPhases(1);
+                      setActualNumberofPhases(-1);
+                      requiredPlayerSetter(3);
+                      //console.log("AUTOMATICCCCCCCCCCC");
+                  }
+              }
+              else if (mode == "RandomPrompt") {
+                  if (actualPhaseNumber == 9) {
+                      setNumberofPhases(10);
+                      setActualNumberofPhases(9);
+                      requiredPlayerSetter(8);
+                  }
+                  else if (actualPhaseNumber == 7) {
+                      setNumberofPhases(9);
+                      setActualNumberofPhases(7);
+                      requiredPlayerSetter(6);
+                  }
+                  else if (actualPhaseNumber == 5) {
+                      setNumberofPhases(8);
+                      setActualNumberofPhases(5);
+                      requiredPlayerSetter(4);
+                  }
+                  else if (actualPhaseNumber == 3) {
+                      setNumberofPhases(7);
+                      setActualNumberofPhases(3);
+                      requiredPlayerSetter(2);
+                  }
+                  else if (actualPhaseNumber == -1 || actualPhaseNumber == "Automatic") {
+                      setNumberofPhases(6);
+                      setActualNumberofPhases(-1);
+                      requiredPlayerSetter(2);
+                  }
+              }
+          }
+          function setNumberofPhases(numbr) {
+
+              //console.log("NUMBER OF PHASES: " + numberofPhases);
+              //console.log("NUMBR: " + numbr);
+              //console.log("NumberOfPhases" + numberofPhases);
+              document.getElementById("Phases6").style.background = "#F3F3F3";
+              document.getElementById(("Phases" + numberofPhases)).style.background = "#F3F3F3";
+              document.getElementById("Phases" + numberofPhases).style.background = "#F3F3F3";
+              document.getElementById("Phases" + numbr).style.background = "#C3C3C3";
+              numberofPhases = numbr;
+              //if (currently selected mode == "Write Your Own"
+
+          }
+          function setActualNumberofPhases(num) {
+              actualPhaseNumber = num;
+              me.airconsole.message(AirConsole.SCREEN, "GameHandler.phases:" + actualPhaseNumber);
+              if (gameMode == "RandomPrompt") {
+                  if (num == -1) {
+                      setNumberofPhases(6);
+                      requiredPlayerSetter(2);
+                  }
+                  else if (num == 3) {
+                      setNumberofPhases(7);
+                      requiredPlayerSetter(2);
+                  }
+                  else if (num == 5) {
+                      setNumberofPhases(8);
+                      requiredPlayerSetter(4);
+                  }
+                  else if (num == 7) {
+                      setNumberofPhases(9);
+                      requiredPlayerSetter(6);
+                  }
+                  else if (num == 9) {
+                      setNumberofPhases(10);
+                      requiredPlayerSetter(8);
+                  }
+                  else if (num == 11) {
+                      setNumberofPhases(11);
+                      requiredPlayerSetter(10);
+                  }
+              }
+              else if (gameMode == "WriteYourOwn") {
+                  if (num == -1) {
+                      setNumberofPhases(1);
+                      requiredPlayerSetter(3);
+                  }
+                  else if (num == 3) {
+                      setNumberofPhases(2);
+                      requiredPlayerSetter(3);
+                  }
+                  else if (num == 5) {
+                      setNumberofPhases(3);
+                      requiredPlayerSetter(5);
+                  }
+                  else if (num == 7) {
+                      setNumberofPhases(4);
+                      requiredPlayerSetter(7);
+                  }
+                  else if (num == 9) {
+                      setNumberofPhases(5);
+                      requiredPlayerSetter(9);
+                  }
+              }
+
+          }
+
+
+          function notifyScreenUpdate(targetupdate) {
+              if (targetupdate == "toggleready") {
+                  //check if current mode is draw, otherwise do nothing
+                  //console.log(document.getElementById("readybutton").style.backgroundColor);
+                  if (document.getElementById("readybutton").style.backgroundColor == "rgb(3, 210, 33)") {
+                      //console.log("UNREADY");
+                      me.airconsole.message(0, "gameHandler.unready");
+                      document.getElementById("readybutton").style.backgroundColor = "#e7e7e7";
+                  }
+                  else {
+                      sendCanvas();
+                      //sendCanvas('host');
+                      document.getElementById("readybutton").style.backgroundColor = "#03D221";
+
+                  }
+              }
+              if (targetupdate == "checkmark") {
+                  if (document.getElementById("checkmarkId").checked) {
+                      me.airconsole.message(AirConsole.SCREEN, "GameHandler.checkmark");
+
+                  }
+                  else {
+                      me.airconsole.message(AirConsole.SCREEN, "GameHandler.uncheckmark");
+                  }
+              }
+              else if (targetupdate == "gamelength") {
+                  me.airconsole.message(AirConsole.SCREEN, "GameHandler.gamelength:" + phaseLength);
+              }
+              else if (targetupdate == "mode") {
+                  me.airconsole.message(AirConsole.SCREEN, "GameHandler.mode:" + gameMode);
+              }
+          }
+          function clickPaintBucket() {
+              //console.log(currentcolor);
+
+              //START
+
+              /*if (cStep == -1) {
+                      cStep++;
+                      cPushArray.push(document.getElementById('myCanvas').toDataURL());
+                      //console.log("TouchSTART ARRAY LENGTH: " + cPushArray.length);
+                  }*/
+
+
+              //END:
+
+              /*cStep++;
+                  if (cStep < cPushArray.length) {
+                      cPushArray.length = cStep;
+                      //console.log("Setting LENGTH to " + cStep);
+                  }
+                  cPushArray.push(document.getElementById('myCanvas').toDataURL());
+                  */
+              if (cStep == -1) {
+                  cStep++;
+                  cPushArray.push(document.getElementById('myCanvas').toDataURL());
+              }
+              cStep++;
+              if (cStep < cPushArray.length) {
+                  cPushArray.length = cStep;
+                  //console.log("Setting LENGTH to " + cStep);
+              }
+              //console.log("TouchSTART ARRAY LENGTH: " + cPushArray.length);
+              ctx.fillStyle = ctx.strokeStyle;
+              ctx.fillRect(0, 0, parseInt(canvas.width), parseInt(canvas.height));
+              cPushArray.push(document.getElementById('myCanvas').toDataURL());
+          }
+          function updatePlayerCount() {
+              //console.log("ACTIVE DEVICE IDS: " + me.airconsole.getControllerDeviceIds().length)
+              if (requiredPlayers > me.airconsole.getControllerDeviceIds().length) {
+                  document.getElementById("StartButton").style.backgroundColor = "#FBFF77";
+                  document.getElementById("StartButton").textContent = "Not Enough Players";
+              }
+              else {
+                  document.getElementById("StartButton").style.backgroundColor = "#CDFBA5";
+                  document.getElementById("StartButton").textContent = "Start Game";
+              }
+          }
+          function requiredPlayerSetter(num) {
+              //console.log("REQUIRED PLAYERS = " + num);
+              requiredPlayers = num;
+              updatePlayerCount();
+              me.airconsole.message(0, "gamehandler.updateRequiredPlayers:" + num);
+              //updatePlayerCount(airconsole.getActivePlayerDeviceIds.length);
+              //request the total active device id list
+
+              //updatePlayerCount()
+          }
+          function scrollitUp() {
+              document.getElementById("Guess").scrollTop = 0; // For Safari
+              //document.getElementById("Guess").documentElement.scrollTop = 0;
+              //document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
+              //document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6))) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
+          }
+      
+</script>
+</head>
+<body onload="window.app = new App()">
+    <div class="view" id ="WatchTV" style="background-image: url('images/paperback1.png'); background-size: contain">
+        <!--<canvas id="watchtvcanvas" class="tvcanvas" width="100" height ="100"></canvas>-->
+        <p class="watchtvtext">Waiting for players...</p>
+    </div>
+    <div class="view" id ="Waiting" style="background-image: url('images/paperback1.png'); background-size: contain">
+        <!--<canvas id="watchtvcanvas" class="tvcanvas" width="100" height ="100"></canvas>-->
+        <p class="watchtvtext">Waiting...</p>
+    </div>
+    <div class="view" id="Mode" style="background-image: url('images/paperback1.png'); background-size: contain">
+        <button onclick="setMode('RandomPrompt')" class="menubuttons" style="border: solid #808080 1px; background: #C3C3C3;" id="RandomPrompt">Random Prompt</button>
+        <button onclick="setMode('WriteYourOwn')" class="menubuttons" id ="WriteYourOwn" style="border: solid #808080 1px; white-space: nowrap;">Write Your Own Prompt</button>
+        <button onclick="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px;"><----</button>
+
+    </div>
+    <div class="view" id="Length" style="background-image: url('images/paperback1.png'); background-size: contain">
+        <button onclick="setPhaseLength(1);" class="menubuttons" id="Length1" style="border: solid #808080 1px;">1 Minute</button>
+        <button onclick="setPhaseLength(2);" class="menubuttons" id="Length2" style="border: solid #808080 1px;">2 Minutes</button>
+        <button onclick="setPhaseLength(3);" class="menubuttons" id="Length3" style="border: solid #808080 1px; background: #C3C3C3;">3 Minutes</button>
+        <button onclick="setPhaseLength(5);" class="menubuttons" id="Length5" style="border: solid #808080 1px;">5 Minutes</button>
+        <button onclick="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px;"><----</button>
+
+    </div>
+    <div class="view" id="Random" style="background-image: url('images/paperback1.png'); background-size: contain">
+        <button onclick="setActualNumberofPhases(-1);" class="menubuttons2" style="border: solid #808080 1px; height: 35px; width: 175px; font-size: 20px; background: #C3C3C3" id="Phases6">Automatic</button>
+        <button onclick="setActualNumberofPhases(3);" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;" id="Phases7">2 (2+ Players)</button>
+        <button onclick="setActualNumberofPhases(5);" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;" id="Phases8">4  (4+ Players)</button>
+        <button onclick="setActualNumberofPhases(7);" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;" id="Phases9">6 (6+ Players)</button>
+        <button onclick="setActualNumberofPhases(9);" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;" id="Phases10">8 (8+ Players)</button>
+        <button onclick="setActualNumberofPhases(11);" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;" id="Phases11">10 (10+ Players)</button>
+        <button onclick="vm.show('Start');" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;"><----</button>
+
+    </div>
+    <!---Number of phases for 'write your own' mode-->
+    <div class="view" id="WriteYourOwnPhases" style="background-image: url('images/paperback1.png'); background-size: contain">
+        <button onclick="setActualNumberofPhases(-1);" class="menubuttons3" style="border: solid #808080 1px; background: #C3C3C3" id="Phases1">Automatic</button>
+        <button onclick="setActualNumberofPhases(3);" class="menubuttons3" id="Phases2" style="border: solid #808080 1px;">2 (3+ Players)</button>
+        <button onclick="setActualNumberofPhases(5);" class="menubuttons3" id="Phases3" style="border: solid #808080 1px;">4  (5+ Players)</button>
+        <button onclick="setActualNumberofPhases(7);" class="menubuttons3" id="Phases4" style="border: solid #808080 1px;">6 (7+ Players)</button>
+        <button onclick="setActualNumberofPhases(9);" class="menubuttons3" id="Phases5" style="border: solid #808080 1px;">8 (9+ Players)</button>
+        <button onclick="vm.show('Start');" class="menubuttons3" style="border: solid #808080 1px;"><----</button>
+
+    </div>
+    <div class="view" id="Start" style="background-image: url('images/paperback1.png'); background-size: contain">
+        <button onclick="vm.show('Mode');" class="menubuttons">Mode</button>
+        <button onclick="vm.show('Length');" class="menubuttons">Drawing Length</button>
+        <button onclick="changePhaseNumber();" class="menubuttons">Number of Phases</button>
+        <!--<button onclick="startGame();" class="menubuttons">Watch Introduction</button>-->
+        <!--<input type="checkbox" id="checkbox_id" class="menubuttons">-->
+        <!--<label for="x" class="menubuttons" style="display: inline-block;"><input type="checkbox" id="x"class="menubuttons"style="display: inline-block;"> Watch Introduction</label>-->
+        <div class ="nowrapcontainer">
+            <input type="checkbox" name="vehicle" value="Car" checked class="checkbox" style="vertical-align: bottom;" onclick="notifyScreenUpdate('checkmark');" id ="checkmarkId"> 
+            <span class="checkbox" style="width: 200px; height: 25px; vertical-align: middle; padding-left: none; padding-right: none;" id ="checkboxtextid">
+            Watch Introduction
+            </span>
+        </div>
+
+        <!--<label for="checkbox_id" class="menubuttons">Watch Introduction</label>-->
+        <button onclick="startGame();" class="menubuttons" style="background-color: #CDFBA5;" id="StartButton">Start Game</button>
+    </div>
+    <div class="view" id ="InProgress" style="background-image: url('images/paperback1.png'); background-size: contain">
+        <!--<canvas id="watchtvcanvas" class="tvcanvas" width="100" height ="100"></canvas>-->
+        <p class="watchtvtext" style="width: 350px;">The game already started.</p>
+        <p class="watchtvtext" style="width: 350px;">Wait for the next round!</p>
+    </div>
+    <div class="view" id ="WatchTVAfter" style="background-image: url('images/paperback1.png'); background-size: contain">
+        <!--<canvas id="watchtvcanvas" class="tvcanvas" width="100" height ="100"></canvas>-->
+        <!--<p class="watchtvtext">Let's see how these phrase got mixed up!</p>-->
+        <p class="watchtvtext" style="width: 350px;">Look at the main screen...</p>
+    </div>
+    <div class="view" id="InitialPhrase" style="background-image: url('images/paperback1.png'); background-size: contain">
+        <div class = "centerall" id="centerallinitialphrase" style="background: none;">
+            <!--<p class ="initialPhraseText" id="initialPhraseTextId2" style ="color: black">Write a Word or Phrase</p>-->
+            <!--<canvas class ="chooseTopicCanvas" id ="TopicCanvas"> </canvas>-->
+            <div class ="initialphrasechooser">
+                <p class ="initialPhraseText" id="initialPhraseTextId" style ="color: black">Write a Word or Phrase</p>
+            </div>
+            <div class="textfield" id="textfield1" onclick="scrollitdown()" style="background-color: white"></div>
+         </div>
+        <!--<input type="text" id="initialInputValue" name="name" size="20" class="initialPhraseInput">-->
+    </div>
+    <div class="view" id="Draw">
+        <div class = "centerall">
+            <div class="nowrapcontainer">
+
+                <div class="ColorButton" id="ColorButton">
+                <!--<button onclick="console.log('brush size');" style="background-color:white; height: 40px; width: 40px;">*</button>-->
+                <button ontouchstart="getColor('#000000', 'func1');" style="background-color: #000000; height: 36px; width: 36px; margin-top: 1px; border: solid #8F8F8F 1px; outline: 0;" id ="func1"></button>
+                <button ontouchstart="getColor('#ff0000', 'func2');" style="background-color: #ff0000; height: 36px; width: 36px; margin-top: 1px; border: solid #8F8F8F 1px; outline: 0;" id ="func2"></button>
+                <!--<button onclick="getColor('#FF7777');" style="background-color: #FF7777; height: 30px; width: 30px;"></button>    LIGHT RED-->
+            
+                <button ontouchstart="getColor('#8b4513', 'func3');" style="background-color: #8b4513; height: 36px; width: 36px; margin-top: 1px; border: solid #8F8F8F 1px; outline: 0;" id ="func3"></button>
+                <button ontouchstart="getColor('#ff8c00', 'func4');" style="background-color: #ff8c00; height: 36px; width: 36px; margin-top: 1px; border: solid #8F8F8F 1px; outline: 0;" id ="func4"></button>
+            
+                <button ontouchstart="getColor('#ffff00', 'func5');" style="background-color: #ffff00; height: 36px; width: 36px; margin-top: 1px; border: solid #8F8F8F 1px; outline: 0;" id ="func5"></button>
+                <button ontouchstart="getColor('#F5E7C8', 'func6');" style="background-color: #F5E7C8; height: 36px; width: 36px; margin-top: 1px; border: solid #8F8F8F 1px; outline: 0;" id ="func6"></button>
+                <!--<button onclick="getColor('#00ff00');" style="background-color: #00ff00; height: 32px; width: 32px;"></button> LIGHT GREEN-->
+                <button ontouchstart="getColor('#10C200', 'func7');" style="background-color: #10C200; height: 36px; width: 36px; margin-top: 1px; border: solid #8F8F8F 1px; outline: 0;" id ="func7"></button>
+                <button ontouchstart="getColor('#00bfff', 'func8');" style="background-color: #00bfff; height: 36px; width: 36px; margin-top: 1px; border: solid #8F8F8F 1px; outline: 0;" id ="func8"></button>
+            
+            
+            
+                <!--<button onclick="getColor('#808080');" style="background-color: #808080; height: 30px; width: 30px;"></button>-->
+                </div>
+        
+            <!--<button onclick="console.log('test')" class="testbuttons"></button>-->
+                <canvas id="myCanvas" class="canvas"></canvas>
+                <div class="functionbuttons" id="functionbuttons">
+                    <!--<button onclick="getColor('#3100D5');" style="background-color: #3100D5; height: 30px; width: 30px;"></button> DARK BLUE-->
+                    <!--<button onclick="getColor('#ff00ff');" style="background-color: #ff00ff; height: 30px; width: 32px;"></button> PURPLE -->
+                    <button ontouchstart="getColor('#ff69b4', 'func9');" style="background-color: #ff69b4; height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; outline: 0;" id ="func9"></button>
+                
+                    <button ontouchstart="getColor('#949494', 'func10');" style="background-color: #949494; height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; outline: 0;" id ="func10"></button>
+                    <button ontouchstart="getColor('#ffffff', 'func11');" style="background-color: #ffffff; height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; outline: 0;" id ="func11"></button>
+                    <button ontouchstart="clickPaintBucket();" style="background-image: url('images/PaintBucket.png'); height: 36px; width: 36px; background-color: #ffffff; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id="paintBucketId"></button>
+                    <button ontouchstart="clickUndo();" style="background-image: url('images/UndoButton.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func12"></button>
+                    <button ontouchstart="setSize(5, 'func13');" style="background-image: url('images/BrushSmall.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func13"></button>
+                    <button ontouchstart="setSize(10, 'func14');" style="background-image: url('images/BrushMedium.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func14"></button>
+                    <button ontouchstart="setSize(15, 'func15');" style="background-image: url('images/BrushLarge.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func15"></button>
+                </div>
+
+            </div>
+            <p class="drawmodetext" id="drawmodetextid"></p>
+
+            <!--<button onclick="getColor('erase');" class="testbuttons">Eraser</button>-->
+        
+            <!--<button onclick="sendCanvas('host');" class="testbuttons"></button>
+            <button onclick="sendCanvas('Other');" class="testbuttons"></button>-->
+            <!--<input type="checkbox" name="vehicle" value="Car" checked class="checkbox" style="vertical-align: bottom;" onclick="notifyScreenUpdate('d');"> -->
+            <button ontouchstart="notifyScreenUpdate('toggleready')" id="readybutton" style="width: 100px; height: 36px; font-size: 20px; padding-left: 0; padding-right: 0; margin-right: auto; margin-left: auto; border: solid #8F8F8F 1px; outline: 0;">Ready</button>
+        
+            <!-- Add your HTML elements here -->
+        
+        </div>
+
+    </div>
+    <div class="view" id="Guess">
+            <div>
+                <canvas id="guessCanvas" class="canvas"></canvas>
+            </div>
+            <div class="textfield" id="textfield2" onclick="scrollitdown()"></div>
+            <!--<p class="guessmodetext">What do you think this image is?</p>-->
+                <!--<div class="pseudo_button" onclick="alert(keyboard.valueText('textfield1'))">Alert Value Text</div>
+                <div class="pseudo_button" onclick="alert(keyboard.valueHTML('textfield1'))">Alert Value HTML</div>
+                <div class="pseudo_button" onclick="keyboard.setValue('textfield1', 'you &amp; <b>m</b>e')">Set Value to 'you &amp; <b>m</b>e'</div><br>-->
+                <!--<div class="textfield" id="textfield2"></div>-->
+            <!--<input type="text" id="guessInputValue" name="name" class="guessmodeinput">-->
+            <!--<button onclick="sendGuess();" class="guessmodesubmit">Submit</button>-->
+        </div>
+    <!--<div class="button" id="erase-button" ontouchstart="window.app.getColor('#00FF00')"></div>-->
+</body>
+</html>
