@@ -10,6 +10,7 @@ using System.Text;
 
 public class GameHandler : MonoBehaviour {
     int ClientsConnected;
+    public GameObject WarningText;
     public GameObject PreparingGame;
     public GameObject PhaseIntro;
     public Text PhaseIntroText1;
@@ -266,6 +267,14 @@ public class GameHandler : MonoBehaviour {
             
         }
         playersConnectedText.text = (AirConsole.instance.GetControllerDeviceIds().Count + "/" + requiredPlayerNum + "+");
+        if (AirConsole.instance.GetControllerDeviceIds().Count == 2 || AirConsole.instance.GetControllerDeviceIds().Count == 3)
+        {
+            WarningText.SetActive(true);
+        }
+        else
+        {
+            WarningText.SetActive(false);
+        }
         AirConsole.instance.Message(AirConsole.instance.GetMasterControllerDeviceId(), "gamehandler.updateplayercount");
         Debug.Log("If " + AirConsole.instance.GetMasterControllerDeviceId() + "= " + device_id);
         if (AirConsole.instance.GetMasterControllerDeviceId() == device_id)
@@ -464,6 +473,14 @@ public class GameHandler : MonoBehaviour {
         //AirConsole.instance.SetActivePlayers();
         Debug.Log("TEST1");
         playersConnectedText.text = (AirConsole.instance.GetControllerDeviceIds().Count + "/" + requiredPlayerNum + "+");
+        if (AirConsole.instance.GetControllerDeviceIds().Count == 2 || AirConsole.instance.GetControllerDeviceIds().Count == 3)
+        {
+            WarningText.SetActive(true);
+        }
+        else
+        {
+            WarningText.SetActive(false);
+        }
         AirConsole.instance.Message(AirConsole.instance.GetMasterControllerDeviceId(), "gamehandler.updateplayercount");
         Debug.Log("MASTER CONTROLLER VAR: "+ masterControllerID);
         Debug.Log("THIS DEVICE'S PLAYER NUMBER: " + AirConsole.instance.ConvertDeviceIdToPlayerNumber(device_id));
@@ -742,6 +759,7 @@ public class GameHandler : MonoBehaviour {
             finalURL = finalURL.Replace("gamehandler.updateRequiredPlayers:", "");
             requiredPlayerNum = finalURL;
             playersConnectedText.text = (AirConsole.instance.GetControllerDeviceIds().Count + "/" + requiredPlayerNum + "+");
+
         }
         else
         {
