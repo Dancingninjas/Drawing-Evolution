@@ -66,30 +66,30 @@
               widthofScreen = parseFloat(window.innerWidth);
           }
 
-          for (var i = 1; i < 12; i++) {
+          for (var i = 1; i < 13; i++) {
               var funcid = ("func" + i.toString());
               document.getElementById(funcid).style.border = "solid #8F8F8F 1px";
           }
 
-          for (var i = 13; i < 16; i++) {
+          for (var i = 13; i < 17; i++) {
               var funcid = ("func" + i.toString());
               document.getElementById(funcid).style.border = "solid #8F8F8F 1px";
           }
 
           //if the width of the screen is smaller than the space needed to fit everything (then scale down based on width)
           if (((heightofScreen * 3) / 2) > widthofScreen) {
-              for (i = 1; i < 16; i++) {
+              for (i = 1; i < 17; i++) {
                   document.getElementById(("func") + i.toString()).style.height = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
                   document.getElementById(("func") + i.toString()).style.width = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
               }
               document.getElementById("func1").style.border = "solid #8AB483 " + ((heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)) / 9) + "px";
-              document.getElementById("func13").style.border = "solid #8AB483 " + ((heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)) / 9) + "px";
+              document.getElementById("func14").style.border = "solid #8AB483 " + ((heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)) / 9) + "px";
 
               canvas.setAttribute('width', (((heightofScreen - (heightofScreen / 6)) * 3) / 2) * (widthofScreen / ((heightofScreen * 3) / 2)));
               canvas.setAttribute('height', (heightofScreen - (heightofScreen / 6)) * (widthofScreen / ((heightofScreen * 3) / 2)));
 
-              document.getElementById("paintBucketId").setAttribute("width", (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)));// then multiply this by (screenwidth / ideal width)
-              document.getElementById("paintBucketId").setAttribute("height", (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)));
+              //document.getElementById("paintBucketId").setAttribute("width", (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)));// then multiply this by (screenwidth / ideal width)
+              //document.getElementById("paintBucketId").setAttribute("height", (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2)));
 
               document.getElementById("ColorButton").style.width = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
               document.getElementById("functionbuttons").style.width = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
@@ -115,19 +115,19 @@
 
           }
           else {
-              for (i = 1; i < 16; i++) {
+              for (i = 1; i < 17; i++) {
                   document.getElementById(("func") + i.toString()).style.height = heightofScreen / 10;
                   document.getElementById(("func") + i.toString()).style.width = heightofScreen / 10;
               }
               document.getElementById("func1").style.border = "solid #8AB483 " + ((heightofScreen / 10) / 9) + "px";
-              document.getElementById("func13").style.border = "solid #8AB483 " + ((heightofScreen / 10) / 9) + "px";
+              document.getElementById("func14").style.border = "solid #8AB483 " + ((heightofScreen / 10) / 9) + "px";
 
               canvas.setAttribute('width', ((heightofScreen - (heightofScreen / 6)) * 3) / 2)
               canvas.setAttribute('height', (heightofScreen - (heightofScreen / 6)))
 
 
-              document.getElementById("paintBucketId").style.width = heightofScreen / 10;
-              document.getElementById("paintBucketId").style.height = heightofScreen / 10;
+              //document.getElementById("paintBucketId").style.width = heightofScreen / 10;
+              //document.getElementById("paintBucketId").style.height = heightofScreen / 10;
 
               document.getElementById("ColorButton").style.width = (heightofScreen / 10);
               document.getElementById("functionbuttons").style.width = (heightofScreen / 10);
@@ -564,7 +564,7 @@
           //ctx = document.getElementById("myCanvas").getContext("2d");
           //airconsole.message(AirConsole.SCREEN, "button-pressed");
           ctx.strokeStyle = color;
-          for (var i = 1; i < 12; i++) {
+          for (var i = 1; i < 13; i++) {
               var funcid = ("func" + i.toString());
               document.getElementById(funcid).style.border = "solid #8F8F8F 1px";
           }
@@ -624,7 +624,7 @@
           }
           function setSize(size, funcname) {
               ctx.lineWidth = parseFloat(window.innerHeight) / (360 / size);
-              for (var i = 13; i < 16; i++) {
+              for (var i = 13; i < 17; i++) {
                   var funcid = ("func" + i.toString());
                   document.getElementById(funcid).style.border = "solid #8F8F8F 1px";
               }
@@ -1028,15 +1028,16 @@
                 <div class="functionbuttons" id="functionbuttons">
                     <!--<button onclick="getColor('#3100D5');" style="background-color: #3100D5; height: 30px; width: 30px;"></button> DARK BLUE-->
                     <!--<button onclick="getColor('#ff00ff');" style="background-color: #ff00ff; height: 30px; width: 32px;"></button> PURPLE -->
-                    <button ontouchstart="getColor('#ff69b4', 'func9');" style="background-color: #ff69b4; height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; outline: 0;" id ="func9"></button>
+                    <button ontouchstart="getColor('#A700C5', 'func9');" style="background-color: #A700C5; height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; outline: 0;" id ="func9"></button>
+                    <button ontouchstart="getColor('#ff69b4', 'func10');" style="background-color: #ff69b4; height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; outline: 0;" id ="func10"></button>
                 
-                    <button ontouchstart="getColor('#949494', 'func10');" style="background-color: #949494; height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; outline: 0;" id ="func10"></button>
-                    <button ontouchstart="getColor('#ffffff', 'func11');" style="background-color: #ffffff; height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; outline: 0;" id ="func11"></button>
-                    <button ontouchstart="clickPaintBucket();" style="background-image: url('images/PaintBucket.png'); height: 36px; width: 36px; background-color: #ffffff; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id="paintBucketId"></button>
-                    <button ontouchstart="clickUndo();" style="background-image: url('images/UndoButton.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func12"></button>
-                    <button ontouchstart="setSize(5, 'func13');" style="background-image: url('images/BrushSmall.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func13"></button>
-                    <button ontouchstart="setSize(10, 'func14');" style="background-image: url('images/BrushMedium.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func14"></button>
-                    <button ontouchstart="setSize(15, 'func15');" style="background-image: url('images/BrushLarge.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func15"></button>
+                    <button ontouchstart="getColor('#949494', 'func11');" style="background-color: #949494; height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; outline: 0;" id ="func11"></button>
+                    <button ontouchstart="getColor('#ffffff', 'func12');" style="background-color: #ffffff; height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; outline: 0;" id ="func12"></button>
+                    <!--<button ontouchstart="clickPaintBucket();" style="background-image: url('images/PaintBucket.png'); height: 36px; width: 36px; background-color: #ffffff; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id="paintBucketId"></button>-->
+                    <button ontouchstart="clickUndo();" style="background-image: url('images/UndoButton.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func13"></button>
+                    <button ontouchstart="setSize(5, 'func14');" style="background-image: url('images/BrushSmall.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func14"></button>
+                    <button ontouchstart="setSize(10, 'func15');" style="background-image: url('images/BrushMedium.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func15"></button>
+                    <button ontouchstart="setSize(15, 'func16');" style="background-image: url('images/BrushLarge.png'); height: 36px; width: 36px; margin-top: 1px; background-position:center; border: solid #8F8F8F 1px; background-size: cover; image-rendering: pixelated; outline: 0;" id ="func16"></button>
                 </div>
 
             </div>
