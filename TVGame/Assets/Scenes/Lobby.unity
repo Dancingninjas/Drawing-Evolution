@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: 134318046}
   - component: {fileID: 134318048}
   - component: {fileID: 134318047}
+  - component: {fileID: 134318049}
   m_Layer: 5
   m_Name: PostGameHolder2
   m_TagString: Untagged
@@ -546,7 +547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0.000061035156, y: -1715}
+  m_AnchoredPosition: {x: 0, y: -388}
   m_SizeDelta: {x: 0, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &134318047
@@ -583,6 +584,24 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 134318045}
   m_CullTransparentMesh: 0
+--- !u!95 &134318049
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 134318045}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4ec8d539f1f63d438cef2c61ced930c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &135373356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,7 +2069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &321876870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3401,7 +3420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20.525, y: -115.01}
+  m_AnchoredPosition: {x: 20.525, y: -117}
   m_SizeDelta: {x: 1595.3, y: 188.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &566248753
@@ -3425,7 +3444,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
-    m_FontSize: 60
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3436,7 +3455,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Think of Something You Want Someone Else to Draw.
+  m_Text: Everything is beautiful in its own way, but feel free to prove me wrong.
 --- !u!222 &566248754
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4155,7 +4174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &666314334
 Animator:
   serializedVersion: 3
@@ -6162,7 +6181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1207631390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6247,6 +6266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1209017513}
+  - component: {fileID: 1209017514}
   m_Layer: 5
   m_Name: OriginalWordHolder
   m_TagString: Untagged
@@ -6276,6 +6296,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000073433, y: -743.38}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1209017514
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1209017512}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d77c9f61a9b6b844faafb04ad7b97262, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1229371789
 GameObject:
   m_ObjectHideFlags: 0
@@ -7181,6 +7219,7 @@ GameObject:
   - component: {fileID: 1366947090}
   - component: {fileID: 1366947092}
   - component: {fileID: 1366947091}
+  - component: {fileID: 1366947093}
   m_Layer: 5
   m_Name: PostGameHolder1
   m_TagString: Untagged
@@ -7211,7 +7250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: -1350}
+  m_AnchoredPosition: {x: 0.000061035156, y: -743.38}
   m_SizeDelta: {x: 0, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1366947091
@@ -7248,6 +7287,24 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1366947089}
   m_CullTransparentMesh: 0
+--- !u!95 &1366947093
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1366947089}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4d0990233964e74f89b7ec159b2c792, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1395221466
 GameObject:
   m_ObjectHideFlags: 0
@@ -7450,7 +7507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1483802363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10758,7 +10815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2014707965
 MonoBehaviour:
   m_ObjectHideFlags: 0
