@@ -3260,7 +3260,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 1 Guessed:'
+  m_Text: 'PlayerGuessed:'
 --- !u!1 &523611094
 GameObject:
   m_ObjectHideFlags: 0
@@ -6771,7 +6771,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 3 Guessed:'
+  m_Text: 'PlayerGuessed:'
 --- !u!1 &1232997104
 GameObject:
   m_ObjectHideFlags: 0
@@ -9240,7 +9240,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 0 Drew:'
+  m_Text: 'PlayerDrew:'
 --- !u!1 &1653188584
 GameObject:
   m_ObjectHideFlags: 0
@@ -11461,7 +11461,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 2 Drew:'
+  m_Text: 'PlayerDrew:'
 --- !u!1 &2038323960
 GameObject:
   m_ObjectHideFlags: 0

@@ -1131,7 +1131,7 @@ public class GameHandler : MonoBehaviour {
     {
         if (topPostGameHandler == 1)
         {
-            Debug.Log("ONE: " + PostGameHolder1.transform.localPosition.y);
+            //Debug.Log("ONE: " + PostGameHolder1.transform.localPosition.y);
             PostGameHolder1.GetComponent<Animator>().SetTrigger("TriggerAnimation1Part1");
             while (PostGameHolder1.transform.localPosition.y < 0)
             {
@@ -1141,7 +1141,7 @@ public class GameHandler : MonoBehaviour {
                 //    PostGameHolder2.transform.localPosition = ( new Vector3(PostGameHolder2.transform.localPosition.x, PostGameHolder2.transform.localPosition.y + 2.5f, 0));
                     yield return new WaitForSeconds(0.01f);
             }
-            Debug.Log("ONE DONE: " + PostGameHolder1.transform.localPosition.y);
+            //Debug.Log("ONE DONE: " + PostGameHolder1.transform.localPosition.y);
             yield return new WaitForSeconds(4);
 
             Component[] fadeComponents;
@@ -1179,7 +1179,7 @@ public class GameHandler : MonoBehaviour {
             {
                 yield return new WaitForSeconds(0.01f);
             }
-            Debug.Log("ONE SUPER DONE: " + PostGameHolder1.transform.localPosition.y);
+            //Debug.Log("ONE SUPER DONE: " + PostGameHolder1.transform.localPosition.y);
             PostGameHolder1.transform.localPosition = new Vector3(PostGameHolder1.transform.localPosition.x, -950, PostGameHolder1.transform.localPosition.z);
             //topPostGameHandler = 2;
 
@@ -1187,7 +1187,7 @@ public class GameHandler : MonoBehaviour {
         
         else
         {
-            Debug.Log("TWO: " + PostGameHolder2.transform.localPosition.y);
+            //Debug.Log("TWO: " + PostGameHolder2.transform.localPosition.y);
             PostGameHolder2.GetComponent<Animator>().SetTrigger("TriggerAnimation2Part1");
             while (PostGameHolder2.transform.localPosition.y < -6)
             {
@@ -1195,9 +1195,9 @@ public class GameHandler : MonoBehaviour {
                 //PostGameHolder1.transform.localPosition = (new Vector3(PostGameHolder1.transform.localPosition.x, PostGameHolder1.transform.localPosition.y + 2.5f, 0));
                 //PostGameHolder2.transform.localPosition = (new Vector3(PostGameHolder2.transform.localPosition.x, PostGameHolder2.transform.localPosition.y + 2.5f, 0));
                 yield return new WaitForSeconds(0.01f);
-                Debug.Log("POSITION Y:: " + PostGameHolder2.transform.localPosition.y);
+                //Debug.Log("POSITION Y:: " + PostGameHolder2.transform.localPosition.y);
             }
-            Debug.Log("TWO DONE: " + PostGameHolder2.transform.localPosition.y);
+            //Debug.Log("TWO DONE: " + PostGameHolder2.transform.localPosition.y);
             //Debug.Log("DONE, Y = " + PostGameHolder2.transform.position.y);
             yield return new WaitForSeconds(4);
 
@@ -1236,7 +1236,7 @@ public class GameHandler : MonoBehaviour {
                 yield return new WaitForSeconds(0.01f);
             }
             
-            Debug.Log("TWO SUPER DONE: " + PostGameHolder2.transform.localPosition.y);
+            //Debug.Log("TWO SUPER DONE: " + PostGameHolder2.transform.localPosition.y);
             PostGameHolder2.transform.localPosition = new Vector3(PostGameHolder2.transform.localPosition.x, -950, PostGameHolder2.transform.localPosition.z);
             
         }
@@ -1427,7 +1427,7 @@ public class GameHandler : MonoBehaviour {
         }
         // if (postGameHandler)
         //Text targetText
-            Debug.Log("NUM1: " + num + " ----- NUM2: " + num2);
+            //Debug.Log("NUM1: " + num + " ----- NUM2: " + num2);
         if (jaggedArray[num][num2].Contains("data:image/png;base64"))
         {
             if (jaggedArray[num][num2] == "data:image/png;base64, BLANK")
@@ -1513,13 +1513,13 @@ public class GameHandler : MonoBehaviour {
 
                     if (num == 0)
                     {
-                        Debug.LogWarning(playernick + " Drew:    " + "<b>" + jaggedArray[customPlayerNumber.Length - 1][num2 - 1] + "</b>");
+                        //Debug.LogWarning(playernick + " Drew:    " + "<b>" + jaggedArray[customPlayerNumber.Length - 1][num2 - 1] + "</b>");
                         WordDrew2.text = (playernick + " Drew:    " + "<b>"+jaggedArray[customPlayerNumber.Length - 1][num2 - 1]+ "</b>");
                         WordDrewWord2.text = jaggedArray[customPlayerNumber.Length - 1][num2 - 1];
                     }
                     else
                     {
-                        Debug.LogWarning(playernick + " Drew:    " + "<b>" + jaggedArray[num - 1][num2 - 1] + "</b>");
+                        //Debug.LogWarning(playernick + " Drew:    " + "<b>" + jaggedArray[num - 1][num2 - 1] + "</b>");
                         WordDrew2.text = (playernick + " Drew:    " + "<b>"+jaggedArray[num - 1][num2 - 1]+ "</b>");
                         WordDrewWord2.text = jaggedArray[num - 1][num2 - 1];
                     }
@@ -1574,7 +1574,7 @@ public class GameHandler : MonoBehaviour {
                 //WordDrewWord1.text = jaggedArray[num][num2];
             }
            //testguesstext.text = ("Player " + num + " Guessed: " + jaggedArray[num][num2]);
-            Debug.Log("Custom # " + num + " Guessed: " + "<b>"+jaggedArray[num][num2]+ "</b>");
+            //Debug.Log("Custom # " + num + " Guessed: " + "<b>"+jaggedArray[num][num2]+ "</b>");
 
 
                 //you dont have a way to figure out the player who drew or wrote it's number
