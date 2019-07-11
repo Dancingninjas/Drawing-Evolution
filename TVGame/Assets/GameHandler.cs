@@ -1255,7 +1255,14 @@ public class GameHandler : MonoBehaviour {
             }
             else
             {
-                PostGameOriginalWord0.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(playerNum)) + " Wrote:");
+                if (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(playerNum)) == null)
+                {
+                    PostGameOriginalWord0.text = ("Player "+playerNum + " Wrote:");
+                }
+                else
+                {
+                    PostGameOriginalWord0.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(playerNum)) + " Wrote:");
+                }
                 PostGameOriginalWord.text = "<b>"+jaggedArray[playerNum][0]+ "</b>";
                 //Debug.Log("Player " + playerNum + " wrote " + jaggedArray[playerNum][0]);
                 currentPlayer++;
@@ -1268,7 +1275,7 @@ public class GameHandler : MonoBehaviour {
 
             PostGameOriginalWord.transform.parent.localPosition =  (new Vector3(PostGameOriginalWord.transform.parent.localPosition.x, -500, 0));
             PostGameOriginalWord.transform.parent.GetComponent<Animator>().SetTrigger("OriginalWordAnimationTrigger");
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(3.5f);
             PostGameHolder1.transform.localPosition = ( new Vector3(PostGameHolder1.transform.localPosition.x, -1200, 0));
             PostGameHolder2.transform.localPosition = (new Vector3(PostGameHolder2.transform.localPosition.x, -2000, 0));
             topPostGameHandler = 1;
@@ -1409,46 +1416,68 @@ public class GameHandler : MonoBehaviour {
     //this is completely for testing. remove after.
     public void dotestreview(int num, int num2, int postGameHandler)
     {
+        string playernick;
+        if (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) != null/* && !AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)).Contains("Guest")*/)
+        {
+            playernick = AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num));
+        }
+        else
+        {
+            playernick = "Player " + num;
+        }
         // if (postGameHandler)
         //Text targetText
-        Debug.Log("NUM1: " + num + " ----- NUM2: " + num2);
-        if (jaggedArray[num][num2] == "data:image/png;base64, BLANK")
+            Debug.Log("NUM1: " + num + " ----- NUM2: " + num2);
+        if (jaggedArray[num][num2].Contains("data:image/png;base64"))
         {
-            if (postGameHandler == 1)
+            if (jaggedArray[num][num2] == "data:image/png;base64, BLANK")
             {
-                PostGameImage.sprite = null;
+                if (postGameHandler == 1)
+                {
+                    PostGameImage.sprite = null;
+                }
+                else
+                {
+                    PostGameImage2.sprite = null;
+                }
             }
             else
             {
-                PostGameImage2.sprite = null;
-            }
-        }
-        else if (jaggedArray[num][num2].Contains("data:image/png;base64"))
-        {
-            
-            string newString = jaggedArray[num][num2].Replace("data:image/png;base64,", "");
-            //jaggedArray[num][num2] = jaggedArray[num][num2].Replace("data:image/png;base64,", "");
-            byte[] Bytes = System.Convert.FromBase64String(newString);
+                string newString = jaggedArray[num][num2].Replace("data:image/png;base64,", "");
+                //jaggedArray[num][num2] = jaggedArray[num][num2].Replace("data:image/png;base64,", "");
+                byte[] Bytes = System.Convert.FromBase64String(newString);
 
-            Texture2D tex = new Texture2D(5, 5);
-            tex.LoadImage(Bytes);
-            tex.filterMode = FilterMode.Point;
-            //RemoveAlpha(tex);
-            Rect rect = new Rect(0, 0, tex.width, tex.height);
-            //hostImage.sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f), 20000f);
-            //hostImage.sprite = hostImage.sprite.associatedAlphaSplitTexture;
-            //hostImage.spriteSortPoint = SpriteSortPoint.Center;
-            
-            //testguesstext.text = ("Player " + num + " Drew: ");
+                Texture2D tex = new Texture2D(5, 5);
+                tex.LoadImage(Bytes);
+                tex.filterMode = FilterMode.Point;
+                //RemoveAlpha(tex);
+                Rect rect = new Rect(0, 0, tex.width, tex.height);
+                //hostImage.sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f), 20000f);
+                //hostImage.sprite = hostImage.sprite.associatedAlphaSplitTexture;
+                //hostImage.spriteSortPoint = SpriteSortPoint.Center;
+
+                //testguesstext.text = ("Player " + num + " Drew: ");
+                if (postGameHandler == 1)
+                {
+                    PostGameImage.sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f), 20000f);
+                }
+                else
+                {
+                    PostGameImage2.sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f), 20000f);
+                }
+            }
+
             if (postGameHandler == 1)
             {
-                PostGameImage.sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f), 20000f);
+                //PostGameImage.sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f), 20000f);
                 //Debug.Log("DRAW 1");
-                WordDrew1.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Drew:    ");
+                //WordDrew1.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Drew:    ");
                 if (screenMode.text == "Random Prompt" && num2 == 1)
                 {
-                    WordDrew1.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Drew:    " + "<b>"+jaggedArray[num][0]+ "</b>");
+                    WordDrew1.text = (playernick + " Drew:    " + "<b>" + jaggedArray[num][0] + "</b>");
+                    //WordDrew1.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Drew:    " + "<b>" + jaggedArray[num][0] + "</b>");
                     WordDrewWord1.text = jaggedArray[num][0];
+                    
                     //Debug.Log("TESTERINO!!!!!!");
                 }
                 else
@@ -1456,12 +1485,12 @@ public class GameHandler : MonoBehaviour {
                     //Debug.Log("ELSERINO!!!!!!!!");
                     if (num == 0)
                     {
-                        WordDrew1.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Drew:    " + "<b>"+jaggedArray[AirConsole.instance.GetActivePlayerDeviceIds.Count - 1][num2 - 1])+ "</b>";
-                        WordDrewWord1.text = jaggedArray[AirConsole.instance.GetActivePlayerDeviceIds.Count - 1][num2 - 1];
+                        WordDrew1.text = (playernick + " Drew:    " + "<b>"+jaggedArray[customPlayerNumber.Length - 1][num2 - 1])+ "</b>";
+                        WordDrewWord1.text = jaggedArray[customPlayerNumber.Length - 1][num2 - 1];
                     }
                     else
                     {
-                        WordDrew1.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Drew:    " + "<b>"+jaggedArray[num - 1][num2 - 1] + "</b>");
+                        WordDrew1.text = (playernick + " Drew:    " + "<b>"+jaggedArray[num - 1][num2 - 1] + "</b>");
                         WordDrewWord1.text = jaggedArray[num - 1][num2 - 1];
                     }
 
@@ -1472,12 +1501,11 @@ public class GameHandler : MonoBehaviour {
             }
             else
             {
-                PostGameImage2.sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f), 20000f);
                 //Debug.Log("DRAW 2");
                 //WordDrew2.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Drew: ");
                 if (screenMode.text == "Random Prompt" && num2 == 1)
                 {
-                    WordDrew2.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Drew:    " + "<b>"+jaggedArray[num][0]+ "</b>");
+                    WordDrew2.text = (playernick + " Drew:    " + "<b>"+jaggedArray[num][0]+ "</b>");
                     WordDrewWord2.text = jaggedArray[num][0];
                 }
                 else
@@ -1485,12 +1513,14 @@ public class GameHandler : MonoBehaviour {
 
                     if (num == 0)
                     {
-                        WordDrew2.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Drew:    " + "<b>"+jaggedArray[AirConsole.instance.GetActivePlayerDeviceIds.Count - 1][num2 - 1]+ "</b>");
-                        WordDrewWord2.text = jaggedArray[AirConsole.instance.GetActivePlayerDeviceIds.Count - 1][num2 - 1];
+                        Debug.LogWarning(playernick + " Drew:    " + "<b>" + jaggedArray[customPlayerNumber.Length - 1][num2 - 1] + "</b>");
+                        WordDrew2.text = (playernick + " Drew:    " + "<b>"+jaggedArray[customPlayerNumber.Length - 1][num2 - 1]+ "</b>");
+                        WordDrewWord2.text = jaggedArray[customPlayerNumber.Length - 1][num2 - 1];
                     }
                     else
                     {
-                        WordDrew2.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Drew:    " + "<b>"+jaggedArray[num - 1][num2 - 1]+ "</b>");
+                        Debug.LogWarning(playernick + " Drew:    " + "<b>" + jaggedArray[num - 1][num2 - 1] + "</b>");
+                        WordDrew2.text = (playernick + " Drew:    " + "<b>"+jaggedArray[num - 1][num2 - 1]+ "</b>");
                         WordDrewWord2.text = jaggedArray[num - 1][num2 - 1];
                     }
 
@@ -1504,7 +1534,7 @@ public class GameHandler : MonoBehaviour {
            if (postGameHandler == 1)
             {
                 //Debug.Log("GUESS 1");
-                WordGuessed1.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Guessed:    " + "<b>"+jaggedArray[num][num2] + "</b>");
+                WordGuessed1.text = (playernick + " Guessed:    " + "<b>"+jaggedArray[num][num2] + "</b>");
                 WordGuessedWord1.text = jaggedArray[num][num2];
                 Component[] fadeComponents = WordGuessed1.transform.parent.gameObject.GetComponentsInChildren(typeof(Image), true);
                 Component[] fadeText = WordGuessed1.transform.parent.gameObject.GetComponentsInChildren(typeof(Text), true);
@@ -1525,7 +1555,7 @@ public class GameHandler : MonoBehaviour {
            else
             {
                 //Debug.Log("GUESS 2");
-                WordGuessed2.text = (AirConsole.instance.GetNickname(convertCustomPlayerNumberToDeviceId(num)) + " Guessed:    " + "<b>"+jaggedArray[num][num2] + " </b>");
+                WordGuessed2.text = (playernick + " Guessed:    " + "<b>"+jaggedArray[num][num2] + " </b>");
                 WordGuessedWord2.text = jaggedArray[num][num2];
                 Component[] fadeComponents = WordGuessed2.transform.parent.gameObject.GetComponentsInChildren(typeof(Image), true);
                 Component[] fadeText = WordGuessed2.transform.parent.gameObject.GetComponentsInChildren(typeof(Text), true);

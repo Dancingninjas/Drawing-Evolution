@@ -466,6 +466,7 @@
                             //console.log("chicken nuggets");
                             if (device_data["view"] == "Draw") {
                                 initializeCanvas();
+                                me.airconsole.showDefaultUI(false);
                             }
                             else if (device_data["view"] == "InitialPhrase") {
                                 //console.log("Test444");
@@ -478,6 +479,7 @@
                                 //initializeStarterCanvas();
                             }
                             else if (device_data["view"] == "Guess") {
+                                me.airconsole.showDefaultUI(true);
                                 //initializeCanvas();
                                 /*if (((parseFloat(window.innerHeight) * 3) / 2) > parseFloat(window.innerWidth)) {
                                     document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
