@@ -274,18 +274,17 @@
         margin-top: 0;
       }
     .textfield {
+		bottom: 0%;
 		font-size: 16px;
 		display: inline-block;
-        position: relative;
+        position: static;
         border: 1px solid #888888;
+		margin-top: 2px;
         width: 800px;
         padding-top: 5px;
         padding-left: 0px;
         padding-right: 0px;
-        margin-left: auto:;
-        margin-right: auto;
-        margin-top: 2px;
-        vertical-align: top;
+        vertical-align: bottom;
         color: #000000;
         background-color: #FFFFFF;
       }
@@ -300,5 +299,13 @@
 		text-align: center;
         vertical-align: middle;
 		background: inherit;
+
+	}
+	
+	
+	.guessTextInstructions {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
 
 	}

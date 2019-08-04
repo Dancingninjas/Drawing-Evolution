@@ -151,9 +151,9 @@ AirConsoleKeyboard.prototype.show = function(input_id, opts) {
 
 AirConsoleKeyboard.prototype.softHide = function() {
   //this.container.style.display = "none";
-  //this.removeCarret_();
-  //this.active_input_id = undefined;
-  //this.active_input_div = undefined;
+  this.removeCarret_();
+  this.active_input_id = undefined;
+  this.active_input_div = undefined;
 };
 
 AirConsoleKeyboard.prototype.hide = function() {
@@ -161,16 +161,16 @@ AirConsoleKeyboard.prototype.hide = function() {
     return;
   }
 
-  //this.container.style.display = "none";
-  //this.removeCarret_();
-  //this.addPlaceholder_(this.active_input_id);
-  //if (this.active_opts.onHide) {
-  //  this.active_opts.onHide(this.active_input_id,
-  //                          this.valueText(this.active_input_id),
-  //                          this.valueHTML(this.active_input_id));
-  //}
-  //this.active_input_id = undefined;
-  //this.active_input_div = undefined;
+  this.container.style.display = "none";
+  this.removeCarret_();
+  this.addPlaceholder_(this.active_input_id);
+  if (this.active_opts.onHide) {
+    this.active_opts.onHide(this.active_input_id,
+                            this.valueText(this.active_input_id),
+                            this.valueHTML(this.active_input_id));
+  }
+  this.active_input_id = undefined;
+  this.active_input_div = undefined;
 }
 
 AirConsoleKeyboard.prototype.setCarret = function(position) {
@@ -245,7 +245,7 @@ AirConsoleKeyboard.defaultKeyboard = function(done_label, done_class_name) {
       ["a", "s", "d", "f", "g", "h", "j", "k", "l", "."],
       [shift_key, "z", "x", "c", "v", "b", "n", "m",
         backspace, backspace],
-      [{action: AirConsoleKeyboard.HIDE, label: ""},
+      [{action: AirConsoleKeyboard.HIDE, label: " "},
         "&nbsp;", "&nbsp;", {layout: 2, label: "#123"},
         done]
     ], [
@@ -253,7 +253,7 @@ AirConsoleKeyboard.defaultKeyboard = function(done_label, done_class_name) {
       ["A", "S", "D", "F", "G", "H", "J", "K", "L", ","],
       [shift_key_active, "Z", "X", "C", "V", "B", "N", "M",
         backspace, backspace],
-      [{action: AirConsoleKeyboard.HIDE, label: ""},
+      [{action: AirConsoleKeyboard.HIDE, label: " "},
         "&nbsp;", "&nbsp;", {layout: 2, label: "#123"}, done]
     ], [
       ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
@@ -263,7 +263,7 @@ AirConsoleKeyboard.defaultKeyboard = function(done_label, done_class_name) {
         "!", "+", "=", "?", ":", ";",
         {layout: 4, label: "&auml;&eacute;&oslash;"},
         {layout: 4, label: "&auml;&eacute;&oslash;"}],
-      [{action: AirConsoleKeyboard.HIDE, label: ""},
+      [{action: AirConsoleKeyboard.HIDE, label: " "},
         "&nbsp;", "&nbsp;", {layout: 0, label: "#123",
           className: "airconsole-keyboard-layout-key-active"},
         done]
@@ -271,7 +271,7 @@ AirConsoleKeyboard.defaultKeyboard = function(done_label, done_class_name) {
       ["&pound;", "&euro;", "&yen;", "&cent;", "&copy;", "&reg;", "&trade;"],
       ["[", "]", "{", "}", "&lt;", "&gt;", "^"],
       ["~", "&iquest", "\\", "&iexcl;", "&deg;", "&sect;", "&para;"],
-      [{action: AirConsoleKeyboard.HIDE, label: "Hide"},
+      [{action: AirConsoleKeyboard.HIDE, label: " "},
         "&nbsp;", "&nbsp;", {layout: 0, label: "{[&deg;&euro;",
           className: "airconsole-keyboard-layout-key-active"},
         done]
@@ -282,7 +282,7 @@ AirConsoleKeyboard.defaultKeyboard = function(done_label, done_class_name) {
         "&ntilde;", "&oacute;", "&ograve;", "&ocirc;"],
       [ {layout: 5, label: "&#x21E7;"}, "&oslash;", "&otilde;", "&ouml;",
         "&szlig;", "&uacute;", "&ugrave;", "&ucirc;", "&uuml;", "&yuml"],
-      [{action: AirConsoleKeyboard.HIDE, label: "Hide"}, "&nbsp;",
+      [{action: AirConsoleKeyboard.HIDE, label: " "}, "&nbsp;",
         "&nbsp;", { layout: 0, label: "&auml;&eacute;&oslash;",
           className: "airconsole-keyboard-layout-key-active"},
         done]
@@ -295,7 +295,7 @@ AirConsoleKeyboard.defaultKeyboard = function(done_label, done_class_name) {
         className: "airconsole-keyboard-layout-key-active"},
         "&Oslash;", "&Otilde;", "&Ouml;", "&szlig;",
         "&Uacute;", "&Ugrave;", "&Ucirc;", "&Uuml;", "&yuml"],
-      [{action: AirConsoleKeyboard.HIDE, label: "Hide"}, "&nbsp;",
+      [{action: AirConsoleKeyboard.HIDE, label: " "}, "&nbsp;",
         "&nbsp;", { layout: 0, label: "&auml;&eacute;&oslash;",
           className: "airconsole-keyboard-layout-key-active"},
         done
@@ -348,7 +348,6 @@ AirConsoleKeyboard.prototype.removePlaceholder_ = function(input_id) {
 };
 
 AirConsoleKeyboard.prototype.addPlaceholder_ = function(input_id) {
-  //console.log("TESTERINO");
   if (!this.valueText(input_id).length && this.placeholders[input_id]) {
     var input_div = document.getElementById(input_id);
     delete this.values[input_id];
@@ -485,20 +484,17 @@ AirConsoleKeyboard.prototype.createKey_ = function(key, percent_width) {
 }
 
 AirConsoleKeyboard.prototype.spanToInsertPos_ = function(span) {
-	if (this.active_input_div.childNodes != null){
-	  var child_nodes = this.active_input_div.childNodes;
-	  var count = 0;
-	  for (var i = 0; i < child_nodes.length; ++i) {
-		if (child_nodes[i] != this.carret) {
-		  count++;
-		}
-		if (child_nodes[i] == span) {
-		  return count;
-		}
-	  }
-	  return count;
-	}
-  
+  var child_nodes = this.active_input_div.childNodes;
+  var count = 0;
+  for (var i = 0; i < child_nodes.length; ++i) {
+    if (child_nodes[i] != this.carret) {
+      count++;
+    }
+    if (child_nodes[i] == span) {
+      return count;
+    }
+  }
+  return count;
 }
 
 AirConsoleKeyboard.prototype.onAction_ = function(action, element) {
@@ -510,9 +506,9 @@ AirConsoleKeyboard.prototype.onAction_ = function(action, element) {
   }, 100);
   if (action == AirConsoleKeyboard.DONE) {
     if (me.active_opts.onDone) {
-		me.active_opts.onDone(me.active_input_id,
-		me.valueText(me.active_input_id),
-		me.valueHTML(me.active_input_id));
+      me.active_opts.onDone(me.active_input_id,
+                              me.valueText(me.active_input_id),
+                              me.valueHTML(me.active_input_id));
     }
     //me.hide();
   } else if (action == AirConsoleKeyboard.HIDE) {
@@ -537,44 +533,41 @@ AirConsoleKeyboard.prototype.onAction_ = function(action, element) {
 
 AirConsoleKeyboard.prototype.addKey_ = function(input_id, insert_pos, html) {
   var me = this;
-  if (me.values[input_id] != null){
-	  me.values[input_id].splice(insert_pos, 0, html);
-  
-	  var span = document.createElement("span");
-	  span.innerHTML = html;
-	  span.addEventListener("click", function(event) {
-		var position_offset = 0;
-		if ((event.pageX - span.offsetLeft)/span.offsetWidth < 0.5) {
-		  position_offset -= 1;
-		}
-		window.setTimeout(function () {
-		  var position = me.spanToInsertPos_(span) + position_offset;
-		  me.setCarret(position);
-		});
-	  })
-	  var input_div = document.getElementById(input_id)
-	  var child_nodes = input_div.childNodes;
-	  if (this.active_input_id != input_id) {
-		if (!child_nodes[insert_pos]) {
-		  input_div.appendChild(span);
-		} else {
-		  input_div.insertBefore(span, child_nodes[insert_pos]);
-		}
-	  } else if (insert_pos == child_nodes.length - 1) {
-		input_div.appendChild(span);
-	  } else {
-		var count = 0;
-		for (var i = 0; i < child_nodes.length; ++i) {
-		  if (child_nodes[i] != me.carret) {
-			count++;
-		  }
-		  if (count == insert_pos) {
-			input_div.insertBefore(span, child_nodes[i+1]);
-		  }
-		}
-	  }
-	  return span;
+  me.values[input_id].splice(insert_pos, 0, html);
+  var span = document.createElement("span");
+  span.innerHTML = html;
+  span.addEventListener("click", function(event) {
+    var position_offset = 0;
+    if ((event.pageX - span.offsetLeft)/span.offsetWidth < 0.5) {
+      position_offset -= 1;
+    }
+    window.setTimeout(function () {
+      var position = me.spanToInsertPos_(span) + position_offset;
+      me.setCarret(position);
+    });
+  })
+  var input_div = document.getElementById(input_id)
+  var child_nodes = input_div.childNodes;
+  if (this.active_input_id != input_id) {
+    if (!child_nodes[insert_pos]) {
+      input_div.appendChild(span);
+    } else {
+      input_div.insertBefore(span, child_nodes[insert_pos]);
+    }
+  } else if (insert_pos == child_nodes.length - 1) {
+    input_div.appendChild(span);
+  } else {
+    var count = 0;
+    for (var i = 0; i < child_nodes.length; ++i) {
+      if (child_nodes[i] != me.carret) {
+        count++;
+      }
+      if (count == insert_pos) {
+        input_div.insertBefore(span, child_nodes[i+1]);
+      }
+    }
   }
+  return span;
 }
 
 AirConsoleKeyboard.prototype.onKey_ = function(key, element) {
