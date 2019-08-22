@@ -37,6 +37,8 @@
       var vm = null;
       var phrasekeyboard;
       var airconsole;
+	  var heightofScreen;
+      var widthofScreen;
       //var canvas = document.getElementById("myCanvas");
       //var ctx = canvas.getContext("2d");
       //var initializeCanvas = function(){
@@ -55,16 +57,6 @@
           //canvas.style.width = ((parseFloat(canvas.style.height) * 3) / 2);
           //canvas.setAttribute('width', ((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2);
           console.log("CHECK if " + ((parseFloat(window.innerHeight) * 16) / 9) + " > " + parseFloat(window.innerWidth))
-          var heightofScreen;
-          var widthofScreen;
-          if (parseFloat(window.innerHeight) > parseFloat(window.innerWidth)) {
-              heightofScreen = parseFloat(window.innerWidth);
-              widthofScreen = parseFloat(window.innerHeight);
-          }
-          else {
-              heightofScreen = parseFloat(window.innerHeight);
-              widthofScreen = parseFloat(window.innerWidth);
-          }
 
           for (var i = 1; i < 13; i++) {
               var funcid = ("func" + i.toString());
@@ -76,8 +68,30 @@
               document.getElementById(funcid).style.border = "solid #8F8F8F 1px";
           }
 
-          //if the width of the screen is smaller than the space needed to fit everything (then scale down based on width)
-          if (((heightofScreen * 3) / 2) > widthofScreen) {
+		  //console.log("KEYBOARDHEIGHT:" + document.getElementsByClassName("airconsole-keyboard-key-html-container").style.height);
+		  //document.getElementsByClassName("airconsole-keyboard-key-html-container").style.height = ((1 * (heightofScreen / 22.5)));
+          /*if (heightofScreen > 1000){
+			document.getElementsByClassName("airconsole-keyboard-key-html-container").style.height = "4em";
+		  }
+		  else if (heightofScreen > 700){
+			document.getElementsByClassName("airconsole-keyboard-key-html-container").style.height = "3em";
+		  }
+		  else if (heightofScreen > 500){
+		  	document.getElementsByClassName("airconsole-keyboard-key-html-container").style.height = "2em";
+		  }
+		  else{
+			document.getElementsByClassName("airconsole-keyboard-key-html-container").style.height = "1em";
+		  }*/
+		  //if the width of the screen is smaller than the space needed to fit everything (then scale down based on width)
+          if (parseFloat(window.innerHeight) > parseFloat(window.innerWidth)) {
+              heightofScreen = parseFloat(window.innerWidth);
+              widthofScreen = parseFloat(window.innerHeight);
+          }
+          else {
+              heightofScreen = parseFloat(window.innerHeight);
+              widthofScreen = parseFloat(window.innerWidth);
+          }
+		  if (((heightofScreen * 3) / 2) > widthofScreen) {
               for (i = 1; i < 17; i++) {
                   document.getElementById(("func") + i.toString()).style.height = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
                   document.getElementById(("func") + i.toString()).style.width = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
@@ -108,6 +122,8 @@
               document.getElementById("textfield2").style.width = ((heightofScreen / 0.9) * (widthofScreen / ((heightofScreen * 3) / 2))); //400
               document.getElementById("textfield2").style.height = ((heightofScreen / 14.4) * (widthofScreen / ((heightofScreen * 3) / 2)));
               document.getElementById("textfield2").style.fontSize = ((heightofScreen / 25.7) * (widthofScreen / ((heightofScreen * 3) / 2)));
+			  document.getElementById("textfield0").style.width = ((heightofScreen / 0.9) * (widthofScreen / ((heightofScreen * 3) / 2))); //400
+              document.getElementById("textfield0").style.height = ((heightofScreen / 14.4) * (widthofScreen / ((heightofScreen * 3) / 2)));
               document.getElementById("textfield1").style.width = ((heightofScreen / 0.9) * (widthofScreen / ((heightofScreen * 3) / 2))); //400
               document.getElementById("textfield1").style.height = ((heightofScreen / 14.4) * (widthofScreen / ((heightofScreen * 3) / 2)));
               document.getElementById("textfield1").style.fontSize = ((heightofScreen / 25.7) * (widthofScreen / ((heightofScreen * 3) / 2)));
@@ -144,6 +160,8 @@
               document.getElementById("textfield2").style.width = (heightofScreen / 0.9); //400
               document.getElementById("textfield2").style.height = (heightofScreen / 14.4);
               document.getElementById("textfield2").style.fontSize = (heightofScreen / 25.7);
+			  document.getElementById("textfield0").style.width = (heightofScreen / 0.9); //400
+              document.getElementById("textfield0").style.height = (heightofScreen / 14.4);
               document.getElementById("textfield1").style.width = (heightofScreen / 0.9); //400
               document.getElementById("textfield1").style.height = (heightofScreen / 14.4);
               document.getElementById("textfield1").style.fontSize = (heightofScreen / 25.7);
@@ -226,8 +244,18 @@
           vm = new AirConsoleViewManager(me.airconsole);
           vm.show('WatchTV');
 
+		  if (parseFloat(window.innerHeight) > parseFloat(window.innerWidth)) {
+              heightofScreen = parseFloat(window.innerWidth);
+              widthofScreen = parseFloat(window.innerHeight);
+          }
+          else {
+              heightofScreen = parseFloat(window.innerHeight);
+              widthofScreen = parseFloat(window.innerWidth);
+          }
+
+
           //ViewManager.show("WatchTV");
-          keyboard = new AirConsoleKeyboard("Guess");
+          keyboard = new AirConsoleKeyboard("centerallinitialphrase2");
           keyboard.bind("textfield2", {
               onShow: function (input_id) {
                   //console.log("onShow#1", input_id);
@@ -237,6 +265,8 @@
               },
               onDone: function (input_id, text, html) {
                   //console.log("onDone#1", input_id, text, html);
+				  console.log("TEXT: "+ text);
+				  console.log("HTMLTEXT: " + html);
                   if (text != "") {
                       me.airconsole.message(followingPlayer, "Guess:" + html);
                       me.airconsole.message(AirConsole.SCREEN, "GameHander.SaveSubmission:" + text);
@@ -244,7 +274,6 @@
                       keyboard.setValue('textfield2', '');
                       //document.getElementById("Guess").scrollTop()
                       //window.ScrollTo(100, 100);
-                      document.getElementById("Guess").scrollTop = 0;
                       vm.show("WatchTV");
                       //document.getElementById("Guess").ScrollBy(0, 100);
                       //document.getElementById("Guess").scrollTop = document.getElementById("Guess").scrollHeight;
@@ -340,9 +369,13 @@
               }
 
 
-
-
           });
+
+		  document.getElementById("initialPhraseTextId").style.fontSize = (heightofScreen / 18);
+		  document.getElementById("initialPhraseTextId2").style.fontSize = (heightofScreen / 18);
+		  document.getElementById("func20").style.height = (heightofScreen / 12);
+		  document.getElementById("func20").style.width = ((heightofScreen / 12) * 3);
+		  document.getElementById("func20").style.marginBottom = (heightofScreen/ 72);
 
           /*if (((parseFloat(window.innerHeight) * 3) / 2) > parseFloat(window.innerWidth)) {
               document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
@@ -960,7 +993,7 @@
         <button onclick="setActualNumberofPhases(5);" class="menubuttons3" id="Phases3" style="border: solid #808080 1px;">4  (5+ Players)</button>
         <button onclick="setActualNumberofPhases(7);" class="menubuttons3" id="Phases4" style="border: solid #808080 1px;">6 (7+ Players)</button>
         <button onclick="setActualNumberofPhases(9);" class="menubuttons3" id="Phases5" style="border: solid #808080 1px;">8 (9+ Players)</button>
-        <button onclick="vm.show('Start');" class="menubuttons3" style="border: solid #808080 1px;"><----</button>
+        <button onclick="vm.show('Start');" class="menubuttons3" style="border: solid #808080 1px; "><----</button>
 
     </div>
     <div class="view" id="Start" style="background-image: url('images/paperback1.png'); background-size: contain">
@@ -992,14 +1025,11 @@
     </div>
     <div class="view" id="InitialPhrase" style="background-image: url('images/paperback1.png'); background-size: contain">
         <div class = "centerall" id="centerallinitialphrase" style="background: none;">
-            <!--<p class ="initialPhraseText" id="initialPhraseTextId2" style ="color: black">Write a Word or Phrase</p>-->
-            <!--<canvas class ="chooseTopicCanvas" id ="TopicCanvas"> </canvas>-->
             <div class ="initialphrasechooser">
                 <p class ="initialPhraseText" id="initialPhraseTextId" style ="color: black">Write a Word or Phrase</p>
             </div>
             <div class="textfield" id="textfield1" onclick="scrollitdown()" style="background-color: white"></div>
          </div>
-        <!--<input type="text" id="initialInputValue" name="name" size="20" class="initialPhraseInput">-->
     </div>
     <div class="view" id="Draw">
         <div class = "centerall">
@@ -1061,7 +1091,7 @@
             <div>
                 <canvas id="guessCanvas" class="canvas"></canvas>
             </div>
-            <div class="textfield" id="textfield2" onclick="scrollitdown()"></div>
+            <div class="textfield" id="textfield0" ontouchstart="vm.show('Guess2');" style="width: 1px"></div>
             <!--<p class="guessmodetext">What do you think this image is?</p>-->
                 <!--<div class="pseudo_button" onclick="alert(keyboard.valueText('textfield1'))">Alert Value Text</div>
                 <div class="pseudo_button" onclick="alert(keyboard.valueHTML('textfield1'))">Alert Value HTML</div>
@@ -1070,6 +1100,15 @@
             <!--<input type="text" id="guessInputValue" name="name" class="guessmodeinput">-->
             <!--<button onclick="sendGuess();" class="guessmodesubmit">Submit</button>-->
         </div>
+    <div class="view" id="Guess2" style="width: 100%; height: 100%;">
+		<div class = "centerall" id="centerallinitialphrase2" style="background: none;">
+			<div class ="initialphrasechooser">
+				<button ontouchstart="vm.show('Guess')" style="background-color: #E5E5E5; height: 30px; width: 100px; margin-top: 1px; margin-right: 10px; margin-bottom: 5px; background-position:center; border: solid #8F8F8F 1px; outline: 0; font-size: 20px; background-image: url('images/arrowleft.png'); background-size: cover;" id="func20"></button>
+				<p class ="initialPhraseText" id="initialPhraseTextId2" style ="color: black">Describe the Drawing...</p>
+			</div>
+			<div class="textfield" id="textfield2" onclick="scrollitdown()" style="background-color: white; width:1px; margin-top: auto; margin-bottom: auto;"></div>
+		</div>
+    </div>
     <!--<div class="button" id="erase-button" ontouchstart="window.app.getColor('#00FF00')"></div>-->
 </body>
 </html>

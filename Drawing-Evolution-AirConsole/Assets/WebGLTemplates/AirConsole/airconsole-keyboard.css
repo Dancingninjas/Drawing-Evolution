@@ -8,7 +8,7 @@
 }
 
 .airconsole-keyboard-layout {
-    max-width: 640px;
+    max-width: 1280px;
 }
 
 .airconsole-keyboard-key-label {
@@ -65,12 +65,13 @@
     text-align: center;
     cursor: hand;
     cursor: pointer;
+	font-size: 20px;
 }
 
 .airconsole-keyboard-row {
     text-align: center;
     margin-left: 4px;
-    max-width: 640px;
+    max-width: 1280px;
 }
 
 .airconsole-keyboard-layout {
@@ -91,7 +92,7 @@
 
 .airconsole-keyboard-key-html-container {
     display: inline-block;
-    height: 1em;
+    height: 16px;
 }
 
 .airconsole-keyboard-backspace {

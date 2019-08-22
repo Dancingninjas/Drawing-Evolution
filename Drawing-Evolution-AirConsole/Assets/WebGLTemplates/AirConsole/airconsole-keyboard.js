@@ -1,3 +1,4 @@
+
 function AirConsoleKeyboard(keyboard_id, opts) {
   var me = this;
   if (!opts) {
@@ -62,11 +63,10 @@ AirConsoleKeyboard.CANCEL = 4;
 AirConsoleKeyboard.prototype.bind = function(input_id, opts) {
   var me = this;
   var input_div = document.getElementById(input_id);
-  input_div.addEventListener("click", function(event) {
-    me.show(input_id, opts);
-    event.stopPropagation();
-    event.preventDefault();
-  });
+  //input_div.opts = opts;
+  me.show(input_id, opts);
+  event.stopPropagation();
+  event.preventDefault();
   if (!input_div.innerHTML) {
     input_div.innerHTML = "&nbsp;"
   }
@@ -151,9 +151,9 @@ AirConsoleKeyboard.prototype.show = function(input_id, opts) {
 
 AirConsoleKeyboard.prototype.softHide = function() {
   //this.container.style.display = "none";
-  this.removeCarret_();
-  this.active_input_id = undefined;
-  this.active_input_div = undefined;
+  //this.removeCarret_();
+  //this.active_input_id = undefined;
+  //this.active_input_div = undefined;
 };
 
 AirConsoleKeyboard.prototype.hide = function() {
@@ -480,6 +480,14 @@ AirConsoleKeyboard.prototype.createKey_ = function(key, percent_width) {
   key_container.style.width = percent_width + "%";
   key.container = key_container;
   me.keys.push(key);
+  //console.log("HEIGHTOFSCREENINKEYBOARD: "+ heightofScreen);
+  key_label.style.fontSize = (heightofScreen / 18);
+  if (heightofScreen > 500){
+	key_html_container.style.height = ((1 * (heightofScreen / 12)));
+		}
+  else	{
+	key_html_container.style.height = ((1 * (heightofScreen / 22.5)));
+		}
   return key_container;
 }
 
