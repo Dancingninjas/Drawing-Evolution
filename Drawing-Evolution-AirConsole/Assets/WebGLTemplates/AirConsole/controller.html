@@ -114,9 +114,11 @@
               document.getElementById("readybutton").style.width = (heightofScreen / 3.6) * (widthofScreen / ((heightofScreen * 3) / 2));
               document.getElementById("readybutton").style.fontSize = (heightofScreen / 22) * (widthofScreen / ((heightofScreen * 3) / 2));
 
-              document.getElementById("guessCanvas").setAttribute("width", (((heightofScreen - (heightofScreen / 6)) * 3) / 2)) * (widthofScreen / ((heightofScreen * 3) / 2));
-              document.getElementById("guessCanvas").setAttribute("height", (heightofScreen - (heightofScreen / 6))) * (widthofScreen / ((heightofScreen * 3) / 2));
-              //document.getElementById("textfield2").setAttribute("width", ) //400
+              //document.getElementById("guessCanvas").setAttribute("width", (((heightofScreen - (heightofScreen / 6)) * 3) / 2)) * (widthofScreen / ((heightofScreen * 3) / 2));
+              //document.getElementById("guessCanvas").setAttribute("height", (heightofScreen - (heightofScreen / 6))) * (widthofScreen / ((heightofScreen * 3) / 2));
+              document.getElementById("guessCanvas").setAttribute("width", (((heightofScreen - (heightofScreen / 6)) * 3) / 2));
+              document.getElementById("guessCanvas").setAttribute("height", (heightofScreen - (heightofScreen / 6)));
+			  //document.getElementById("textfield2").setAttribute("width", ) //400
               //document.getElementById("textfield2").setAttribute("height", )
               //document.getElementById("textfield2").setAttribute("font-size", )
               document.getElementById("textfield2").style.width = ((heightofScreen / 0.9) * (widthofScreen / ((heightofScreen * 3) / 2))); //400
@@ -402,7 +404,7 @@
                   image.onload = function () {
                       console.log("TESTHEIGHT = " + window.innerHeight);
                       console.log("TESTWIDTH = " + window.innerWidth);
-                      if (((parseFloat(window.innerHeight) * 3) / 2) > parseFloat(window.innerWidth)) {
+                      if (((((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) > parseFloat(window.innerWidth)) {
                           document.getElementById("guessCanvas").setAttribute("width", ((((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2)));
                           document.getElementById("guessCanvas").setAttribute("height", ((((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6))) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2)))));
                           document.getElementById("guessCanvas").getContext("2d").drawImage(image, 0, 0, ((((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2)), (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6))) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2))));
@@ -412,8 +414,13 @@
                           document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
                           document.getElementById("guessCanvas").getContext("2d").drawImage(image, 0, 0, (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2), (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
                       }
+					  //document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2));
+                      //document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
                       //document.getElementById("guessCanvas").getContext("2d").drawImage(image, 0, 0, (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2), (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
-                          //document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2));
+                      
+					  
+					  
+					  //document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2));
                       //document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)));
                   }
                   image.src = data;
@@ -1088,17 +1095,19 @@
 
     </div>
     <div class="view" id="Guess">
-            <div>
-                <canvas id="guessCanvas" class="canvas"></canvas>
-            </div>
-            <div class="textfield" id="textfield0" ontouchstart="vm.show('Guess2');" style="width: 1px"></div>
-            <!--<p class="guessmodetext">What do you think this image is?</p>-->
-                <!--<div class="pseudo_button" onclick="alert(keyboard.valueText('textfield1'))">Alert Value Text</div>
-                <div class="pseudo_button" onclick="alert(keyboard.valueHTML('textfield1'))">Alert Value HTML</div>
-                <div class="pseudo_button" onclick="keyboard.setValue('textfield1', 'you &amp; <b>m</b>e')">Set Value to 'you &amp; <b>m</b>e'</div><br>-->
-                <!--<div class="textfield" id="textfield2"></div>-->
-            <!--<input type="text" id="guessInputValue" name="name" class="guessmodeinput">-->
-            <!--<button onclick="sendGuess();" class="guessmodesubmit">Submit</button>-->
+			<div class = "centerall">
+				<div>
+					<canvas id="guessCanvas" class="canvas"></canvas>
+				</div>
+				<div class="textfield" id="textfield0" ontouchstart="vm.show('Guess2');" style="width: 1px"></div>
+				<!--<p class="guessmodetext">What do you think this image is?</p>-->
+					<!--<div class="pseudo_button" onclick="alert(keyboard.valueText('textfield1'))">Alert Value Text</div>
+					<div class="pseudo_button" onclick="alert(keyboard.valueHTML('textfield1'))">Alert Value HTML</div>
+					<div class="pseudo_button" onclick="keyboard.setValue('textfield1', 'you &amp; <b>m</b>e')">Set Value to 'you &amp; <b>m</b>e'</div><br>-->
+					<!--<div class="textfield" id="textfield2"></div>-->
+				<!--<input type="text" id="guessInputValue" name="name" class="guessmodeinput">-->
+				<!--<button onclick="sendGuess();" class="guessmodesubmit">Submit</button>-->
+			</div>
         </div>
     <div class="view" id="Guess2" style="width: 100%; height: 100%;">
 		<div class = "centerall" id="centerallinitialphrase2" style="background: none;">
