@@ -904,7 +904,7 @@ GameObject:
   - component: {fileID: 195508542}
   - component: {fileID: 195508541}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Someonewillhavetodrawit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2324,10 +2324,7 @@ RectTransform:
   - {fileID: 1711087692}
   - {fileID: 1745337298}
   - {fileID: 671725612}
-  - {fileID: 815269889}
-  - {fileID: 1748805996}
-  - {fileID: 978276404}
-  - {fileID: 2050706943}
+  - {fileID: 1738133784}
   - {fileID: 783468173}
   - {fileID: 708621864}
   m_Father: {fileID: 1689583256}
@@ -2428,7 +2425,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
-    m_FontSize: 60
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -2436,8 +2433,8 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Automatic
 --- !u!222 &357956863
@@ -3001,7 +2998,7 @@ GameObject:
   - component: {fileID: 447470545}
   - component: {fileID: 447470544}
   m_Layer: 5
-  m_Name: Text (4)
+  m_Name: ReadyPlayers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3397,7 +3394,7 @@ GameObject:
   - component: {fileID: 536256267}
   - component: {fileID: 536256266}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: WriteaWordorPhrase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3889,7 +3886,7 @@ GameObject:
   - component: {fileID: 587858283}
   - component: {fileID: 587858282}
   m_Layer: 5
-  m_Name: WordCompare1 (1)
+  m_Name: 'OriginalPhrase:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4503,7 +4500,7 @@ GameObject:
   - component: {fileID: 671725614}
   - component: {fileID: 671725613}
   m_Layer: 5
-  m_Name: Text (6)
+  m_Name: 'WatchIntroduction:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4556,8 +4553,8 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Watch Introduction:'
 --- !u!222 &671725614
@@ -4741,7 +4738,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 328141374}
-  m_RootOrder: 16
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5035,7 +5032,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 328141374}
-  m_RootOrder: 15
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5226,8 +5223,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 328141374}
-  m_RootOrder: 11
+  m_Father: {fileID: 1738133784}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5279,7 +5276,7 @@ GameObject:
   - component: {fileID: 817174426}
   - component: {fileID: 817174425}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Waitingforplayers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5300,8 +5297,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000073314, y: -246.53}
-  m_SizeDelta: {x: 1416.9, y: 242.7}
+  m_AnchoredPosition: {x: 0, y: -248}
+  m_SizeDelta: {x: 3145.3, y: 242.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &817174425
 MonoBehaviour:
@@ -5332,8 +5329,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Waiting for players...
 --- !u!222 &817174426
@@ -5506,7 +5503,7 @@ GameObject:
   - component: {fileID: 922436161}
   - component: {fileID: 922436160}
   m_Layer: 5
-  m_Name: WordCompare2 (2)
+  m_Name: 'Final Phrase:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5735,8 +5732,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
-  m_Father: {fileID: 328141374}
-  m_RootOrder: 13
+  m_Father: {fileID: 1738133784}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6279,7 +6276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -170.19, y: 64}
+  m_AnchoredPosition: {x: -170.19, y: 58}
   m_SizeDelta: {x: 654.74, y: 177.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1096822141
@@ -6311,8 +6308,8 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Language:'
 --- !u!222 &1096822142
@@ -7160,7 +7157,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
-    m_FontSize: 60
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -7168,8 +7165,8 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 3 Minutes
 --- !u!222 &1315244979
@@ -7776,7 +7773,7 @@ GameObject:
   - component: {fileID: 1395221469}
   - component: {fileID: 1395221468}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Drawthewordonyourdevice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7919,8 +7916,7 @@ MonoBehaviour:
   PostGameCanvas: {fileID: 2014707967}
   IntroductionImage: {fileID: 1739695406}
   screenMode: {fileID: 1745337299}
-  screenLength: {fileID: 1315244978}
-  screenPhases: {fileID: 357956862}
+  screenLanguage: {fileID: 1872531520}
   screenIntroduction: {fileID: 2050706944}
   drawtimerText: {fileID: 1565820148}
   initialPhraseText: {fileID: 652896652}
@@ -7944,8 +7940,36 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 13cb9ae43f807024b8d3df8f79fd6c19, type: 3}
   - {fileID: 8300000, guid: e662dd3c25780cc42a2529ec88628339, type: 3}
   - {fileID: 8300000, guid: 773b2b4136bdb074b85d64f2a78eb48c, type: 3}
+  TranslationElements:
+  - {fileID: 257671008}
+  - {fileID: 1799104901}
+  - {fileID: 1096822141}
+  - {fileID: 1711087693}
+  - {fileID: 1635891423}
+  - {fileID: 1895356063}
+  - {fileID: 671725613}
+  - {fileID: 817174425}
+  - {fileID: 384800608}
+  - {fileID: 536256266}
+  - {fileID: 195508541}
+  - {fileID: 1543046349}
+  - {fileID: 1745791756}
+  - {fileID: 1395221468}
+  - {fileID: 1605354837}
+  - {fileID: 2127738720}
+  - {fileID: 1512022318}
+  - {fileID: 447470544}
+  - {fileID: 587858282}
+  - {fileID: 922436160}
+  - {fileID: 1745337299}
+  - {fileID: 1315244978}
+  - {fileID: 357956862}
+  - {fileID: 1640640213}
+  - {fileID: 1354272383}
+  - {fileID: 566248753}
   audio1: {fileID: 0}
   audio2: {fileID: 0}
+  checkmarkholder: {fileID: 1738133783}
   currentMode: Menu
   currentScreenMode: Menu
   continueCountdown: 0
@@ -8290,7 +8314,7 @@ GameObject:
   - component: {fileID: 1512022319}
   - component: {fileID: 1512022318}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Describetheimageonyourdevice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8439,7 +8463,7 @@ GameObject:
   - component: {fileID: 1543046350}
   - component: {fileID: 1543046349}
   m_Layer: 5
-  m_Name: Text (4)
+  m_Name: ReadyPlayers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8877,7 +8901,7 @@ GameObject:
   - component: {fileID: 1605354838}
   - component: {fileID: 1605354837}
   m_Layer: 5
-  m_Name: Text (4)
+  m_Name: ReadyPlayers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9155,8 +9179,8 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Drawing Length:'
 --- !u!222 &1635891424
@@ -9812,7 +9836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -209.1, y: 10.999992}
+  m_AnchoredPosition: {x: -209.1, y: 8}
   m_SizeDelta: {x: 343.47, y: 177.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1711087693
@@ -9844,8 +9868,8 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Mode:'
 --- !u!222 &1711087694
@@ -9978,6 +10002,43 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1733063720}
   m_CullTransparentMesh: 0
+--- !u!1 &1738133783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738133784}
+  m_Layer: 5
+  m_Name: checkmarkholder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1738133784
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1738133783}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 815269889}
+  - {fileID: 1748805996}
+  - {fileID: 978276404}
+  - {fileID: 2050706943}
+  m_Father: {fileID: 328141374}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1739695403
 GameObject:
   m_ObjectHideFlags: 0
@@ -10174,7 +10235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34.749992, y: 11}
+  m_AnchoredPosition: {x: 34.749992, y: 8}
   m_SizeDelta: {x: 743.4, y: 95.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1745337299
@@ -10198,7 +10259,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
-    m_FontSize: 60
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -10206,8 +10267,8 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Random Prompt
 --- !u!222 &1745337300
@@ -10228,7 +10289,7 @@ GameObject:
   - component: {fileID: 1745791757}
   - component: {fileID: 1745791756}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: DrawingPhase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10319,8 +10380,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 328141374}
-  m_RootOrder: 12
+  m_Father: {fileID: 1738133784}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10839,7 +10900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 92, y: 64}
+  m_AnchoredPosition: {x: 17, y: 58}
   m_SizeDelta: {x: 743.4, y: 95.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1872531520
@@ -10863,7 +10924,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
-    m_FontSize: 60
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -10874,7 +10935,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: English
+  m_Text: '           English'
 --- !u!222 &1872531521
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10946,8 +11007,8 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Phases:'
 --- !u!222 &1895356064
@@ -11785,12 +11846,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2050706942}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 328141374}
-  m_RootOrder: 14
+  m_Father: {fileID: 1738133784}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12179,7 +12240,7 @@ GameObject:
   - component: {fileID: 2127738721}
   - component: {fileID: 2127738720}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: GuessingPhase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

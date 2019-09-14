@@ -33,11 +33,9 @@
         width: 300px;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 10px;
         position: relative;
         padding-left: auto;
         padding-right: auto;
-        margin-bottom: 10px;
         vertical-align: top;
         display: block;
         background: #F3F3F3;
@@ -56,11 +54,9 @@
         width: 300px;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 10px;
         position: relative;
         padding-left: auto;
         padding-right: auto;
-        margin-bottom: 10px;
         vertical-align: top;
         display: block;
         background: #F3F3F3;
@@ -78,11 +74,9 @@
         width: 250px;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 10px;
         position: relative;
         padding-left: auto;
         padding-right: auto;
-        margin-bottom: 10px;
         vertical-align: top;
         display: block;
         background: #F3F3F3;
@@ -92,6 +86,18 @@
 		
 
       }
+	  .menubuttons4{
+        font-size: 25px;
+        height: 50px;
+        width: 250px;
+        background: #F3F3F3;
+        box-shadow: none;
+        border: solid #808080 1px;
+        outline: none;
+		
+
+      }
+
 	  
      .checkbox{
         font-size: 25px;
@@ -173,6 +179,7 @@
         white-space: normal;
 
         }
+		
       .functionbuttons{
         width:37px;
         border: none;

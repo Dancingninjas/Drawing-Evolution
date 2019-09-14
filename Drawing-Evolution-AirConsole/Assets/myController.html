@@ -39,6 +39,15 @@
       var airconsole;
 	  var heightofScreen;
       var widthofScreen;
+	  var gameLanguage = 0;
+	  var LangArray = new Array ( );
+	  LangArray[0] /*ENGLISH*/ = new Array ( "Waiting for players...", "Waiting...", "Draw: ", "Describe the Drawing...", "The game already started.", "Wait for the next round!", "Language", "Mode", "Drawing Length", "Number of Phases", "Watch Introduction", "Start Game", "Players", "Write Your Own Prompt", "Random Prompt", " Minutes", "Write a Word or Phrase", "Automatic", "Minute", "Look at the main screen."); //look at the main screen (+ add phase intro translations to main game)
+      LangArray[1] /*DUTCH*/ = new Array ( "Wachten op spelers...", "Aan het wachten...", "Trek: ", "Beschrijf de Afbeelding...", "Spel Bezig.", "Wacht op de volgende ronde." , "Taal", "Spelmodus", "Tekentijd Toegestaan", "Aantal Rondes", "Bekijk de Introductie", "Start het Spel", "Spelers", "Schrijf Je Eigen", "Willekeurige Tekenprompt", " Minuten", "Schrijf een woord of een zin op.", "Automatisch", "Minuut", "Kijk naar het hoofdscherm.");
+	  LangArray[2] /*FRENCH*/ = new Array ( "En attente de joueurs...", "Attendre...", "Dessiner: ", "Décrivez l'image...", "Jeu en cours." , "Attendez le prochain match." , "Langue", "Mode", "Temps de Dessiner", "Nombre de Phases", "Regarder l'Introduction", "Démarrer Jeu", "Joueurs", "Écrivez Votre Propre Invite", "Invitation Aléatoire", " Minutes", "Écrire un mot ou une phrase", "Automatique", "Minute", "Regarde l'écran principal."); 
+	  LangArray[3] /*GERMAN*/ = new Array ( "Warten auf Spieler...", "Warten...", "Zeichnen: ", "Beschreibe die Zeichnung...", "Ein Match ist in Bearbeitung", "Warten Sie auf das nächste Spiel.", "Sprache", "Modus", "Zeit Zum Zeichnen", "Anzahl der Phasen", "Uhr Einführung", "Spiel Beginnen", "Spieler", "Schreibe Dein Eigenes", "Zufällige Eingabeaufforderung", " Minuten", "Schreiben Sie ein Wort oder eine Phrase", "Automatisch", "Minute", "Schau auf den Fernseher.");
+	  LangArray[4] /*ITALIAN*/ = new Array ( "Aspettando i giocatori...", "Attendere Prego...", "Disegnare: ", "Descrivi il Disegno...", "Partita in corso.", "Aspetta la prossima partita." , "Lingua", "Modalità", "Tempo Di Disegnare", "Numero di Fasi", "Guarda L'Introduzione", "Inizia il Gioco", "Giocatori", "Scrivi Il Tuo Suggerimento", "Suggerimento Casuale", " Minuti", "Scrivi Una Parola O Una Frase", "Automatico", "Minuto", "Guarda la schermata principale.");
+	  LangArray[5] /*PORTUGUESE*/ = new Array ( "Esperando por jogadores...", "Esperando...", "Desenhe: ", "Descreva o Desenho...", "Jogo em progresso.", "Aguarde o próximo jogo." , "Idioma", "Modo", "Tempo De Desenho", "Número de Fases", "Assista à Introdução", "Começar o Jogo", "Jogadores", "Escreva o Seu Próprio Palpite", "Palpite Aleatório", " Minutos", "Escreva uma palavra ou frase", "Automático", "Minuto", "Olhe para a tela principal.");
+	  LangArray[6] /*SPANISH*/ = new Array ( "Esperando jugadores...", "Esperando...", "Dibuja: ", "Describe el Dibujo...", "Partido en progreso.", "Espera el próximo partido.", "Idioma", "Modo", "Tiempo De Dibujar", "Número de Fases", "Ver la Introducción", "Empezar Juego", "Jugadores", "Escribe tu Propia Pregunta", "Pregunta al Azar", " Minutos", "Escribe una palabra o frase", "Automático", "Minuto", "Mira la pantalla principal.");
       //var canvas = document.getElementById("myCanvas");
       //var ctx = canvas.getContext("2d");
       //var initializeCanvas = function(){
@@ -49,6 +58,8 @@
 
           //#ffffff
       }*/
+
+
       function initializeCanvas() {
           document.getElementById("readybutton").style.backgroundColor = "#e7e7e7";
           //console.log("YES IT CALLS THE FUNCTIONS");
@@ -439,12 +450,19 @@
 
                   data = data.replace('Guess:', '');
 
-                  data = data.toUpperCase();
+                  //data = data.toUpperCase();
+				  data = data.replace(new RegExp('&nbsp;', 'g'), ' ');
 
-                  data = data.replace(new RegExp('&NBSP;', 'g'), ' ');
+				  //data = data.replace(new RegExp('&amp;', 'g'), '');
+
+				  //data = data.replace(new RegExp('&ntilde;', 'g'), '');
+
+				  //data = data.replace(new RegExp('&auml;', 'g'), '');
+
+                  //data = data.replace(new RegExp('&NBSP;', 'g'), ' ');
                   //console.log("TYPE: "+(typeof data));
 
-                  document.getElementById("drawmodetextid").textContent = ("Draw: " + data);
+                  document.getElementById("drawmodetextid").innerHTML = (LangArray[gameLanguage][2] + data);
               }
               else if (data.indexOf('Game.ShowMain:') > -1) {
                   vm.show("Start");
@@ -496,6 +514,9 @@
           }
           me.airconsole.onCustomDeviceStateChange = function (device_id, device_data) {
                 if (device_id == AirConsole.SCREEN) {
+					if (device_data["language"] != null && device_data["language"] != ""){
+						updateDeviceLanguage(parseInt(device_data["language"]));
+					}
                     if (device_data["view"] != null && device_data["view"] != "" && device_data["view"] != "Menu" && device_data["view"] != "Introduction") {
                         if (me.airconsole.convertDeviceIdToPlayerNumber(me.airconsole.getDeviceId()) == null) {
                             vm.show("InProgress");
@@ -540,8 +561,10 @@
                         //console.log("yeeee" + me.airconsole.getMasterControllerDeviceId() + " : " + me.airconsole.getDeviceId());
                         //me.airconsole.message(AirConsole.SCREEN, ("if " + me.airconsole.getMasterControllerDeviceId() + " == " + me.airconsole.getDeviceId()));
                         if (me.airconsole.getMasterControllerDeviceId() == me.airconsole.getDeviceId()) {
-                            vm.show("Start");
-                            prepareMenu();
+							if (vm.current_view.self != "Language"){
+								vm.show("Start");
+								prepareMenu();
+							}
                         }
                         else {
                             vm.show("WatchTV");
@@ -617,8 +640,10 @@
       }
           function prepareMenu() {
               var heightScreen = parseFloat(window.innerHeight);
+			  var widthScreen = parseFloat(window.innerWidth);
               if (heightScreen > parseFloat(window.innerWidth)) {
                   heightScreen = parseFloat(window.innerWidth);
+				  widthScreen = parseFloat(window.innerHeight);
               }
 
 
@@ -626,11 +651,11 @@
               var i;
 
               for (i = 0; i < x.length; i++) {
-                  x[i].style.fontSize = (heightScreen / 14.4);
+                  x[i].style.fontSize = (heightScreen / 15.6);
                   x[i].style.height = (heightScreen / 7.2);
                   x[i].style.width = (heightScreen / 1.2);
-                  x[i].style.marginTop = (heightScreen / 36);
-                  x[i].style.marginBottom = (heightScreen / 36);
+                  //x[i].style.marginTop = 1; //(heightScreen / 36);
+                  //x[i].style.marginBottom = 1; //(heightScreen / 36);
               }
               document.getElementById("checkboxtextid").style.width = (heightScreen / 1.8);
               document.getElementById("checkboxtextid").style.height = (heightScreen / 14.4);
@@ -646,23 +671,59 @@
               var i;
 
               for (i = 0; i < y.length; i++) {
-                  y[i].style.fontSize = (heightScreen / 20);
-                  y[i].style.height = (heightScreen / 10);
-                  y[i].style.width = (heightScreen / 2);
-                  y[i].style.marginTop = (heightScreen / 36);
-                  y[i].style.marginBottom = (heightScreen / 36);
+                  y[i].style.fontSize = (heightScreen / 15.6);
+                  y[i].style.height = (heightScreen / 8);
+                  y[i].style.width = (heightScreen / 1.65);
+                  //y[i].style.marginTop = 1;//(heightScreen / 36);
+                  //y[i].style.marginBottom = 1;//(heightScreen / 36);
               }
 
               var g = document.getElementsByClassName("menubuttons3");
               var m;
 
-              for (m = 0; m < m.length; m++) {
-                  g[m].style.fontSize = (heightScreen / 18);
-                  g[m].style.height = (heightScreen / 9);
-                  g[m].style.width = (heightScreen / 1.8);
-                  g[m].style.marginTop = (heightScreen / 36);
-                  g[m].style.marginBottom = (heightScreen / 36);
+              for (m = 0; m < g.length; m++) {
+                  g[m].style.fontSize = (heightScreen / 15.6);
+                  g[m].style.height = (heightScreen / 7.2);
+                  g[m].style.width = (heightScreen / 1.4);
+                  //g[m].style.marginTop = 1;//(heightScreen / 36);
+                  //g[m].style.marginBottom = 1;//(heightScreen / 36);
               }
+
+			  if (((heightScreen * 3) / 2) > widthScreen) {
+				  console.log("IFFFFFFFFFFFFFFFFFFFFF");
+				  //if width is less than 3/2 of the height, then... scale down based on width
+				  document.getElementById("langholder1").style.width = (heightScreen / 1.4) * (widthScreen / ((heightScreen * 3) / 2));
+				  document.getElementById("langholder2").style.width = (heightScreen / 1.4) * (widthScreen / ((heightScreen * 3) / 2));
+																     //(heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
+
+				  var o = document.getElementsByClassName("menubuttons4");
+				  var s;
+
+				  for (s = 0; s < o.length; s++) {
+					  o[s].style.fontSize = (heightScreen / 15.6) * (widthScreen / ((heightScreen * 3) / 2));
+					  o[s].style.height = (heightScreen / 7.2) * (widthScreen / ((heightScreen * 3) / 2));
+					  o[s].style.width = (heightScreen / 1.4) * (widthScreen / ((heightScreen * 3) / 2));
+					  //g[m].style.marginTop = 1;//(heightScreen / 36);
+					  //g[m].style.marginBottom = 1;//(heightScreen / 36);
+				  }
+			  }
+			  else{
+				 console.log("ELSEEEEEEEEEEEEEEEEEE");
+			      //scale normally because everything fits
+				  document.getElementById("langholder1").style.width = (heightScreen / 1.4);
+				  document.getElementById("langholder2").style.width = (heightScreen / 1.4);
+
+				  var o = document.getElementsByClassName("menubuttons4");
+				  var s;
+
+				  for (s = 0; s < o.length; s++) {
+					  o[s].style.fontSize = (heightScreen / 15.6);
+					  o[s].style.height = (heightScreen / 7.2);
+					  o[s].style.width = (heightScreen / 1.4);
+					  //g[m].style.marginTop = 1;//(heightScreen / 36);
+					  //g[m].style.marginBottom = 1;//(heightScreen / 36);
+				  }
+			  }
           }
           function setSize(size, funcname) {
               ctx.lineWidth = parseFloat(window.innerHeight) / (360 / size);
@@ -894,6 +955,9 @@
               else if (targetupdate == "mode") {
                   me.airconsole.message(AirConsole.SCREEN, "GameHandler.mode:" + gameMode);
               }
+			  else if (targetupdate == "gamelanguage"){
+			  	  me.airconsole.message(AirConsole.SCREEN, "GameHandler.language: " + gameLanguage)
+			  }
           }
           function clickPaintBucket() {
               //console.log(currentcolor);
@@ -957,60 +1021,129 @@
               //document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
               //document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6))) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
           }
+		  function setLanguage(lang){
+			document.getElementById("Language" + gameLanguage).style.background = "#F3F3F3";
+            //if (minutes == 1) {
+            //    document.getElementById("Length")
+            //}
+            document.getElementById("Language" + lang).style.background = "#C3C3C3";
+            gameLanguage = lang;
+            notifyScreenUpdate("gamelanguage");
+		  }
+		  function updateDeviceLanguage(lang){
+			
+			gameLanguage = lang;
+
+			document.getElementById("0").innerHTML = LangArray[lang][0];
+			document.getElementById("1").innerHTML = LangArray[lang][1];
+			//Draw:
+			document.getElementById("initialPhraseTextId2").innerHTML = LangArray[lang][3];
+			document.getElementById("4").innerHTML = LangArray[lang][4];
+			document.getElementById("5").innerHTML = LangArray[lang][5];
+			document.getElementById("6").innerHTML = LangArray[lang][6]; //language
+			document.getElementById("7").innerHTML = LangArray[lang][7]; //mode
+			document.getElementById("8").innerHTML = LangArray[lang][8]; //drawinglength
+			document.getElementById("9").innerHTML = LangArray[lang][9]; //numberofPhases
+			document.getElementById("checkboxtextid").innerHTML = LangArray[lang][10]; //watchintroduction
+			document.getElementById("StartButton").innerHTML = LangArray[lang][11]; //
+
+			//below: phase chooser + 'players' required
+			document.getElementById("Phases6").innerHTML = LangArray[lang][17]; //automatic
+			document.getElementById("Phases7").innerHTML = "2 (2+ "+ LangArray[lang][12]+ ")";
+			document.getElementById("Phases8").innerHTML = "4 (4+ "+ LangArray[lang][12]+ ")";
+			document.getElementById("Phases9").innerHTML = "6 (6+ "+ LangArray[lang][12]+ ")";
+			document.getElementById("Phases10").innerHTML = "8 (8+ "+ LangArray[lang][12]+ ")";
+			document.getElementById("Phases11").innerHTML = "10 (10+ "+ LangArray[lang][12]+ ")";
+
+			document.getElementById("Phases1").innerHTML = LangArray[lang][17]; //automatic
+			document.getElementById("Phases2").innerHTML = "2 (3+ "+ LangArray[lang][12]+ ")";
+			document.getElementById("Phases3").innerHTML = "4 (5+ "+ LangArray[lang][12]+ ")";
+			document.getElementById("Phases4").innerHTML = "6 (7+ "+ LangArray[lang][12]+ ")";
+			document.getElementById("Phases5").innerHTML = "8 (9+ "+ LangArray[lang][12]+ ")";
+
+			document.getElementById("Length1").innerHTML = "1 " + LangArray[lang][18]; //minute
+			document.getElementById("Length2").innerHTML = "2" + LangArray[lang][15]; //minutes
+			document.getElementById("Length3").innerHTML = "3" + LangArray[lang][15]; //minutes
+			document.getElementById("Length5").innerHTML = "5" + LangArray[lang][15]; //minutes
+
+			document.getElementById("mainscreen").innerHTML = LangArray[lang][19]; //lookatthemainscreen
+			document.getElementById("RandomPrompt").innerHTML = LangArray[lang][14];
+		    document.getElementById("WriteYourOwn").innerHTML = LangArray[lang][13];
+		  }
       
 </script>
 </head>
 <body onload="window.app = new App()">
     <div class="view" id ="WatchTV" style="background-image: url('images/paperback1.png'); background-size: contain">
         <!--<canvas id="watchtvcanvas" class="tvcanvas" width="100" height ="100"></canvas>-->
-        <p class="watchtvtext">Waiting for players...</p>
+        <p id = "0" class="watchtvtext">Waiting for players...</p>
     </div>
     <div class="view" id ="Waiting" style="background-image: url('images/paperback1.png'); background-size: contain">
         <!--<canvas id="watchtvcanvas" class="tvcanvas" width="100" height ="100"></canvas>-->
-        <p class="watchtvtext">Waiting...</p>
+        <p id = "1" class="watchtvtext">Waiting...</p>
     </div>
+
     <div class="view" id="Mode" style="background-image: url('images/paperback1.png'); background-size: contain">
-        <button onclick="setMode('RandomPrompt')" class="menubuttons" style="border: solid #808080 1px; background: #C3C3C3;" id="RandomPrompt">Random Prompt</button>
-        <button onclick="setMode('WriteYourOwn')" class="menubuttons" id ="WriteYourOwn" style="border: solid #808080 1px; white-space: nowrap;">Write Your Own Prompt</button>
-        <button onclick="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px;"><----</button>
+        <button ontouchstart="setMode('RandomPrompt')" class="menubuttons" style="border: solid #808080 1px; background: #C3C3C3;" id="RandomPrompt">Random Prompt</button>
+        <button ontouchstart="setMode('WriteYourOwn')" class="menubuttons" id ="WriteYourOwn" style="border: solid #808080 1px; white-space: nowrap; border-top: none;">Write Your Own Prompt</button>
+        <button ontouchstart="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px; border-top: none;"><----</button>
 
     </div>
+	<div class="view" id="Language" style="background-image: url('images/paperback1.png'); background-size: contain;">
+		<div class = "centerall" style="background: none;">
+			<div style="white-space: nowrap; background: none;">
+				<div style= "white-space: normal; width: 250px; display: inline-block; margin-left: 5px; margin-right: 5px; position: static; padding-left: 0px; padding-right: 0px; vertical-align: top;" id="langholder1">
+					<button ontouchstart="setLanguage(0)" class ="menubuttons4" style="background: #C3C3C3; width: 250px; height: 50px;" id="Language0">English</button>
+					<button ontouchstart="setLanguage(1)" class ="menubuttons4" id="Language1" style="border-top: none; width: 250px; height: 50px;">Nederlands</button>
+					<button ontouchstart="setLanguage(2)" class ="menubuttons4" id="Language2" style="border-top: none; width: 250px; height: 50px;">Français</button>
+					<button ontouchstart="setLanguage(3)" class ="menubuttons4" id="Language3" style="border-top: none; width: 250px; height: 50px;">Deutsch</button>
+				</div>
+				<div style= "white-space: normal; width: 250px; display: inline-block; margin-left: 5px; margin-right: 5px; position: static; padding-left: 0px; padding-right: 0px; vertical-align: top;"id="langholder2">
+					<button ontouchstart="setLanguage(4)" class ="menubuttons4" id="Language4" style= " width: 250px; height: 50px;">Italiano</button>
+					<button ontouchstart="setLanguage(5)" class ="menubuttons4" id="Language5" style="border-top: none; width: 250px; height: 50px;">Português</button>
+					<button ontouchstart="setLanguage(6)" class ="menubuttons4" id="Language6" style="border-top: none; width: 250px; height: 50px;">Español</button>
+				</div>
+			</div>
+			<button ontouchstart="vm.show('Start');"  class ="menubuttons4" style="margin-top: 10px; width: 250px; height: 50px;"><----</button>
+		</div>
+	</div>
     <div class="view" id="Length" style="background-image: url('images/paperback1.png'); background-size: contain">
-        <button onclick="setPhaseLength(1);" class="menubuttons" id="Length1" style="border: solid #808080 1px;">1 Minute</button>
-        <button onclick="setPhaseLength(2);" class="menubuttons" id="Length2" style="border: solid #808080 1px;">2 Minutes</button>
-        <button onclick="setPhaseLength(3);" class="menubuttons" id="Length3" style="border: solid #808080 1px; background: #C3C3C3;">3 Minutes</button>
-        <button onclick="setPhaseLength(5);" class="menubuttons" id="Length5" style="border: solid #808080 1px;">5 Minutes</button>
-        <button onclick="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px;"><----</button>
+        <button ontouchstart="setPhaseLength(1);" class="menubuttons" id="Length1" style="border: solid #808080 1px;">1 Minute</button>
+        <button ontouchstart="setPhaseLength(2);" class="menubuttons" id="Length2" style="border: solid #808080 1px; border-top: none;">2 Minutes</button>
+        <button ontouchstart="setPhaseLength(3);" class="menubuttons" id="Length3" style="border: solid #808080 1px; background: #C3C3C3;  border-top: none;">3 Minutes</button>
+        <button ontouchstart="setPhaseLength(5);" class="menubuttons" id="Length5" style="border: solid #808080 1px; border-top: none;">5 Minutes</button>
+        <button ontouchstart="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px; border-top: none;"><----</button>
 
     </div>
     <div class="view" id="Random" style="background-image: url('images/paperback1.png'); background-size: contain">
-        <button onclick="setActualNumberofPhases(-1);" class="menubuttons2" style="border: solid #808080 1px; height: 35px; width: 175px; font-size: 20px; background: #C3C3C3" id="Phases6">Automatic</button>
-        <button onclick="setActualNumberofPhases(3);" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;" id="Phases7">2 (2+ Players)</button>
-        <button onclick="setActualNumberofPhases(5);" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;" id="Phases8">4  (4+ Players)</button>
-        <button onclick="setActualNumberofPhases(7);" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;" id="Phases9">6 (6+ Players)</button>
-        <button onclick="setActualNumberofPhases(9);" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;" id="Phases10">8 (8+ Players)</button>
-        <button onclick="setActualNumberofPhases(11);" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;" id="Phases11">10 (10+ Players)</button>
-        <button onclick="vm.show('Start');" class="menubuttons2" style="height: 35px; width: 175px; font-size: 20px; border: solid #808080 1px;"><----</button>
+        <button ontouchstart="setActualNumberofPhases(-1);" class="menubuttons2" style="border: solid #808080 1px; height: 50px; width: 250px; font-size: 20px; background: #C3C3C3" id="Phases6">Automatic</button>
+        <button ontouchstart="setActualNumberofPhases(3);" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; border-top: none;" id="Phases7">2 (2+ Players)</button>
+        <button ontouchstart="setActualNumberofPhases(5);" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; border-top: none;" id="Phases8">4  (4+ Players)</button>
+        <button ontouchstart="setActualNumberofPhases(7);" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; border-top: none;" id="Phases9">6 (6+ Players)</button>
+        <button ontouchstart="setActualNumberofPhases(9);" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; border-top: none;" id="Phases10">8 (8+ Players)</button>
+        <button ontouchstart="setActualNumberofPhases(11);" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; border-top: none;" id="Phases11">10 (10+ Players)</button>
+        <button ontouchstart="vm.show('Start');" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; border-top: none;"><----</button>
 
     </div>
     <!---Number of phases for 'write your own' mode-->
     <div class="view" id="WriteYourOwnPhases" style="background-image: url('images/paperback1.png'); background-size: contain">
-        <button onclick="setActualNumberofPhases(-1);" class="menubuttons3" style="border: solid #808080 1px; background: #C3C3C3" id="Phases1">Automatic</button>
-        <button onclick="setActualNumberofPhases(3);" class="menubuttons3" id="Phases2" style="border: solid #808080 1px;">2 (3+ Players)</button>
-        <button onclick="setActualNumberofPhases(5);" class="menubuttons3" id="Phases3" style="border: solid #808080 1px;">4  (5+ Players)</button>
-        <button onclick="setActualNumberofPhases(7);" class="menubuttons3" id="Phases4" style="border: solid #808080 1px;">6 (7+ Players)</button>
-        <button onclick="setActualNumberofPhases(9);" class="menubuttons3" id="Phases5" style="border: solid #808080 1px;">8 (9+ Players)</button>
-        <button onclick="vm.show('Start');" class="menubuttons3" style="border: solid #808080 1px; "><----</button>
+        <button ontouchstart="setActualNumberofPhases(-1);" class="menubuttons3" style="border: solid #808080 1px; background: #C3C3C3; height: 50px; width: 250px;" id="Phases1">Automatic</button>
+        <button ontouchstart="setActualNumberofPhases(3);" class="menubuttons3" id="Phases2" style="border: solid #808080 1px; border-top: none; height: 50px; width: 250px;">2 (3+ Players)</button>
+        <button ontouchstart="setActualNumberofPhases(5);" class="menubuttons3" id="Phases3" style="border: solid #808080 1px; border-top: none; height: 50px; width: 250px;">4  (5+ Players)</button>
+        <button ontouchstart="setActualNumberofPhases(7);" class="menubuttons3" id="Phases4" style="border: solid #808080 1px; border-top: none; height: 50px; width: 250px;">6 (7+ Players)</button>
+        <button ontouchstart="setActualNumberofPhases(9);" class="menubuttons3" id="Phases5" style="border: solid #808080 1px; border-top: none; height: 50px; width: 250px;">8 (9+ Players)</button>
+        <button ontouchstart="vm.show('Start');" class="menubuttons3" style="border: solid #808080 1px; border-top: none; height: 50px; width: 250px;"><----</button>
 
     </div>
     <div class="view" id="Start" style="background-image: url('images/paperback1.png'); background-size: contain">
-        <button onclick="vm.show('Mode');" class="menubuttons">Mode</button>
-        <button onclick="vm.show('Length');" class="menubuttons">Drawing Length</button>
-        <button onclick="changePhaseNumber();" class="menubuttons">Number of Phases</button>
+		<button ontouchstart="vm.show('Language');" id = "6" class="menubuttons">Language</button>
+		<button ontouchstart="vm.show('Mode');" id = "7" class="menubuttons" style="border-top: none;">Mode</button>
+		<button ontouchstart="vm.show('Length');" id = "8" class="menubuttons" style="border-top: none;">Drawing Length</button>
+		<button ontouchstart="changePhaseNumber();" id = "9" class="menubuttons" style="border-top: none;">Number of Phases</button>
         <!--<button onclick="startGame();" class="menubuttons">Watch Introduction</button>-->
         <!--<input type="checkbox" id="checkbox_id" class="menubuttons">-->
         <!--<label for="x" class="menubuttons" style="display: inline-block;"><input type="checkbox" id="x"class="menubuttons"style="display: inline-block;"> Watch Introduction</label>-->
-        <div class ="nowrapcontainer">
+        <div class ="nowrapcontainer" style="padding-top: 1px; padding-bottom:1px">
             <input type="checkbox" name="vehicle" value="Car" checked class="checkbox" style="vertical-align: bottom;" onclick="notifyScreenUpdate('checkmark');" id ="checkmarkId"> 
             <span class="checkbox" style="width: 200px; height: 25px; vertical-align: middle; padding-left: none; padding-right: none;" id ="checkboxtextid">
             Watch Introduction
@@ -1018,24 +1151,24 @@
         </div>
 
         <!--<label for="checkbox_id" class="menubuttons">Watch Introduction</label>-->
-        <button onclick="startGame();" class="menubuttons" style="background-color: #CDFBA5;" id="StartButton">Start Game</button>
+        <button ontouchstart="startGame();" class="menubuttons" style="background-color: #CDFBA5;" id="StartButton">Start Game</button>
     </div>
     <div class="view" id ="InProgress" style="background-image: url('images/paperback1.png'); background-size: contain">
         <!--<canvas id="watchtvcanvas" class="tvcanvas" width="100" height ="100"></canvas>-->
-        <p class="watchtvtext" style="width: 350px;">The game already started.</p>
-        <p class="watchtvtext" style="width: 350px;">Wait for the next round!</p>
+        <p class="watchtvtext" id = "4" style="width: 350px;">The game already started.</p>
+        <p class="watchtvtext" id= "5" style="width: 350px;">Wait for the next round!</p>
     </div>
     <div class="view" id ="WatchTVAfter" style="background-image: url('images/paperback1.png'); background-size: contain">
         <!--<canvas id="watchtvcanvas" class="tvcanvas" width="100" height ="100"></canvas>-->
         <!--<p class="watchtvtext">Let's see how these phrase got mixed up!</p>-->
-        <p class="watchtvtext" style="width: 350px;">Look at the main screen...</p>
+        <p class="watchtvtext" id="mainscreen" style="width: 350px;">Look at the main screen...</p>
     </div>
     <div class="view" id="InitialPhrase" style="background-image: url('images/paperback1.png'); background-size: contain">
         <div class = "centerall" id="centerallinitialphrase" style="background: none;">
             <div class ="initialphrasechooser">
                 <p class ="initialPhraseText" id="initialPhraseTextId" style ="color: black">Write a Word or Phrase</p>
             </div>
-            <div class="textfield" id="textfield1" onclick="scrollitdown()" style="background-color: white"></div>
+            <div class="textfield" id="textfield1" ontouchstart="scrollitdown()" style="background-color: white"></div>
          </div>
     </div>
     <div class="view" id="Draw">
@@ -1115,7 +1248,7 @@
 				<button ontouchstart="vm.show('Guess')" style="background-color: #E5E5E5; height: 30px; width: 100px; margin-top: 1px; margin-right: 10px; margin-bottom: 5px; background-position:center; border: solid #8F8F8F 1px; outline: 0; font-size: 20px; background-image: url('images/arrowleft.png'); background-size: cover;" id="func20"></button>
 				<p class ="initialPhraseText" id="initialPhraseTextId2" style ="color: black">Describe the Drawing...</p>
 			</div>
-			<div class="textfield" id="textfield2" onclick="scrollitdown()" style="background-color: white; width:1px; margin-top: auto; margin-bottom: auto;"></div>
+			<div class="textfield" id="textfield2" ontouchstart="scrollitdown()" style="background-color: white; width:1px; margin-top: auto; margin-bottom: auto;"></div>
 		</div>
     </div>
     <!--<div class="button" id="erase-button" ontouchstart="window.app.getColor('#00FF00')"></div>-->
