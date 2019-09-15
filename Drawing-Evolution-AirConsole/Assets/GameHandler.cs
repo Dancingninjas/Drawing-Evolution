@@ -1774,7 +1774,7 @@ public class GameHandler : MonoBehaviour {
         //IntroductionCanvas.enabled = true;
         //MenuCanvas.enabled = false;
         IntroductionText.fontSize = 120;
-        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/1"); //Blank canvas image
+        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/Language"+gameLanguage+"/1"); //Blank canvas image
         IntroductionText.text = "";
         yield return new WaitForSeconds(2);
         while (audio1.volume > 0.05f)
@@ -1822,61 +1822,79 @@ public class GameHandler : MonoBehaviour {
 
         yield return new WaitForSeconds(5);
         audio2.clip = clips[3];
-        audio2.Play();
+        if (gameLanguage == 0)
+        {
+            audio2.Play();
+        }
         StartCoroutine(RunMouthForSeconds(audio2.clip.length - 0.5f));
         //IntroductionText.text = "The rules of this game are simple.";
         IntroductionText.text = TextArray[gameLanguage][2];
         IntroductionImage.enabled = true;
         yield return new WaitForSeconds(4);
         audio2.clip = clips[4];
-        audio2.Play();
+        if (gameLanguage == 0)
+        {
+            audio2.Play();
+        }
         StartCoroutine(RunMouthForSeconds(audio2.clip.length - 0.5f));
         IntroductionText.text = TextArray[gameLanguage][3];
         yield return new WaitForSeconds(1);
         IntroductionRedCircle.enabled = true;
         yield return new WaitForSeconds(4);
         IntroductionRedCircle.enabled = false;
-        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/2"); //Swinging at pinata image
+        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/Language" + gameLanguage + "/2"); //Swinging at pinata image
         IntroductionImage.enabled = true;
         //AUDIO: You are given a word or phrase to draw.
         yield return new WaitForSeconds(6);
         audio2.clip = clips[5];
-        audio2.Play();
+        if (gameLanguage == 0)
+        {
+            audio2.Play();
+        }
         StartCoroutine(RunMouthForSeconds(audio2.clip.length - 0.5f));
         IntroductionText.text = TextArray[gameLanguage][4];
-        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/3"); //guessing "angry pirate" image
+        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/Language" + gameLanguage + "/3"); //guessing "angry pirate" image
         //AUDIO: A player will have to guess what word or phrase you drew.
         yield return new WaitForSeconds(8);
         audio2.clip = clips[6];
-        audio2.Play();
+        if (gameLanguage == 0)
+        {
+            audio2.Play();
+        }
         StartCoroutine(RunMouthForSeconds(audio2.clip.length - 0.5f));
         IntroductionText.text = TextArray[gameLanguage][5];
-        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/4"); //Angry pirate image
+        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/Language" + gameLanguage + "/4"); //Angry pirate image
         yield return new WaitForSeconds(4);
-        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/5"); //Angry pirate image
+        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/Language" + gameLanguage + "/5"); //Angry pirate image
         //AUDIO: Then, another player will have to draw the word or phrase that was guessed.
         yield return new WaitForSeconds(4);
         audio2.clip = clips[7];
-        audio2.Play();
+        if (gameLanguage == 0)
+        {
+            audio2.Play();
+        }
         StartCoroutine(RunMouthForSeconds(audio2.clip.length - 0.5f));
         IntroductionText.text = TextArray[gameLanguage][6];
         //AUDIO: The more players you have, the more rounds you can play, and the more your drawings can evolve.
         yield return new WaitForSeconds(4);
-        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/6");
+        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/Language" + gameLanguage + "/6");
         yield return new WaitForSeconds(3);
         //IntroductionText.fontSize = 120;
         audio2.clip = clips[8];
-        audio2.Play();
+        if (gameLanguage == 0)
+        {
+            audio2.Play();
+        }
         StartCoroutine(RunMouthForSeconds(audio2.clip.length - 0.5f));
         IntroductionText.text = TextArray[gameLanguage][7];
         yield return new WaitForSeconds(3);
-        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/IntroductionFinal1");
+        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/Language" + gameLanguage + "/IntroductionFinal1");
         yield return new WaitForSeconds(2);
-        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/IntroductionFinal2");
+        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/Language" + gameLanguage + "/IntroductionFinal2");
         yield return new WaitForSeconds(2);
-        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/IntroductionFinal3");
+        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/Language" + gameLanguage + "/IntroductionFinal3");
         yield return new WaitForSeconds(2);
-        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/IntroductionFinal4");
+        IntroductionImage.sprite = Resources.Load<Sprite>("Sprites/Introduction/Language" + gameLanguage + "/IntroductionFinal4");
         //AUDIO: At the end, we'll go through and look at how phrases like 'Swinging at a pinata' turned into 'Halloween Costume'
         yield return new WaitForSeconds(4);
         //set view to either draw or 
