@@ -951,7 +951,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
     m_FontSize: 150
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 160
     m_Alignment: 1
@@ -2128,7 +2128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &321876870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3441,7 +3441,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
     m_FontSize: 250
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 300
     m_Alignment: 1
@@ -7820,7 +7820,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
     m_FontSize: 160
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 167
     m_Alignment: 1
@@ -8361,7 +8361,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
     m_FontSize: 160
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 160
     m_Alignment: 1
@@ -10336,7 +10336,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
     m_MaxSize: 300
     m_Alignment: 1
@@ -12287,7 +12287,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: f5f28455bd29c1b47ac52af15ad69408, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
     m_MaxSize: 300
     m_Alignment: 1
