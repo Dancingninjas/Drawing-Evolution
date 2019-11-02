@@ -97,6 +97,24 @@
 		
 
       }
+	  .menubuttons5{
+        font-size: 15px;
+        height: 35px;
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: auto;
+        padding-right: auto;
+        vertical-align: top;
+        display: inline-block;
+        background: #F3F3F3;
+		position: relative;
+        box-shadow: none;
+        border: solid #808080 1px;
+        outline: none;
+		
+
+      }
 
 	  
      .checkbox{

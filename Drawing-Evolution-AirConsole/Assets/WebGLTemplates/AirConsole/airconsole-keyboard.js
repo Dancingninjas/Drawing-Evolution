@@ -480,13 +480,27 @@ AirConsoleKeyboard.prototype.createKey_ = function(key, percent_width) {
   key_container.style.width = percent_width + "%";
   key.container = key_container;
   me.keys.push(key);
-  //console.log("HEIGHTOFSCREENINKEYBOARD: "+ heightofScreen);
-  key_label.style.fontSize = (heightofScreen / 18);
-  if (heightofScreen > 500){
-	key_html_container.style.height = ((1 * (heightofScreen / 12)));
+  var heightofScreenVar;
+  var widthofScreenVar;
+  
+  if (parseFloat(window.innerHeight) > parseFloat(window.innerWidth)) {
+	  heightofScreenVar = parseFloat(window.innerWidth);
+	  widthofScreenVar = parseFloat(window.innerHeight);
+  }
+  else {
+	  heightofScreenVar = parseFloat(window.innerHeight);
+	  widthofScreenVar = parseFloat(window.innerWidth);
+  }
+  console.log("HEIGHTOFSCREENINKEYBOARD: "+ heightofScreenVar);
+  console.log("WIDTHOFSCREENINKEYBOARD: "+ widthofScreenVar);
+  //Problem: heightofScreen is not determined until after the keyboard is created
+  
+  key_label.style.fontSize = (heightofScreenVar / 18);
+  if (heightofScreenVar > 500){
+	key_html_container.style.height = ((1 * (heightofScreenVar / 12)));
 		}
   else	{
-	key_html_container.style.height = ((1 * (heightofScreen / 22.5)));
+	key_html_container.style.height = ((1 * (heightofScreenVar / 22.5)));
 		}
   return key_container;
 }

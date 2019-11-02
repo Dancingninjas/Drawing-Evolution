@@ -41,14 +41,16 @@
       var widthofScreen;
 	  var gameLanguage = 0;
 	  var LangArray = new Array ( );
-	  LangArray[0] /*ENGLISH*/ = new Array ( "Waiting for players...", "Waiting...", "Draw: ", "Describe the Drawing...", "The game already started.", "Wait for the next round!", "Language", "Mode", "Drawing Length", "Number of Phases", "Watch Introduction", "Start Game", "Players", "Write Your Own Prompt", "Random Prompt", " Minutes", "Write a Word or Phrase", "Automatic", "Minute", "Look at the main screen."); //look at the main screen (+ add phase intro translations to main game)
-      LangArray[1] /*DUTCH*/ = new Array ( "Wachten op spelers...", "Aan het wachten...", "Trek: ", "Beschrijf de Afbeelding...", "Spel Bezig.", "Wacht op de volgende ronde." , "Taal", "Spelmodus", "Tekentijd Toegestaan", "Aantal Rondes", "Bekijk de Introductie", "Start het Spel", "Spelers", "Schrijf Je Eigen", "Willekeurige Tekenprompt", " Minuten", "Schrijf een woord of een zin op.", "Automatisch", "Minuut", "Kijk naar het hoofdscherm.");
-	  LangArray[2] /*FRENCH*/ = new Array ( "En attente de joueurs...", "Attendre...", "Dessiner: ", "Décrivez l'image...", "Jeu en cours." , "Attendez le prochain match." , "Langue", "Mode", "Temps de Dessiner", "Nombre de Phases", "Regarder l'Introduction", "Démarrer Jeu", "Joueurs", "Écrivez Votre Propre Invite", "Invitation Aléatoire", " Minutes", "Écrire un mot ou une phrase", "Automatique", "Minute", "Regarde l'écran principal."); 
-	  LangArray[3] /*GERMAN*/ = new Array ( "Warten auf Spieler...", "Warten...", "Zeichnen: ", "Beschreibe die Zeichnung...", "Ein Match ist in Bearbeitung", "Warten Sie auf das nächste Spiel.", "Sprache", "Modus", "Zeit Zum Zeichnen", "Anzahl der Phasen", "Uhr Einführung", "Spiel Beginnen", "Spieler", "Schreibe Dein Eigenes", "Zufällige Eingabeaufforderung", " Minuten", "Schreiben Sie ein Wort oder eine Phrase", "Automatisch", "Minute", "Schau auf den Fernseher.");
-	  LangArray[4] /*ITALIAN*/ = new Array ( "Aspettando i giocatori...", "Attendere Prego...", "Disegnare: ", "Descrivi il Disegno...", "Partita in corso.", "Aspetta la prossima partita." , "Lingua", "Modalità", "Tempo Di Disegnare", "Numero di Fasi", "Guarda L'Introduzione", "Inizia il Gioco", "Giocatori", "Scrivi Il Tuo Suggerimento", "Suggerimento Casuale", " Minuti", "Scrivi Una Parola O Una Frase", "Automatico", "Minuto", "Guarda la schermata principale.");
-	  LangArray[5] /*PORTUGUESE*/ = new Array ( "Esperando por jogadores...", "Esperando...", "Desenhe: ", "Descreva o Desenho...", "Jogo em progresso.", "Aguarde o próximo jogo." , "Idioma", "Modo", "Tempo De Desenho", "Número de Fases", "Assista à Introdução", "Começar o Jogo", "Jogadores", "Escreva o Seu Próprio Palpite", "Palpite Aleatório", " Minutos", "Escreva uma palavra ou frase", "Automático", "Minuto", "Olhe para a tela principal.");
-	  LangArray[6] /*SPANISH*/ = new Array ( "Esperando jugadores...", "Esperando...", "Dibuja: ", "Describe el Dibujo...", "Partido en progreso.", "Espera el próximo partido.", "Idioma", "Modo", "Tiempo De Dibujar", "Número de Fases", "Ver la Introducción", "Empezar Juego", "Jugadores", "Escribe tu Propia Pregunta", "Pregunta al Azar", " Minutos", "Escribe una palabra o frase", "Automático", "Minuto", "Mira la pantalla principal.");
-      //var canvas = document.getElementById("myCanvas");
+	  LangArray[0] /*ENGLISH*/ = new Array ( "Waiting for players...", "Waiting...", "Draw: ", "Describe the Drawing...", "The game already started.", "Wait for the next round!", "Language", "Mode", "Drawing Length", "Number of Phases", "Watch Introduction", "Start Game", "Players", "Write Your Own Prompt", "Random Prompt", " Minutes", "Write a Word or Phrase", "Automatic", "Minute", "Look at the main screen.", "Theme: Miscellanous", "Theme: Halloween", "Not Enough Players"); //look at the main screen (+ add phase intro translations to main game)
+      LangArray[1] /*DUTCH*/ = new Array ( "Aan het wachten op spelers...", "Aan het wachten...", "Teken: ", "Beschrijf de Afbeelding...", "Het spel is al bezig.", "Wacht op de volgende ronde!" , "Taal", "Spelmodus", "Toegestane Tekentijd", "Aantal Rondes", "Bekijk de Introductie", "Start Spel", "Spelers", "Schrijf Je Eigen Opdracht", "Willekeurige Opdracht", " Minuten", "Schrijf een Woord of Zin", "Automatisch", "Minuut", "Kijk naar het grote scherm.", "Thema: Diversen", "Thema: Halloween", "Niet Genoeg Spelers");
+	  LangArray[2] /*FRENCH*/ = new Array ( "En attente de joueurs...", "Attendre...", "Dessinez: ", "Décrivez l'image...", "Jeu en cours." , "Attendez le prochain match." , "Langue", "Mode", "Longueur du Dessin", "Nombre de Phases", "Regarder l'Introduction", "Démarrer Jeu", "Joueurs", "Écrivez Votre Propre Invite", "Invitation Aléatoire", " Minutes", "Écrivez un Mot ou une Phrase", "Automatique", "Minute", "Regarde l'écran principal.", "Thème: Divers", "Thème Halloween", "Pas Assez de Joueurs"); 
+	  LangArray[3] /*GERMAN*/ = new Array ( "Warten auf Spieler...", "Warten...", "Zeichne: ", "Beschreibe die Zeichnung...", "Ein Match ist in Bearbeitung", "Warten Sie auf das nächste Spiel.", "Sprache", "Modus", "Zeit Zum Zeichnen", "Anzahl der Phasen", "Einführung Anzeigen", "Spiel Beginnen", "Spieler", "Schreibe Dein Eigenes", "Zufällige Eingabeaufforderung", " Minuten", "Schreibe ein Wort oder einen Satz", "Automatisch", "Minute", "Schau auf den Fernseher.", "Thema: Verschiedenes", "Thema: Halloween", "Nicht genug Spieler");
+	  LangArray[4] /*ITALIAN*/ = new Array ( "Aspettando i giocatori...", "Attendere Prego...", "Disegnare: ", "Descrivi il Disegno...", "Partita in corso.", "Aspetta la prossima partita." , "Lingua", "Modalità", "Tempo Di Disegnare", "Numero di Fasi", "Guarda L'Introduzione", "Inizia il Gioco", "Giocatori", "Scrivi Il Tuo Suggerimento", "Suggerimento Casuale", " Minuti", "Scrivi Una Parola O Una Frase", "Automatico", "Minuto", "Guarda la schermata principale.", "Tema: Miscellaneo", "Tema: Halloween", "Giocatori Non Abbastanza");
+	  LangArray[5] /*PORTUGUESE*/ = new Array ( "Esperando por jogadores...", "Esperando...", "Desenhe: ", "Descreva o Desenho...", "Jogo em progresso.", "Aguarde o próximo jogo." , "Idioma", "Modo", "Tempo De Desenho", "Número de Fases", "Assista à Introdução", "Começar o Jogo", "Jogadores", "Escreva o Seu Próprio Palpite", "Palpite Aleatório", " Minutos", "Escreva uma palavra ou frase", "Automático", "Minuto", "Olhe para a tela principal.", "Tema: Miscelânea", "Tema: Halloween", "Jogadores Insuficientes");
+	  LangArray[6] /*SPANISH*/ = new Array ( "Esperando jugadores...", "Esperando...", "Dibuja: ", "Describe el Dibujo...", "Partido en progreso.", "Espera el próximo partido.", "Idioma", "Modo", "Tiempo De Dibujar", "Número de Fases", "Ver la Introducción", "Empezar Juego", "Jugadores", "Escribe tu Propia Pregunta", "Pregunta al Azar", " Minutos", "Escribe una palabra o frase", "Automático", "Minuto", "Mira la pantalla principal.", "Tema: Misceláneo", "Tema: Halloween", "No Hay Suficientes Jugadores");
+      
+	  
+	  //var canvas = document.getElementById("myCanvas");
       //var ctx = canvas.getContext("2d");
       //var initializeCanvas = function(){
       /*function initializeStarterCanvas() {
@@ -61,6 +63,30 @@
 
 
       function initializeCanvas() {
+		  if (parseFloat(window.innerHeight) > parseFloat(window.innerWidth)) {
+              heightofScreen = parseFloat(window.innerWidth);
+              widthofScreen = parseFloat(window.innerHeight);
+          }
+          else {
+              heightofScreen = parseFloat(window.innerHeight);
+              widthofScreen = parseFloat(window.innerWidth);
+          }
+	      //var j = document.getElementsByClassName("airconsole-keyboard-key-html-container");
+		  //var i;
+
+		  //for (i = 0; i < j.length; i++) {
+		//		if (heightofScreen > 500){
+			//		j[i].style.height = (heightofScreen / 12);
+				//}
+				//else{
+			//		j[i].style.height = (heightofScreen / 22.5);
+			//	}
+				//j[i].style.fontSize = (heightofScreen / 18);
+				//j[i].style.width = (heightofScreen / 1.2);
+				//x[i].style.marginTop = 1; //(heightScreen / 36);
+				//x[i].style.marginBottom = 1; //(heightScreen / 36);
+		  //}
+		  console.log("INITIALIZEEEE");
           document.getElementById("readybutton").style.backgroundColor = "#e7e7e7";
           //console.log("YES IT CALLS THE FUNCTIONS");
           canvas = document.getElementById("myCanvas");
@@ -102,6 +128,8 @@
               heightofScreen = parseFloat(window.innerHeight);
               widthofScreen = parseFloat(window.innerWidth);
           }
+		  console.log("Test111 - heightofScreen: "+ heightofScreen);
+		  console.log("Test111 - widthofScreen: "+ widthofScreen);
 		  if (((heightofScreen * 3) / 2) > widthofScreen) {
               for (i = 1; i < 17; i++) {
                   document.getElementById(("func") + i.toString()).style.height = (heightofScreen / 10) * (widthofScreen / ((heightofScreen * 3) / 2));
@@ -274,6 +302,7 @@
                   //console.log("onShow#1", input_id);
               },
               onChange: function (input_id, text, html) {
+				  document.getElementById("textfield0").innerHTML = html;
                   //console.log("onChange#1", input_id, text, html);
               },
               onDone: function (input_id, text, html) {
@@ -285,6 +314,7 @@
                       me.airconsole.message(AirConsole.SCREEN, "GameHander.SaveSubmission:" + text);
                       me.airconsole.message(AirConsole.SCREEN, "submitandready");
                       keyboard.setValue('textfield2', '');
+					  document.getElementById("textfield0").innerHTML = "";
                       //document.getElementById("Guess").scrollTop()
                       //window.ScrollTo(100, 100);
                       vm.show("WatchTV");
@@ -657,6 +687,17 @@
                   //x[i].style.marginTop = 1; //(heightScreen / 36);
                   //x[i].style.marginBottom = 1; //(heightScreen / 36);
               }
+
+			  document.getElementById("ThemeDiv").style.width = (heightScreen / 1.2); //300
+
+			  document.getElementById("Theme0").style.width = (heightScreen / 1.2); //300
+			  document.getElementById("Theme0").style.height = (heightScreen / 10.28); //35
+			  document.getElementById("Theme0").style.fontSize = (heightScreen / 24);
+
+			  document.getElementById("Theme1").style.width = (heightScreen / 1.2);
+			  document.getElementById("Theme1").style.height = (heightScreen / 10.28);
+			  document.getElementById("Theme1").style.fontSize = (heightScreen / 24);
+
               document.getElementById("checkboxtextid").style.width = (heightScreen / 1.8);
               document.getElementById("checkboxtextid").style.height = (heightScreen / 14.4);
               document.getElementById("checkboxtextid").style.fontSize = (heightScreen / 14.4);
@@ -795,6 +836,16 @@
               //either write-your-own-prompt or random prompt
               document.getElementById(gameMode).style.background = "#F3F3F3";
               document.getElementById(mode).style.background = "#C3C3C3";
+			  if (gameMode != mode){
+			  	  if (mode == "WriteYourOwn"){
+						document.getElementById("Theme0").style.backgroundColor = "#F3F3F3";
+				  		document.getElementById("Theme1").style.backgroundColor = "#F3F3F3";
+				  }
+				  else{
+						document.getElementById("Theme0").style.backgroundColor = "#C3C3C3";
+				  		document.getElementById("Theme1").style.backgroundColor = "#C3C3C3";
+				  }
+			  }
               gameMode = mode;
               notifyScreenUpdate("mode");
               //if (actualPhaseNumber == 10) {
@@ -958,6 +1009,44 @@
 			  else if (targetupdate == "gamelanguage"){
 			  	  me.airconsole.message(AirConsole.SCREEN, "GameHandler.language: " + gameLanguage)
 			  }
+			  else if (targetupdate == "theme0"){
+				  //if theme is highlighted
+				  //then send a message to enable it
+				  if (gameMode == "RandomPrompt"){
+					  if (document.getElementById("Theme0").style.backgroundColor == "rgb(195, 195, 195)"){
+						if (document.getElementById("Theme1").style.backgroundColor == "rgb(195, 195, 195)"){
+							me.airconsole.message(AirConsole.SCREEN, "GameHandler.disabletheme: " + 0);
+							document.getElementById("Theme0").style.backgroundColor = "#F3F3F3";
+						
+						}
+					
+					  }
+					  else{
+						me.airconsole.message(AirConsole.SCREEN, "GameHandler.enabletheme: " + 0);
+						document.getElementById("Theme0").style.backgroundColor = "#C3C3C3";
+						console.log("DISABLETHEME0");
+					  }
+				  }
+				  
+		      }
+			  else if (targetupdate == "theme1"){
+					if (gameMode == "RandomPrompt"){
+						  if (document.getElementById("Theme1").style.backgroundColor == "rgb(195, 195, 195)"){
+								if (document.getElementById("Theme0").style.backgroundColor == "rgb(195, 195, 195)"){
+									me.airconsole.message(AirConsole.SCREEN, "GameHandler.disabletheme: " + 1);
+									document.getElementById("Theme1").style.backgroundColor = "#F3F3F3";
+								}
+					
+					
+						  }
+						  else{
+							me.airconsole.message(AirConsole.SCREEN, "GameHandler.enabletheme: " + 1);
+							document.getElementById("Theme1").style.backgroundColor = "#C3C3C3";
+						}
+					}
+				  
+
+			  }
           }
           function clickPaintBucket() {
               //console.log(currentcolor);
@@ -998,11 +1087,11 @@
               //console.log("ACTIVE DEVICE IDS: " + me.airconsole.getControllerDeviceIds().length)
               if (requiredPlayers > me.airconsole.getControllerDeviceIds().length) {
                   document.getElementById("StartButton").style.backgroundColor = "#FBFF77";
-                  document.getElementById("StartButton").textContent = "Not Enough Players";
+                  document.getElementById("StartButton").innerHTML = LangArray[gameLanguage][22];
               }
               else {
                   document.getElementById("StartButton").style.backgroundColor = "#CDFBA5";
-                  document.getElementById("StartButton").textContent = "Start Game";
+                  document.getElementById("StartButton").innerHTML = LangArray[gameLanguage][11];
               }
           }
           function requiredPlayerSetter(num) {
@@ -1030,6 +1119,9 @@
             gameLanguage = lang;
             notifyScreenUpdate("gamelanguage");
 		  }
+		  function doThing(){
+		  	  document.getElementById("func20").innerHTML = document.getElementById("span").innerHTML;
+		  }
 		  function updateDeviceLanguage(lang){
 			
 			gameLanguage = lang;
@@ -1044,8 +1136,15 @@
 			document.getElementById("7").innerHTML = LangArray[lang][7]; //mode
 			document.getElementById("8").innerHTML = LangArray[lang][8]; //drawinglength
 			document.getElementById("9").innerHTML = LangArray[lang][9]; //numberofPhases
-			document.getElementById("checkboxtextid").innerHTML = LangArray[lang][10]; //watchintroduction
-			document.getElementById("StartButton").innerHTML = LangArray[lang][11]; //
+			document.getElementById("checkboxtextid").innerHTML = LangArray[lang][10]; //watchintroduction //
+			if (requiredPlayers > me.airconsole.getControllerDeviceIds().length) {
+                  document.getElementById("StartButton").style.backgroundColor = "#FBFF77";
+                  document.getElementById("StartButton").innerHTML = LangArray[lang][22];
+              }
+              else {
+                  document.getElementById("StartButton").style.backgroundColor = "#CDFBA5";
+                  document.getElementById("StartButton").innerHTML = LangArray[lang][11];
+              }
 
 			//below: phase chooser + 'players' required
 			document.getElementById("Phases6").innerHTML = LangArray[lang][17]; //automatic
@@ -1069,6 +1168,9 @@
 			document.getElementById("mainscreen").innerHTML = LangArray[lang][19]; //lookatthemainscreen
 			document.getElementById("RandomPrompt").innerHTML = LangArray[lang][14];
 		    document.getElementById("WriteYourOwn").innerHTML = LangArray[lang][13];
+
+			document.getElementById("Theme0").innerHTML = LangArray[lang][20];
+			document.getElementById("Theme1").innerHTML = LangArray[lang][21];
 		  }
       
 </script>
@@ -1084,9 +1186,17 @@
     </div>
 
     <div class="view" id="Mode" style="background-image: url('images/paperback1.png'); background-size: contain">
-        <button ontouchstart="setMode('RandomPrompt')" class="menubuttons" style="border: solid #808080 1px; background: #C3C3C3;" id="RandomPrompt">Random Prompt</button>
-        <button ontouchstart="setMode('WriteYourOwn')" class="menubuttons" id ="WriteYourOwn" style="border: solid #808080 1px; white-space: nowrap; border-top: none;">Write Your Own Prompt</button>
-        <button ontouchstart="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px; border-top: none;"><----</button>
+		<div class = "centerall" style="background: none;">
+			<div>
+				<button ontouchstart="setMode('RandomPrompt')" class="menubuttons" style="border: solid #808080 1px; background: #C3C3C3;" id="RandomPrompt">Random Prompt</button>
+				<div id = "ThemeDiv" style= "margin-right: auto; margin-left: auto;">
+					<button ontouchstart="notifyScreenUpdate('theme0')" class="menubuttons5" style="border: solid #808080 1px; background: #C3C3C3;" id = "Theme0">Theme: Miscellaneous</button>
+					<button ontouchstart="notifyScreenUpdate('theme1')" class="menubuttons5" style="border: solid #808080 1px; background: #C3C3C3;" id = "Theme1">Theme: Halloween</button>
+				</div>
+				<button ontouchstart="setMode('WriteYourOwn')" class="menubuttons" id ="WriteYourOwn" style="border: solid #808080 1px; white-space: nowrap; margin-top: 10px;">Write Your Own Prompt</button>
+				<button ontouchstart="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px; margin-top: 10px"><----</button>
+			</div>
+		</div>
 
     </div>
 	<div class="view" id="Language" style="background-image: url('images/paperback1.png'); background-size: contain;">
@@ -1108,12 +1218,15 @@
 		</div>
 	</div>
     <div class="view" id="Length" style="background-image: url('images/paperback1.png'); background-size: contain">
-        <button ontouchstart="setPhaseLength(1);" class="menubuttons" id="Length1" style="border: solid #808080 1px;">1 Minute</button>
-        <button ontouchstart="setPhaseLength(2);" class="menubuttons" id="Length2" style="border: solid #808080 1px; border-top: none;">2 Minutes</button>
-        <button ontouchstart="setPhaseLength(3);" class="menubuttons" id="Length3" style="border: solid #808080 1px; background: #C3C3C3;  border-top: none;">3 Minutes</button>
-        <button ontouchstart="setPhaseLength(5);" class="menubuttons" id="Length5" style="border: solid #808080 1px; border-top: none;">5 Minutes</button>
-        <button ontouchstart="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px; border-top: none;"><----</button>
-
+        <div class = "centerall" style="background: none;">
+			<div>
+				<button ontouchstart="setPhaseLength(1);" class="menubuttons" id="Length1" style="border: solid #808080 1px;">1 Minute</button>
+				<button ontouchstart="setPhaseLength(2);" class="menubuttons" id="Length2" style="border: solid #808080 1px; border-top: none;">2 Minutes</button>
+				<button ontouchstart="setPhaseLength(3);" class="menubuttons" id="Length3" style="border: solid #808080 1px; background: #C3C3C3;  border-top: none;">3 Minutes</button>
+				<button ontouchstart="setPhaseLength(5);" class="menubuttons" id="Length5" style="border: solid #808080 1px; border-top: none;">5 Minutes</button>
+				<button ontouchstart="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px; margin-top: 10px"><----</button>
+			</div>
+		</div>
     </div>
     <div class="view" id="Random" style="background-image: url('images/paperback1.png'); background-size: contain">
         <button ontouchstart="setActualNumberofPhases(-1);" class="menubuttons2" style="border: solid #808080 1px; height: 50px; width: 250px; font-size: 20px; background: #C3C3C3" id="Phases6">Automatic</button>
@@ -1122,7 +1235,7 @@
         <button ontouchstart="setActualNumberofPhases(7);" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; border-top: none;" id="Phases9">6 (6+ Players)</button>
         <button ontouchstart="setActualNumberofPhases(9);" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; border-top: none;" id="Phases10">8 (8+ Players)</button>
         <button ontouchstart="setActualNumberofPhases(11);" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; border-top: none;" id="Phases11">10 (10+ Players)</button>
-        <button ontouchstart="vm.show('Start');" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; border-top: none;"><----</button>
+        <button ontouchstart="vm.show('Start');" class="menubuttons2" style="height: 50px; width: 250px; font-size: 20px; border: solid #808080 1px; margin-top: 10px"><----</button>
 
     </div>
     <!---Number of phases for 'write your own' mode-->
@@ -1132,7 +1245,7 @@
         <button ontouchstart="setActualNumberofPhases(5);" class="menubuttons3" id="Phases3" style="border: solid #808080 1px; border-top: none; height: 50px; width: 250px;">4  (5+ Players)</button>
         <button ontouchstart="setActualNumberofPhases(7);" class="menubuttons3" id="Phases4" style="border: solid #808080 1px; border-top: none; height: 50px; width: 250px;">6 (7+ Players)</button>
         <button ontouchstart="setActualNumberofPhases(9);" class="menubuttons3" id="Phases5" style="border: solid #808080 1px; border-top: none; height: 50px; width: 250px;">8 (9+ Players)</button>
-        <button ontouchstart="vm.show('Start');" class="menubuttons3" style="border: solid #808080 1px; border-top: none; height: 50px; width: 250px;"><----</button>
+        <button ontouchstart="vm.show('Start');" class="menubuttons3" style="border: solid #808080 1px; height: 50px; width: 250px; margin-top: 10px"><----</button>
 
     </div>
     <div class="view" id="Start" style="background-image: url('images/paperback1.png'); background-size: contain">
@@ -1245,7 +1358,7 @@
     <div class="view" id="Guess2" style="width: 100%; height: 100%;">
 		<div class = "centerall" id="centerallinitialphrase2" style="background: none;">
 			<div class ="initialphrasechooser">
-				<button ontouchstart="vm.show('Guess')" style="background-color: #E5E5E5; height: 30px; width: 100px; margin-top: 1px; margin-right: 10px; margin-bottom: 5px; background-position:center; border: solid #8F8F8F 1px; outline: 0; font-size: 20px; background-image: url('images/arrowleft.png'); background-size: cover;" id="func20"></button>
+				<button ontouchstart="vm.show('Guess');" style="background-color: #E5E5E5; height: 30px; width: 100px; margin-top: 1px; margin-right: 10px; margin-bottom: 5px; background-position:center; border: solid #8F8F8F 1px; outline: 0; font-size: 20px; background-image: url('images/arrowleft.png'); background-size: cover;" id="func20"></button>
 				<p class ="initialPhraseText" id="initialPhraseTextId2" style ="color: black">Describe the Drawing...</p>
 			</div>
 			<div class="textfield" id="textfield2" ontouchstart="scrollitdown()" style="background-color: white; width:1px; margin-top: auto; margin-bottom: auto;"></div>
