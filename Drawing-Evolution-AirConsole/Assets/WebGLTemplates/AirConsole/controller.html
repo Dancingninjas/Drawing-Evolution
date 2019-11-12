@@ -843,7 +843,7 @@
 				  }
 				  else{
 						document.getElementById("Theme0").style.backgroundColor = "#C3C3C3";
-				  		document.getElementById("Theme1").style.backgroundColor = "#C3C3C3";
+				  		document.getElementById("Theme1").style.backgroundColor = "#F3F3F3";
 				  }
 			  }
               gameMode = mode;
@@ -1031,8 +1031,11 @@
 		      }
 			  else if (targetupdate == "theme1"){
 					if (gameMode == "RandomPrompt"){
+						  console.log("BGCOLOR: " + document.getElementById("Theme1").style.backgroundColor);
 						  if (document.getElementById("Theme1").style.backgroundColor == "rgb(195, 195, 195)"){
+								console.log("IFF111");
 								if (document.getElementById("Theme0").style.backgroundColor == "rgb(195, 195, 195)"){
+									console.log("IFF222");
 									me.airconsole.message(AirConsole.SCREEN, "GameHandler.disabletheme: " + 1);
 									document.getElementById("Theme1").style.backgroundColor = "#F3F3F3";
 								}
@@ -1040,6 +1043,7 @@
 					
 						  }
 						  else{
+						    console.log("ELSEE");
 							me.airconsole.message(AirConsole.SCREEN, "GameHandler.enabletheme: " + 1);
 							document.getElementById("Theme1").style.backgroundColor = "#C3C3C3";
 						}
@@ -1191,7 +1195,7 @@
 				<button ontouchstart="setMode('RandomPrompt')" class="menubuttons" style="border: solid #808080 1px; background: #C3C3C3;" id="RandomPrompt">Random Prompt</button>
 				<div id = "ThemeDiv" style= "margin-right: auto; margin-left: auto;">
 					<button ontouchstart="notifyScreenUpdate('theme0')" class="menubuttons5" style="border: solid #808080 1px; background: #C3C3C3;" id = "Theme0">Theme: Miscellaneous</button>
-					<button ontouchstart="notifyScreenUpdate('theme1')" class="menubuttons5" style="border: solid #808080 1px; background: #C3C3C3;" id = "Theme1">Theme: Halloween</button>
+					<button ontouchstart="notifyScreenUpdate('theme1')" class="menubuttons5" style="border: solid #808080 1px; background: #F3F3F3;" id = "Theme1">Theme: Halloween</button>
 				</div>
 				<button ontouchstart="setMode('WriteYourOwn')" class="menubuttons" id ="WriteYourOwn" style="border: solid #808080 1px; white-space: nowrap; margin-top: 10px;">Write Your Own Prompt</button>
 				<button ontouchstart="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px; margin-top: 10px"><----</button>
