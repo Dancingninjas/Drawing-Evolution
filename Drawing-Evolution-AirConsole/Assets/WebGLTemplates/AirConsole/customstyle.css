@@ -24,6 +24,7 @@
         top: 35%;
         text-align: center;
         vertical-align: middle;
+		font-family: Delius;
         
       }
     .menubuttons{
@@ -42,7 +43,7 @@
         box-shadow: none;
         border: solid #808080 1px;
         outline: none;
-		
+		font-family: Delius;
 
       }
 	  
@@ -63,7 +64,7 @@
         box-shadow: none;
         border: solid #808080 1px;
         outline: none;
-		
+		font-family: Delius;
 
       }
 	  
@@ -83,7 +84,7 @@
         box-shadow: none;
         border: solid #808080 1px;
         outline: none;
-		
+		font-family: Delius;
 
       }
 	  .menubuttons4{
@@ -94,7 +95,7 @@
         box-shadow: none;
         border: solid #808080 1px;
         outline: none;
-		
+		font-family: Delius;
 
       }
 	  .menubuttons5{
@@ -112,7 +113,7 @@
         box-shadow: none;
         border: solid #808080 1px;
         outline: none;
-		
+		font-family: Delius;
 
       }
 
@@ -131,7 +132,7 @@
         display: inline-block;
         outline: none;
         vertical-align: middle;
-
+		font-family: Delius;
       }
 
 
@@ -144,6 +145,7 @@
         margin-left: auto;
 		margin-top: 0;
 		margin-bottom: auto;
+		font-family: Delius;
       }
 
 
@@ -165,6 +167,7 @@
         position: absolute;
         text-align: center;
         text-transform: uppercase;
+		font-family: Delius;
 
       }
       .testbuttons{
@@ -177,6 +180,7 @@
         padding-right: auto;
         vertical-align: top;
         display: inline-block;
+		font-family: Delius;
         
 
       }
@@ -235,6 +239,7 @@
         margin-bottom: 3;
         padding: 0;
         vertical-align: top;
+		font-family: Delius;
       }
       .guessmodeinput{
         font-size:20px;
@@ -253,6 +258,7 @@
         background: #D6D6D6;
         text-align: center;
         text-transform: uppercase;
+		font-family: Delius;
 
       }
       .guessmodesubmit{
@@ -271,6 +277,7 @@
         box-shadow: none;
         background: #D6D6D6;
         text-align: center;
+		font-family: Delius;
 
       }
       .drawmodetext{
@@ -286,6 +293,7 @@
         border: solid #6DD706 2px;
 		word-wrap: break-word;
 		white-space: normal;
+		font-family: Delius;
       }
     .pseudo_button {
         display: inline-block;
@@ -312,6 +320,7 @@
         vertical-align: bottom;
         color: #000000;
         background-color: #FFFFFF;
+		font-family: Delius;
       }
 	.centerall {
 		position: relative;

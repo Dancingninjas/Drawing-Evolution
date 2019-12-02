@@ -41,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Snow
+    uniqueID: 1342857353
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

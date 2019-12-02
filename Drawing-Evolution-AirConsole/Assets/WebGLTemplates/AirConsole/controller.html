@@ -7,16 +7,20 @@
   <script type="text/javascript" src="touch-area.js"></script>
   <script type="text/javascript" src="airconsole-keyboard.js"></script>
   <script type="text/javascript" src="airconsole-view-manager.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Delius&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="airconsole-keyboard.css">
   <link rel="stylesheet" href="customstyle.css">
   <style type=text/css>
   /* the style sheet dictates what our elements (buttons, backgrounds etc.) will look like. */
-
+	//@font-face {
+	//	font-family: Delius;
+	//	src: url(Delius-Regular.ttf);
+	//}
     
 
   </style>
   <script type="text/javascript">
-   
+		
       //var currentColor = black;
       var canvas;
       var ctx;
@@ -41,13 +45,13 @@
       var widthofScreen;
 	  var gameLanguage = 0;
 	  var LangArray = new Array ( );
-	  LangArray[0] /*ENGLISH*/ = new Array ( "Waiting for players...", "Waiting...", "Draw: ", "Describe the Drawing...", "The game already started.", "Wait for the next round!", "Language", "Mode", "Drawing Length", "Number of Phases", "Watch Introduction", "Start Game", "Players", "Write Your Own Prompt", "Random Prompt", " Minutes", "Write a Word or Phrase", "Automatic", "Minute", "Look at the main screen.", "Theme: Miscellanous", "Theme: Halloween", "Not Enough Players"); //look at the main screen (+ add phase intro translations to main game)
-      LangArray[1] /*DUTCH*/ = new Array ( "Aan het wachten op spelers...", "Aan het wachten...", "Teken: ", "Beschrijf de Afbeelding...", "Het spel is al bezig.", "Wacht op de volgende ronde!" , "Taal", "Spelmodus", "Toegestane Tekentijd", "Aantal Rondes", "Bekijk de Introductie", "Start Spel", "Spelers", "Schrijf Je Eigen Opdracht", "Willekeurige Opdracht", " Minuten", "Schrijf een Woord of Zin", "Automatisch", "Minuut", "Kijk naar het grote scherm.", "Thema: Diversen", "Thema: Halloween", "Niet Genoeg Spelers");
-	  LangArray[2] /*FRENCH*/ = new Array ( "En attente de joueurs...", "Attendre...", "Dessinez: ", "Décrivez l'image...", "Jeu en cours." , "Attendez le prochain match." , "Langue", "Mode", "Longueur du Dessin", "Nombre de Phases", "Regarder l'Introduction", "Démarrer Jeu", "Joueurs", "Écrivez Votre Propre Invite", "Invitation Aléatoire", " Minutes", "Écrivez un Mot ou une Phrase", "Automatique", "Minute", "Regarde l'écran principal.", "Thème: Divers", "Thème Halloween", "Pas Assez de Joueurs"); 
-	  LangArray[3] /*GERMAN*/ = new Array ( "Warten auf Spieler...", "Warten...", "Zeichne: ", "Beschreibe die Zeichnung...", "Ein Match ist in Bearbeitung", "Warten Sie auf das nächste Spiel.", "Sprache", "Modus", "Zeit Zum Zeichnen", "Anzahl der Phasen", "Einführung Anzeigen", "Spiel Beginnen", "Spieler", "Schreibe Dein Eigenes", "Zufällige Eingabeaufforderung", " Minuten", "Schreibe ein Wort oder einen Satz", "Automatisch", "Minute", "Schau auf den Fernseher.", "Thema: Verschiedenes", "Thema: Halloween", "Nicht genug Spieler");
-	  LangArray[4] /*ITALIAN*/ = new Array ( "Aspettando i giocatori...", "Attendere Prego...", "Disegnare: ", "Descrivi il Disegno...", "Partita in corso.", "Aspetta la prossima partita." , "Lingua", "Modalità", "Tempo Di Disegnare", "Numero di Fasi", "Guarda L'Introduzione", "Inizia il Gioco", "Giocatori", "Scrivi Il Tuo Suggerimento", "Suggerimento Casuale", " Minuti", "Scrivi Una Parola O Una Frase", "Automatico", "Minuto", "Guarda la schermata principale.", "Tema: Miscellaneo", "Tema: Halloween", "Giocatori Non Abbastanza");
-	  LangArray[5] /*PORTUGUESE*/ = new Array ( "Esperando por jogadores...", "Esperando...", "Desenhe: ", "Descreva o Desenho...", "Jogo em progresso.", "Aguarde o próximo jogo." , "Idioma", "Modo", "Tempo De Desenho", "Número de Fases", "Assista à Introdução", "Começar o Jogo", "Jogadores", "Escreva o Seu Próprio Palpite", "Palpite Aleatório", " Minutos", "Escreva uma palavra ou frase", "Automático", "Minuto", "Olhe para a tela principal.", "Tema: Miscelânea", "Tema: Halloween", "Jogadores Insuficientes");
-	  LangArray[6] /*SPANISH*/ = new Array ( "Esperando jugadores...", "Esperando...", "Dibuja: ", "Describe el Dibujo...", "Partido en progreso.", "Espera el próximo partido.", "Idioma", "Modo", "Tiempo De Dibujar", "Número de Fases", "Ver la Introducción", "Empezar Juego", "Jugadores", "Escribe tu Propia Pregunta", "Pregunta al Azar", " Minutos", "Escribe una palabra o frase", "Automático", "Minuto", "Mira la pantalla principal.", "Tema: Misceláneo", "Tema: Halloween", "No Hay Suficientes Jugadores");
+	  LangArray[0] /*ENGLISH*/ = new Array ( "Waiting for players...", "Waiting...", "Draw: ", "Describe the Drawing...", "The game already started.", "Wait for the next round!", "Language", "Mode", "Drawing Length", "Number of Phases", "Watch Introduction", "Start Game", "Players", "Write Your Own Prompt", "Random Prompt", " Minutes", "Write a Word or Phrase", "Automatic", "Minute", "Look at the main screen.", "Theme: Miscellanous", "Theme: Xmas / Winter", "Not Enough Players"); //look at the main screen (+ add phase intro translations to main game)
+      LangArray[1] /*DUTCH*/ = new Array ( "Aan het wachten op spelers...", "Aan het wachten...", "Teken: ", "Beschrijf de Afbeelding...", "Het spel is al bezig.", "Wacht op de volgende ronde!" , "Taal", "Spelmodus", "Toegestane Tekentijd", "Aantal Rondes", "Bekijk de Introductie", "Start Spel", "Spelers", "Schrijf Je Eigen Opdracht", "Willekeurige Opdracht", " Minuten", "Schrijf een Woord of Zin", "Automatisch", "Minuut", "Kijk naar het grote scherm.", "Thema: Diversen", "Thema: Kerstmis / Winter", "Niet Genoeg Spelers");
+	  LangArray[2] /*FRENCH*/ = new Array ( "En attente de joueurs...", "Attendre...", "Dessinez: ", "Décrivez l'image...", "Jeu en cours." , "Attendez le prochain match." , "Langue", "Mode", "Longueur du Dessin", "Nombre de Phases", "Regarder l'Introduction", "Démarrer Jeu", "Joueurs", "Écrivez Votre Propre Invite", "Invitation Aléatoire", " Minutes", "Écrivez un Mot ou une Phrase", "Automatique", "Minute", "Regarde l'écran principal.", "Thème: Divers", "Thème: Noël / Hiver", "Pas Assez de Joueurs"); 
+	  LangArray[3] /*GERMAN*/ = new Array ( "Warten auf Spieler...", "Warten...", "Zeichne: ", "Beschreibe die Zeichnung...", "Ein Match ist in Bearbeitung", "Warten Sie auf das nächste Spiel.", "Sprache", "Modus", "Zeit Zum Zeichnen", "Anzahl der Phasen", "Einführung Anzeigen", "Spiel Beginnen", "Spieler", "Schreibe Dein Eigenes", "Zufällige Eingabeaufforderung", " Minuten", "Schreibe ein Wort oder einen Satz", "Automatisch", "Minute", "Schau auf den Fernseher.", "Thema: Verschiedenes", "Thema: Weihnachten / Winter", "Nicht genug Spieler");
+	  LangArray[4] /*ITALIAN*/ = new Array ( "Aspettando i giocatori...", "Attendere Prego...", "Disegnare: ", "Descrivi il Disegno...", "Partita in corso.", "Aspetta la prossima partita." , "Lingua", "Modalità", "Tempo Di Disegnare", "Numero di Fasi", "Guarda L'Introduzione", "Inizia il Gioco", "Giocatori", "Scrivi Il Tuo Suggerimento", "Suggerimento Casuale", " Minuti", "Scrivi Una Parola O Una Frase", "Automatico", "Minuto", "Guarda la schermata principale.", "Tema: Miscellaneo", "Tema: Natale / Inverno", "Giocatori Non Abbastanza");
+	  LangArray[5] /*PORTUGUESE*/ = new Array ( "Esperando por jogadores...", "Esperando...", "Desenhe: ", "Descreva o Desenho...", "Jogo em progresso.", "Aguarde o próximo jogo." , "Idioma", "Modo", "Tempo De Desenho", "Número de Fases", "Assista à Introdução", "Começar o Jogo", "Jogadores", "Escreva o Seu Próprio Palpite", "Palpite Aleatório", " Minutos", "Escreva uma palavra ou frase", "Automático", "Minuto", "Olhe para a tela principal.", "Tema: Miscelânea", "Tema: Natal / Inverno", "Jogadores Insuficientes");
+	  LangArray[6] /*SPANISH*/ = new Array ( "Esperando jugadores...", "Esperando...", "Dibuja: ", "Describe el Dibujo...", "Partido en progreso.", "Espera el próximo partido.", "Idioma", "Modo", "Tiempo De Dibujar", "Número de Fases", "Ver la Introducción", "Empezar Juego", "Jugadores", "Escribe tu Propia Pregunta", "Pregunta al Azar", " Minutos", "Escribe una palabra o frase", "Automático", "Minuto", "Mira la pantalla principal.", "Tema: Misceláneo", "Tema: Navidad / Invierno", "No Hay Suficientes Jugadores");
       
 	  
 	  //var canvas = document.getElementById("myCanvas");
@@ -165,6 +169,7 @@
               document.getElementById("textfield2").style.fontSize = ((heightofScreen / 25.7) * (widthofScreen / ((heightofScreen * 3) / 2)));
 			  document.getElementById("textfield0").style.width = ((heightofScreen / 0.9) * (widthofScreen / ((heightofScreen * 3) / 2))); //400
               document.getElementById("textfield0").style.height = ((heightofScreen / 14.4) * (widthofScreen / ((heightofScreen * 3) / 2)));
+			  document.getElementById("textfield0").style.fontSize = ((heightofScreen / 22.5) * (widthofScreen / ((heightofScreen * 3) / 2)));
               document.getElementById("textfield1").style.width = ((heightofScreen / 0.9) * (widthofScreen / ((heightofScreen * 3) / 2))); //400
               document.getElementById("textfield1").style.height = ((heightofScreen / 14.4) * (widthofScreen / ((heightofScreen * 3) / 2)));
               document.getElementById("textfield1").style.fontSize = ((heightofScreen / 25.7) * (widthofScreen / ((heightofScreen * 3) / 2)));
@@ -203,6 +208,7 @@
               document.getElementById("textfield2").style.fontSize = (heightofScreen / 25.7);
 			  document.getElementById("textfield0").style.width = (heightofScreen / 0.9); //400
               document.getElementById("textfield0").style.height = (heightofScreen / 14.4);
+			  document.getElementById("textfield0").style.fontSize = (heightofScreen / 22.5);
               document.getElementById("textfield1").style.width = (heightofScreen / 0.9); //400
               document.getElementById("textfield1").style.height = (heightofScreen / 14.4);
               document.getElementById("textfield1").style.fontSize = (heightofScreen / 25.7);
@@ -419,7 +425,22 @@
 		  document.getElementById("func20").style.height = (heightofScreen / 12);
 		  document.getElementById("func20").style.width = ((heightofScreen / 12) * 3);
 		  document.getElementById("func20").style.marginBottom = (heightofScreen/ 72);
+		  //document.getElementById("0").style.fontSize = (heightofScreen/ 14.4);
+		  //document.getElementById("1").style.fontSize = (heightofScreen/ 14.4);
+		  //document.getElementById("4").style.fontSize = (heightofScreen/ 14.4);
+		  //document.getElementById("5").style.fontSize = (heightofScreen/ 14.4);
+		  //document.getElementById("mainscreen").style.fontSize = (heightofScreen/ 14.4);
 
+		  var y = document.getElementsByClassName("watchtvtext");
+              var i;
+
+              for (i = 0; i < y.length; i++) {
+                  y[i].style.fontSize = (heightofScreen/ 14.4);
+				  y[i].style.height = (heightofScreen/ 9);
+				  y[i].style.width = (heightofScreen/ 1.2);
+                  //y[i].style.marginTop = 1;//(heightScreen / 36);
+                  //y[i].style.marginBottom = 1;//(heightScreen / 36);
+              }
           /*if (((parseFloat(window.innerHeight) * 3) / 2) > parseFloat(window.innerWidth)) {
               document.getElementById("guessCanvas").setAttribute("width", (((parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6)) * 3) / 2)) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
               document.getElementById("guessCanvas").setAttribute("height", (parseFloat(window.innerHeight) - (parseFloat(window.innerHeight) / 6))) * (parseFloat(window.innerWidth) / ((parseFloat(window.innerHeight) * 3) / 2));
@@ -843,7 +864,9 @@
 				  }
 				  else{
 						document.getElementById("Theme0").style.backgroundColor = "#C3C3C3";
-				  		document.getElementById("Theme1").style.backgroundColor = "#F3F3F3";
+				  		document.getElementById("Theme1").style.backgroundColor = "#C3C3C3";
+						//notifyScreenUpdate("theme0");
+						//notifyScreenUpdate("theme1");
 				  }
 			  }
               gameMode = mode;
@@ -1195,7 +1218,7 @@
 				<button ontouchstart="setMode('RandomPrompt')" class="menubuttons" style="border: solid #808080 1px; background: #C3C3C3;" id="RandomPrompt">Random Prompt</button>
 				<div id = "ThemeDiv" style= "margin-right: auto; margin-left: auto;">
 					<button ontouchstart="notifyScreenUpdate('theme0')" class="menubuttons5" style="border: solid #808080 1px; background: #C3C3C3;" id = "Theme0">Theme: Miscellaneous</button>
-					<button ontouchstart="notifyScreenUpdate('theme1')" class="menubuttons5" style="border: solid #808080 1px; background: #F3F3F3;" id = "Theme1">Theme: Halloween</button>
+					<button ontouchstart="notifyScreenUpdate('theme1')" class="menubuttons5" style="border: solid #808080 1px; background: #C3C3C3;" id = "Theme1">Theme: Xmas / Winter</button>
 				</div>
 				<button ontouchstart="setMode('WriteYourOwn')" class="menubuttons" id ="WriteYourOwn" style="border: solid #808080 1px; white-space: nowrap; margin-top: 10px;">Write Your Own Prompt</button>
 				<button ontouchstart="vm.show('Start');" class="menubuttons" style="border: solid #808080 1px; margin-top: 10px"><----</button>
@@ -1268,7 +1291,7 @@
         </div>
 
         <!--<label for="checkbox_id" class="menubuttons">Watch Introduction</label>-->
-        <button ontouchstart="startGame();" class="menubuttons" style="background-color: #CDFBA5;" id="StartButton">Start Game</button>
+        <button ontouchstart="startGame();" class="menubuttons" style="background-color: #CDFBA5; font-family: Delius;" id="StartButton">Start Game</button>
     </div>
     <div class="view" id ="InProgress" style="background-image: url('images/paperback1.png'); background-size: contain">
         <!--<canvas id="watchtvcanvas" class="tvcanvas" width="100" height ="100"></canvas>-->
@@ -1278,7 +1301,7 @@
     <div class="view" id ="WatchTVAfter" style="background-image: url('images/paperback1.png'); background-size: contain">
         <!--<canvas id="watchtvcanvas" class="tvcanvas" width="100" height ="100"></canvas>-->
         <!--<p class="watchtvtext">Let's see how these phrase got mixed up!</p>-->
-        <p class="watchtvtext" id="mainscreen" style="width: 350px;">Look at the main screen...</p>
+        <p class="watchtvtext" id="mainscreen" style="width: 350px;">Look at the main screen.</p>
     </div>
     <div class="view" id="InitialPhrase" style="background-image: url('images/paperback1.png'); background-size: contain">
         <div class = "centerall" id="centerallinitialphrase" style="background: none;">
